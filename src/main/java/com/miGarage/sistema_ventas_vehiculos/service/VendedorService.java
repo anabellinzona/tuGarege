@@ -15,8 +15,7 @@ public class VendedorService {
     public List<Vendedor> obtenerVendedores() {
         return vendedorRepository.findAll();
     }
-
-    public Vendedor obtenerVendedorPorId(Long id) {
+    public Vendedor obtenerVendedor(Long id) {
         return vendedorRepository.findById(id).get();
     }
 }

@@ -29,6 +29,9 @@ public class Vehiculo {
     private String moneda;
     private String descripcion;
 
+    @Column(name = "tipo")
+    private String tipo;
+
     @Column(name = "fecha_publicacion")
     private Date fechaPubliacion;
 

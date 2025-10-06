@@ -20,6 +20,10 @@ public class Vehiculo {
     @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     List<VehiculoCaracteristica> vehiculoCaracteristicas;
 
+    @ManyToOne
+    @JoinColumn(name = "vendedor_id")
+    private Vendedor vendedor;
+
     private String modelo;
     private double precio;
     private String moneda;

@@ -2,6 +2,12 @@ package com.miGarage.sistema_ventas_vehiculos.repository;
 
 import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface VehiculoRepository extends JpaRepository<Vehiculo, Long> {
+import java.util.List;
+
+public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSpecificationExecutor<Vehiculo> {
+
+
+    public List<Vehiculo> obtenerVehiculoPorVendedor(Long id);
 }

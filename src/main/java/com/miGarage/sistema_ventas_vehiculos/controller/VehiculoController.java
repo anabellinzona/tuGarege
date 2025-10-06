@@ -14,6 +14,24 @@ public class VehiculoController {
     private VehiculoService vehiculoService;
 
     @GetMapping
+    public List<Vehiculo> obtenerOFiltrarVehiculos(
+            @RequestParam(required = false) String marca,
+            @RequestParam(required = false) String modelo,
+            @RequestParam(required = false) Integer anio, // Nota: Int/Long para años
+            @RequestParam(required = false) String estado
+            // Aquí agregarías los demás filtros como carroceria, precioMin, etc.
+    )
+    {
+        // El Controller sólo recolecta y delega los parámetros
+        return vehiculoService.buscarVehiculosConFiltros(marca, modelo, anio, estado);
+    }
+
+    @GetMapping("/vendedor/{id}")
+    public List<Vehiculo> obtenerPorVendedor(@PathVariable Long id) {
+        return vehiculoService.obtenerVehiculoPorVendedor(id);
+    }
+
+    @GetMapping
     public List<Vehiculo> obtenerVehiculos() {
         return null;
     }

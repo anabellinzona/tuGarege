@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vendedores")
@@ -28,8 +29,8 @@ public class VendedorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Vendedor> obtenerVendedorPorId(@PathVariable Long id) {
-        Vendedor vendedor = vendedorService.obtenerVendedor(id);
+    public ResponseEntity<Optional<Vendedor>> obtenerVendedorPorId(@PathVariable Long id) {
+        Optional<Vendedor> vendedor = vendedorService.obtenerVendedor(id);
 
         return new ResponseEntity<>(vendedor, HttpStatus.OK);
     }

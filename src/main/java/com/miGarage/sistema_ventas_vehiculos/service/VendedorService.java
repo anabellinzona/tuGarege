@@ -21,15 +21,10 @@ public class VendedorService implements UserDetailsService {
     @Autowired
     private VendedorRepository vendedorRepository;
 
-    // 1. INYECTAR EL PASSWORD ENCODER
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     private static final String ROL_VENDEDOR = "VENDEDOR";
-
-    // ----------------------------------------------------------------------
-    // LÓGICA DE NEGOCIO (CRUD)
-    // ----------------------------------------------------------------------
 
     public List<Vendedor> obtenerVendedores() {
         return vendedorRepository.findAll();

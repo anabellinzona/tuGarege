@@ -17,19 +17,19 @@ public class VehiculoService {
 
     @Autowired
     private VehiculoRepository vehiculoRepository;
-//
-//    public List<Vehiculo> obtenerTodos() {
-//        return vehiculoRepository.findAll();
-//    }
+
+    public List<Vehiculo> obtenerTodos() {
+        return vehiculoRepository.findAll();
+    }
 //
 //    public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
 //        //lógica de negocio (NO OLVIDAR)
 //        return vehiculoRepository.save(vehiculo);
 //    }
 //
-////    public List<Vehiculo> obtenerVehiculoPorVendedor(Long id) {
-////        return vehiculoRepository.obtenerVehiculoPorVendedor(id);
-////    }
+    public List<Vehiculo> obtenerVehiculosPorVendedor(Long vendedorId) {
+        return vehiculoRepository.findByVendedor(vendedorId);
+    }
 //
 //    public Optional<Vehiculo> obtenerPorId(Long id) {
 //        return vehiculoRepository.findById(id);
@@ -86,11 +86,9 @@ public class VehiculoService {
     public List<Vehiculo> obtenerVehiculosPorTipo(String tipo) {
         return vehiculoRepository.findByTipo(tipo);
     }
-//
-//    public List<Vehiculo> obtenerDestacados() {
-//        // List<Vehiculo> findByDestacadoTrue();
-//        // Por ahora, solo usamos el findAll()
-//        return vehiculoRepository.findAll();
-//    }
+
+    public List<Vehiculo> obtenerDestacados() {
+         return vehiculoRepository.findByDestacadoTrue();
+    }
 
 }

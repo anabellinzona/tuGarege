@@ -24,6 +24,17 @@ public class VehiculoController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping
+    public ResponseEntity<List<Vehiculo>> obtenerTodos() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerTodos();
+
+        if (vehiculos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(vehiculos);
+    }
+
     @GetMapping("/tipo/{tipo}")
     public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorTipo(@PathVariable String tipo) { // <-- Tipo de retorno CORREGIDO
 
@@ -31,6 +42,27 @@ public class VehiculoController {
 
         if (vehiculos.isEmpty()) {
             return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(vehiculos);
+    }
+
+    @GetMapping("/destacados")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosDestacados() {
+        List<Vehiculo> destacados = vehiculoService.obtenerDestacados();
+
+        if (destacados.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(destacados);
+    }
+
+    @GetMapping("/vendedor/{vendedorId}")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorVendedor(@PathVariable Long vendedorId) {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculosPorVendedor(vendedorId);
+
+        if (vehiculos.isEmpty()) {
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(vehiculos);
     }

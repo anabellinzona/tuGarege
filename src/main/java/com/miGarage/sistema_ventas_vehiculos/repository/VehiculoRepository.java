@@ -16,6 +16,12 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
     @Query("SELECT DISTINCT v.modelo FROM Vehiculo v WHERE v.modelo IS NOT NULL ORDER BY v.modelo")
     List<String> findByModelo();
 
+    @Query("SELECT DISTINCT v FROM Vehiculo v WHERE v.destacado = true")
+    List<Vehiculo> findByDestacadoTrue();
+
 //    @Query("SELECT DISTINCT v.anio FROM Vehiculo v WHERE v.anio IS NOT NULL ORDER BY v.anio DESC")
 //    List<Integer> findDistinctAnios();
+
+    @Query("SELECT v FROM Vehiculo v WHERE v.vendedor.id = :vendedorId ORDER BY v.fechaPublicacion DESC")
+    List<Vehiculo> findByVendedor(Long vendedorId);
 }

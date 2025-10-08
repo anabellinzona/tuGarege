@@ -1,13 +1,12 @@
 package com.miGarage.sistema_ventas_vehiculos.controller;
 
+import com.miGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
 import com.miGarage.sistema_ventas_vehiculos.entity.Vendedor;
 import com.miGarage.sistema_ventas_vehiculos.service.VendedorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,5 +32,15 @@ public class VendedorController {
         Optional<Vendedor> vendedor = vendedorService.obtenerVendedor(id);
 
         return new ResponseEntity<>(vendedor, HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@Valid @RequestBody VendedorRegisterDTO dto) {
+        try {
+            String mensaje = vendedorService.registrarVendedor(dto);
+            return ResponseEntity.ok(mensaje);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

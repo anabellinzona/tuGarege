@@ -86,7 +86,22 @@ public class VehiculoController {
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<List<Vehiculo>> buscarConFiltros(@RequestParam(required = false) FiltroVehiculoDTO filtros) {
+    public ResponseEntity<List<Vehiculo>> buscarConFiltros(
+            FiltroVehiculoDTO filtros,
+            @RequestParam(required = false) List<String> modelos,
+            @RequestParam(required = false) List<String> marcas
+//            @RequestParam(required = false) List<String> estados
+    ) {
+        System.out.println(filtros + " " + modelos + " " + marcas);
+        if (modelos != null && !modelos.isEmpty()) {
+            filtros.setModelos(modelos);
+        }
+        if (marcas != null && !marcas.isEmpty()) {
+            filtros.setMarcas(marcas);
+        }
+//        if (estados != null && !estados.isEmpty()) {
+//            filtros.setEstados(estados);
+//        }
         return ResponseEntity.ok(vehiculoService.obtenerVehiculosDisponibles(filtros));
     }
 

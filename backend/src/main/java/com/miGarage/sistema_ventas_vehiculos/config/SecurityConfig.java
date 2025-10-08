@@ -28,8 +28,9 @@ public class SecurityConfig {
                 // 3. REGLAS DE ACCESO: Permitir todos los GET a vehículos y vendedores
                 .authorizeHttpRequests(auth -> auth
                         // Permite GET a /api/vehiculos, /api/vehiculos/123, /api/vehiculos/buscar?...
-                        .requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/vehiculos/**").permitAll()
+                                .requestMatchers("/api/vehiculos/buscar/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/vehiculos/**").permitAll()
 
                         // Permite GET a /api/vendedores y sub-rutas
                         .requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll()

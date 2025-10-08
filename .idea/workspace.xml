@@ -5,37 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/VendedorRegisterDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/SistemaVentaVehiculosApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/SistemaVentaVehiculosApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/CaracteristicaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/CaracteristicaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VendedorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VendedorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/FiltroVehiculoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/FiltroVehiculoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/TipoFiltro.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/TipoFiltro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Caracteristica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Caracteristica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/VehiculoCaracteristica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/VehiculoCaracteristica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vendedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/CaracteristicaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/CaracteristicaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/CaracteristicaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/CaracteristicaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoFiltroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoFiltroService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VendedorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VendedorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miGarage/sistema_ventas_vehiculos/util/ColumnaCaracteriticaVehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/util/ColumnaCaracteriticaVehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/miGarage/sistema_ventas_vehiculos/SistemaVentaVehiculosApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/miGarage/sistema_ventas_vehiculos/SistemaVentaVehiculosApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/miGarage/sistema_ventas_vehiculos/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/miGarage/sistema_ventas_vehiculos/main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/tuGarege.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +51,7 @@
     &quot;Spring Boot.SistemaVentaVehiculosApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Desktop/MAGNO/tuGarage/tuGarege&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Desktop/MAGNO/garage&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -118,6 +92,10 @@
       <updated>1759770521343</updated>
       <workItem from="1759770522780" duration="10870000" />
       <workItem from="1759926869516" duration="6747000" />
+      <workItem from="1759935697690" duration="162000" />
+      <workItem from="1759935878922" duration="24000" />
+      <workItem from="1759935927890" duration="6000" />
+      <workItem from="1759936170624" duration="303000" />
     </task>
     <servers />
   </component>

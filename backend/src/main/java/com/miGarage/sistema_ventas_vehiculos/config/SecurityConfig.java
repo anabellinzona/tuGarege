@@ -39,9 +39,6 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
-                // 🚨 IMPORTANTE: Elimina el formLogin para que Spring no sepa cómo mostrar un formulario.
-                // .formLogin(form -> form.permitAll()) // <-- ELIMINAR ESTA LÍNEA
-
                 .logout(logout -> logout.permitAll()); // Puedes dejar el logout, es inofensivo
 
         return http.build();

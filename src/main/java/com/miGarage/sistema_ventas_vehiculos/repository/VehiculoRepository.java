@@ -23,8 +23,8 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
 
     @Query("SELECT v FROM Vehiculo v WHERE " +
             "(:modelos IS NULL OR v.modelo IN :modelos) AND " +
-            "(:marcas IS NULL OR v.marca IN :marcas) AND " +
-            "(:estados IS NULL OR v.estadoPublicacion IN :estados)")
+            "(:marcas IS NULL OR v.marca IN :marcas) " )
+//            "(:estados IS NULL OR v.estadoPublicacion IN :estados)")
     List<Vehiculo> findByFiltros(
             @Param("modelos") List<String> modelos,
             @Param("marcas") List<String> marcas

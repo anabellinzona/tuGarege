@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Permite GET a /api/vehiculos, /api/vehiculos/123, /api/vehiculos/buscar?...
                         .requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/vehiculos/**").permitAll()
 
                         // Permite GET a /api/vendedores y sub-rutas
                         .requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll()

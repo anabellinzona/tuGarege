@@ -8,6 +8,8 @@ import com.miGarage.sistema_ventas_vehiculos.repository.VehiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,6 +24,10 @@ public class VehiculoService {
         return vehiculoRepository.findAll();
     }
 
+    public Vehiculo crearVehiculo(Vehiculo vehiculo) {
+        return vehiculoRepository.save(vehiculo);
+    }
+//
     public List<Vehiculo> obtenerVehiculosPorVendedor(Long vendedorId) {
         return vehiculoRepository.findByVendedor(vendedorId);
     }
@@ -43,6 +49,18 @@ public class VehiculoService {
          return vehiculoRepository.findByDestacadoTrue();
     }
 
+    public Vehiculo actualizarVehiculo(Long id, Vehiculo datosVehiculo) {
+        return vehiculoRepository.findById(id).map(vehiculo -> {
+            vehiculo.setModelo(datosVehiculo.getModelo());
+            vehiculo.setPrecio(datosVehiculo.getPrecio());
+            vehiculo.setMoneda(datosVehiculo.getMoneda());
+            vehiculo.setDescripcion(datosVehiculo.getDescripcion());
+            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
+            vehiculo.setEstado(datosVehiculo.getEstado());
+//            vehiculo.setVendedor(datosVehiculo.getVendedor());
+            return vehiculoRepository.save(vehiculo);
+        }).orElse(null);
+    }
     public Map<String, FiltroDTO> obtenerFiltrosDisponibles() {
         Map<String, FiltroDTO> filtros = new HashMap<>();
 

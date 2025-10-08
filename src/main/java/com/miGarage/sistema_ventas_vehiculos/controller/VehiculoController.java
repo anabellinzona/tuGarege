@@ -90,6 +90,23 @@ public class VehiculoController {
         return ResponseEntity.ok(vehiculoService.obtenerVehiculosDisponibles(filtros));
     }
 
+    @PostMapping
+    public ResponseEntity<Vehiculo> crearVehiculo(@RequestBody Vehiculo vehiculo) {
+        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo);
+
+        return ResponseEntity.ok(nuevo);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehiculo> actualizarVehiculo(@PathVariable Long id, @RequestBody Vehiculo actualizado) {
+
+        Vehiculo vehiculo = vehiculoService.actualizarVehiculo(id, actualizado);
+        if (vehiculo == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(vehiculo);
+    }
+
 //    @GetMapping("/buscar")
 //    public ResponseEntity<List<Vehiculo>> buscarConFiltros(@RequestParam(required = false) List<String> modelos, @RequestParam(required = false) List<String> marcas) {
 //        FiltroVehiculoDTO filtros = new FiltroVehiculoDTO();

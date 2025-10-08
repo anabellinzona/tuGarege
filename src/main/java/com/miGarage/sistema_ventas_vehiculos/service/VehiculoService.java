@@ -21,11 +21,10 @@ public class VehiculoService {
     public List<Vehiculo> obtenerTodos() {
         return vehiculoRepository.findAll();
     }
-//
-//    public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
-//        //lógica de negocio (NO OLVIDAR)
-//        return vehiculoRepository.save(vehiculo);
-//    }
+
+    public Vehiculo crearVehiculo(Vehiculo vehiculo) {
+        return vehiculoRepository.save(vehiculo);
+    }
 //
     public List<Vehiculo> obtenerVehiculosPorVendedor(Long vendedorId) {
         return vehiculoRepository.findByVendedor(vendedorId);

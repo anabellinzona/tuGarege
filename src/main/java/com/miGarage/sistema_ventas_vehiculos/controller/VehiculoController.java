@@ -66,4 +66,11 @@ public class VehiculoController {
         }
         return ResponseEntity.ok(vehiculos);
     }
+
+    @PostMapping
+    public ResponseEntity<Vehiculo> crearVehiculo(@RequestBody Vehiculo vehiculo) {
+        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo);
+
+        return ResponseEntity.ok(nuevo);
+    }
 }

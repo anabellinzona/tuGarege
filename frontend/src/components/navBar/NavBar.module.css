@@ -1,0 +1,53 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100vw;
+    height: fit-content;
+
+    padding: var(--15px);
+
+    background-color: var(--neutral-1);
+    color: var(--neutral-5);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.main div, .links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: var(--30px);
+}
+
+.links h5 {
+    transition: transform 0.3s ease;
+}
+
+.links h5:hover {
+    transform: translateY(-5px);
+}
+
+.activeLink h5 {
+    color: var(--red-1);
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.darkModeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.darkModeButton:hover {
+    transform: scale(1.1);
+}

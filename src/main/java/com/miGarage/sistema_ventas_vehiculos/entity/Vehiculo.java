@@ -47,7 +47,7 @@ public class Vehiculo {
 
     @Column(name = "fecha_publicacion")
     @NotNull    (message = "La fecha es obligatoria")
-    private Date fechaPubliacion;
+    private Date fechaPublicacion;
 
     private boolean destacado;
 
@@ -58,12 +58,14 @@ public class Vehiculo {
     public Vehiculo() {}
 
 
-    public Vehiculo(String modelo, double precio, String moneda, String descripcion, Date fechaPublicacion, boolean destacado, String estado) {
+    public Vehiculo(String modelo, double precio, String moneda, String descripcion, String tipo, Vendedor vendedor, Date fechaPublicacion, boolean destacado, String estado) {
         this.modelo = modelo;
         this.precio = precio;
         this.moneda = moneda;
         this.descripcion = descripcion;
-        this.fechaPubliacion = fechaPublicacion;
+        this.tipo = tipo;
+        this.vendedor = vendedor;
+        this.fechaPublicacion = fechaPublicacion;
         this.destacado = destacado;
         this.estado = estado;
     }

@@ -73,4 +73,14 @@ public class VehiculoController {
 
         return ResponseEntity.ok(nuevo);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehiculo> actualizarVehiculo(@PathVariable Long id, @RequestBody Vehiculo actualizado) {
+
+        Vehiculo vehiculo = vehiculoService.actualizarVehiculo(id, actualizado);
+        if (vehiculo == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(vehiculo);
+    }
 }

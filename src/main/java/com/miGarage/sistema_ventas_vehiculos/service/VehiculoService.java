@@ -90,4 +90,16 @@ public class VehiculoService {
          return vehiculoRepository.findByDestacadoTrue();
     }
 
+    public Vehiculo actualizarVehiculo(Long id, Vehiculo datosVehiculo) {
+        return vehiculoRepository.findById(id).map(vehiculo -> {
+            vehiculo.setModelo(datosVehiculo.getModelo());
+            vehiculo.setPrecio(datosVehiculo.getPrecio());
+            vehiculo.setMoneda(datosVehiculo.getMoneda());
+            vehiculo.setDescripcion(datosVehiculo.getDescripcion());
+            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
+            vehiculo.setEstado(datosVehiculo.getEstado());
+            vehiculo.setVendedor(datosVehiculo.getVendedor());
+            return vehiculoRepository.save(vehiculo);
+        }).orElse(null);
+    }
 }

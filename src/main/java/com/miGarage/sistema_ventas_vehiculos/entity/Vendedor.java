@@ -26,7 +26,7 @@ public class Vendedor {
 
     public Vendedor() {}
 
-    public Vendedor(String nombre, String direccion, String telefono, String email, String contrasena, String instragram, String descripcion, String fotoPerfil) {
+    public Vendedor(String nombre, String direccion, String telefono, String email, String contrasena, String instragram, String descripcion, String fotoPerfil, String ciudad) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;

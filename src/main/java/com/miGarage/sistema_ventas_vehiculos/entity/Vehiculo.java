@@ -1,55 +1,42 @@
 package com.miGarage.sistema_ventas_vehiculos.entity;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 
-
 @Entity
+@Table(name = "vehiculo")
 public class Vehiculo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<VehiculoCaracteristica> vehiculoCaracteristicas;
-
-    @ManyToOne
-    @JoinColumn(name = "vendedor_id")
-    private Vendedor vendedor;
+    @Column(name = "vendedor_id")
+    private Long vendedorId;
 
     private String modelo;
-    private double precio;
+    private BigDecimal precio;
     private String moneda;
     private String descripcion;
 
-    @Column(name = "tipo")
-    private String tipo;
+    @Column(name = "estado_publicacion")
+    private String estadoPublicacion;
 
     @Column(name = "fecha_publicacion")
-    private Date fechaPubliacion;
+    private LocalDateTime fechaPublicacion;
 
-    private boolean destacado;
+    private Boolean destacado;
+    private String tipo;
+    private String marca;
 
-    @Column(name = "estado_publicacion")
-    private String estado;
-
-    public Vehiculo() {}
-
-
-    public Vehiculo(String modelo, double precio, String moneda, String descripcion, Date fechaPublicacion, boolean destacado, String estado) {
-        this.modelo = modelo;
-        this.precio = precio;
-        this.moneda = moneda;
-        this.descripcion = descripcion;
-        this.fechaPubliacion = fechaPublicacion;
-        this.destacado = destacado;
-        this.estado = estado;
-    }
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Caracteristica> caracteristicas = new ArrayList<>();
 }

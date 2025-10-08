@@ -1,16 +1,16 @@
 package com.miGarage.sistema_ventas_vehiculos.service;
 
+import com.miGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
+import com.miGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
+import com.miGarage.sistema_ventas_vehiculos.dto.OpcionFiltroDTO;
 import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
 import com.miGarage.sistema_ventas_vehiculos.repository.VehiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jakarta.persistence.criteria.Predicate;
-import org.springframework.data.jpa.domain.Specification;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class VehiculoService {
@@ -21,59 +21,11 @@ public class VehiculoService {
     public List<Vehiculo> obtenerTodos() {
         return vehiculoRepository.findAll();
     }
-//
-//    public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
-//        //lógica de negocio (NO OLVIDAR)
-//        return vehiculoRepository.save(vehiculo);
-//    }
-//
+
     public List<Vehiculo> obtenerVehiculosPorVendedor(Long vendedorId) {
         return vehiculoRepository.findByVendedor(vendedorId);
     }
-//
-//    public Optional<Vehiculo> obtenerPorId(Long id) {
-//        return vehiculoRepository.findById(id);
-//    }
-//
-//    public List<Vehiculo> buscarVehiculosConFiltros(String marca, String modelo, Integer anio, String estado) {
-//
-//        // Creamos la especificación
-//        Specification<Vehiculo> spec = (root, query, criteriaBuilder) -> {
-//
-//            List<Predicate> predicates = new ArrayList<>();
-//
-////            // 1. Filtro por Modelo
-////            if (modelo != null && !modelo.isEmpty()) {
-////                predicates.add(criteriaBuilder.like(
-////                        criteriaBuilder.lower(root.get("modelo")),
-////                        "%" + modelo.toLowerCase() + "%"
-////                ));
-////            }
-////
-////            // 2. Filtro por Año
-////            if (anio != null) {
-////                // Aquí usamos 'equal' ya que el usuario probablemente quiere un año exacto
-////                predicates.add(criteriaBuilder.equal(
-////                        root.get("anio"), anio
-////                ));
-////            }
-////
-////            // 3. Filtro por Estado (Nuevo/Usado)
-////            if (estado != null && !estado.isEmpty()) {
-////                predicates.add(criteriaBuilder.equal(
-////                        root.get("estado"), estado
-////                ));
-////            }
-//
-//            // Si no se pasó ningún filtro, el array 'predicates' estará vacío.
-//            // Si hay filtros, se combinan con un operador AND (Y)
-//            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-//        };
-//
-//        // El findAll(spec) ejecuta la consulta dinámica
-//        return vehiculoRepository.findAll(spec);
-//    }
-//
+
     public void eliminarVehiculo(Long id) {
         if (vehiculoRepository.existsById(id)) {
             vehiculoRepository.deleteById(id);
@@ -91,4 +43,50 @@ public class VehiculoService {
          return vehiculoRepository.findByDestacadoTrue();
     }
 
+    public Map<String, FiltroDTO> obtenerFiltrosDisponibles() {
+        Map<String, FiltroDTO> filtros = new HashMap<>();
+
+        FiltroDTO filtroModelo = new FiltroDTO();
+        filtroModelo.setNombre("Modelo");
+        filtroModelo.setOpciones(convertirA_Opciones(vehiculoRepository.findDistinctModelos()));
+        filtros.put("Modelo", filtroModelo);
+
+        FiltroDTO filtroMarcas = new FiltroDTO();
+        filtroMarcas.setNombre("Marca");
+        filtroMarcas.setOpciones(convertirA_Opciones(vehiculoRepository.findDistinctMarcas()));
+        filtros.put("Marca", filtroMarcas);
+
+        return filtros;
+    }
+
+    private List<OpcionFiltroDTO> convertirA_Opciones(List<Object[]> resultados) {
+        return resultados.stream()
+                .map(obj -> {
+                    OpcionFiltroDTO opcion = new OpcionFiltroDTO();
+                    opcion.setValor((String) obj[0]);
+                    opcion.setCantidad(((Number) obj[1]).longValue());
+                    return opcion;
+                })
+                .collect(Collectors.toList());
+    }
+
+    public List<Vehiculo> obtenerVehiculosDisponibles(FiltroVehiculoDTO filtrosVehiculo) {
+        List<String> modelos = (filtrosVehiculo.getModelos() != null && !filtrosVehiculo.getModelos().isEmpty()) ? filtrosVehiculo.getModelos() : null;
+        List<String> marcas = (filtrosVehiculo.getMarcas() != null && !filtrosVehiculo.getMarcas().isEmpty()) ? filtrosVehiculo.getMarcas() : null;
+
+        return vehiculoRepository.findByFiltros(modelos, marcas);
+    }
+
+    public Optional<Vehiculo> obtenerVehiculo(Long id) {
+        return vehiculoRepository.findById(id);
+    }
+
+    //    public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
+//        //lógica de negocio (NO OLVIDAR)
+//        return vehiculoRepository.save(vehiculo);
+//    }
+
+    //    public Optional<Vehiculo> obtenerPorId(Long id) {
+//        return vehiculoRepository.findById(id);
+//    }
 }

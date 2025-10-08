@@ -1,12 +1,18 @@
 package com.miGarage.sistema_ventas_vehiculos.controller;
 
+import com.miGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
+import com.miGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
 import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
+import com.miGarage.sistema_ventas_vehiculos.entity.Vendedor;
 import com.miGarage.sistema_ventas_vehiculos.service.VehiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vehiculos")
@@ -33,6 +39,13 @@ public class VehiculoController {
         }
 
         return ResponseEntity.ok(vehiculos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Vehiculo>> obtenerVehiculo(@PathVariable Long id) {
+        Optional<Vehiculo> vehiculo = vehiculoService.obtenerVehiculo(id);
+
+        return new ResponseEntity<>(vehiculo, HttpStatus.OK);
     }
 
     @GetMapping("/tipo/{tipo}")
@@ -66,4 +79,23 @@ public class VehiculoController {
         }
         return ResponseEntity.ok(vehiculos);
     }
+
+    @GetMapping("/filtros")
+    public ResponseEntity<Map<String, FiltroDTO>> obtenerFiltros() {
+        return ResponseEntity.ok(vehiculoService.obtenerFiltrosDisponibles());
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Vehiculo>> buscarConFiltros(@RequestParam(required = false) FiltroVehiculoDTO filtros) {
+        return ResponseEntity.ok(vehiculoService.obtenerVehiculosDisponibles(filtros));
+    }
+
+//    @GetMapping("/buscar")
+//    public ResponseEntity<List<Vehiculo>> buscarConFiltros(@RequestParam(required = false) List<String> modelos, @RequestParam(required = false) List<String> marcas) {
+//        FiltroVehiculoDTO filtros = new FiltroVehiculoDTO();
+//        filtros.setModelos(modelos);
+//        filtros.setMarcas(marcas);
+//
+//        return ResponseEntity.ok(vehiculoService.obtenerVehiculosDisponibles(filtros));
+//    }
 }

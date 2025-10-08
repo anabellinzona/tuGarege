@@ -4,24 +4,36 @@ import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSpecificationExecutor<Vehiculo> {
     List<Vehiculo> findByTipo(String tipo);
 
-    @Query("SELECT DISTINCT c.nombre FROM Vehiculo v JOIN VehiculoCaracteristica vc ON v.id = vc.vehiculo.id JOIN Caracteristica c ON vc.caracteristica.id = c.id WHERE c.nombre IS NOT NULL ORDER BY c.nombre")
-    List<String> findByMarca();
+    // Obtener todos los modelos distintos con su cantidad
+    @Query("SELECT v.modelo as valor, COUNT(v) as cantidad " +
+            "FROM Vehiculo v " +
+            "GROUP BY v.modelo " +
+            "ORDER BY v.modelo")
+    List<Object[]> findDistinctModelos();
 
-    @Query("SELECT DISTINCT v.modelo FROM Vehiculo v WHERE v.modelo IS NOT NULL ORDER BY v.modelo")
-    List<String> findByModelo();
+    @Query("SELECT v.marca as valor, COUNT(v) as cantidad FROM Vehiculo v GROUP BY v.marca ORDER BY v.marca")
+    List<Object[]> findDistinctMarcas();
 
-    @Query("SELECT DISTINCT v FROM Vehiculo v WHERE v.destacado = true")
-    List<Vehiculo> findByDestacadoTrue();
+    @Query("SELECT v FROM Vehiculo v WHERE " +
+            "(:modelos IS NULL OR v.modelo IN :modelos) AND " +
+            "(:marcas IS NULL OR v.marca IN :marcas) AND " +
+            "(:estados IS NULL OR v.estadoPublicacion IN :estados)")
+    List<Vehiculo> findByFiltros(
+            @Param("modelos") List<String> modelos,
+            @Param("marcas") List<String> marcas
+//            @Param("estados") List<String> estados
+    );
 
-//    @Query("SELECT DISTINCT v.anio FROM Vehiculo v WHERE v.anio IS NOT NULL ORDER BY v.anio DESC")
-//    List<Integer> findDistinctAnios();
-
-    @Query("SELECT v FROM Vehiculo v WHERE v.vendedor.id = :vendedorId ORDER BY v.fechaPublicacion DESC")
+    @Query("SELECT v FROM Vehiculo v WHERE v.vendedorId = :vendedorId ORDER BY v.fechaPublicacion DESC")
     List<Vehiculo> findByVendedor(Long vendedorId);
+
+    @Query("SELECT v FROM Vehiculo v WHERE v.destacado = true")
+    List<Vehiculo> findByDestacadoTrue();
 }

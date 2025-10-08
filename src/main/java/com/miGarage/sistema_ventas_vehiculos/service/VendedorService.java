@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder; // <-- Importación necesaria
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +32,6 @@ public class VendedorService implements UserDetailsService {
     }
 
     public Optional<Vendedor> obtenerVendedor(Long id) {
-        // Es mejor devolver Optional<Vendedor> para manejar el caso de no encontrado.
         return vendedorRepository.findById(id);
     }
 

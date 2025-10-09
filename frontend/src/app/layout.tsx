@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/navBar/NavBar";
 import ThemeProvider from "@/context/ThemeContext";
+import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "TuGarage",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <ThemeProvider>
             <NavBar/>
             {children}
+            <Footer/>
         </ThemeProvider>
       </body>
     </html>

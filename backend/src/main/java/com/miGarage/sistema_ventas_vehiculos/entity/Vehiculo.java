@@ -50,6 +50,8 @@ public class Vehiculo {
 
     private String marca;
 
+    private int km;
+
     @Column(name = "estado_publicacion")
 //    @Pattern(regexp = "activo|inactivo|pausado", message = "El estado de publicación debe ser activo, inactivo o pausado")
     private String estado;
@@ -57,7 +59,7 @@ public class Vehiculo {
     public Vehiculo() {}
 
 
-    public Vehiculo(String modelo, String marca, double precio, String moneda, String descripcion, String tipo, Date fechaPublicacion, boolean destacado, String estado) {
+    public Vehiculo(String modelo, int km, String marca, double precio, String moneda, String descripcion, String tipo, Date fechaPublicacion, boolean destacado, String estado) {
         this.modelo = modelo;
         this.precio = precio;
         this.moneda = moneda;
@@ -67,5 +69,6 @@ public class Vehiculo {
         this.destacado = destacado;
         this.marca = marca;
         this.estado = estado;
+        this.km = km;
     }
 }

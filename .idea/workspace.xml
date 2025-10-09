@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Imagen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -101,7 +97,7 @@
       <workItem from="1759935927890" duration="6000" />
       <workItem from="1759936170624" duration="1976000" />
       <workItem from="1759951796286" duration="2184000" />
-      <workItem from="1760038340906" duration="3421000" />
+      <workItem from="1760038340906" duration="5092000" />
     </task>
     <servers />
   </component>

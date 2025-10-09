@@ -1,9 +1,11 @@
-import Image from "next/image";
+import SearchSection from "../components/searchSection/searchSection";
+import InfoCard from "../components/infoCards/infoCards";
 
 export default function Home() {
   return (
-    <main>
-
-    </main>
+      <main>
+        <SearchSection />
+          <InfoCard />
+      </main>
   );
 }

@@ -4,6 +4,11 @@ import Image from "next/image";
 import styles from "./featuredCards.module.css";
 import {useEffect, useState} from "react";
 
+interface Imagen {
+    id: number;
+    url: string;
+}
+
 interface Vehiculo {
     id: number;
     marca: string;
@@ -16,10 +21,9 @@ interface Vehiculo {
     fechaPublicacion: string;
     destacado: boolean;
     estado: string;
-    imagenUrl?: string;
+    imagenes: Imagen[];
     logoMarca?: string;
 }
-
 
 export default function featuredCards(){
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
@@ -87,7 +91,7 @@ export default function featuredCards(){
                         <div key={vehiculo.id} className={styles.vehicleCardProperties}>
                             <div className={styles.vehicleImageProperties}>
                                 <Image
-                                    src="/icons/vehicleImage.png"
+                                    src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
                                     alt={`${vehiculo.marca} ${vehiculo.modelo}`}
                                     fill
                                     style={{ objectFit: "cover" }}

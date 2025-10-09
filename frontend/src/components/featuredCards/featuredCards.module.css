@@ -1,7 +1,7 @@
 .featuredCardsContainerProperties{
     display: flex;
     flex-direction: column;
-    background-color: var(--neutral-5);
+    background-color: var(--fonr-dark-color);
     width: 100%;
     min-height: 500px;
     color: var(--font-light-color);
@@ -102,7 +102,7 @@
 }
 
 .infoVehicleProperties h6{
-    color: var(--neutral-5);
+    color: var(--fonr-dark-color);
     margin: 0;
 }
 

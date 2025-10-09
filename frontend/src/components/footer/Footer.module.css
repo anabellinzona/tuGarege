@@ -1,0 +1,32 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+
+    width: 100vw;
+    height: fit-content;
+
+    padding: var(--20px);
+
+    background-color: var(--neutral-1);
+    color: var(--neutral-5);
+    box-shadow: 0px 4px 10px 0px var(--neutral-5);
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: baseline;
+    gap: var(--20px);
+}
+
+.filters h4 {
+    margin-bottom: var(--5px);
+    font-weight: bolder;
+}
+
+.button {
+    margin: var(--25px);
+    margin-inline: 0;
+}

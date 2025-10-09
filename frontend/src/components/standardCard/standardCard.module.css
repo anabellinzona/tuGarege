@@ -1,0 +1,42 @@
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    overflow: hidden;
+
+    min-width: 405px;
+    max-width: 420px;
+    min-height: 280px;
+
+    color: white;
+}
+
+.main img {
+    z-index: 0;
+}
+
+.data {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--neutral-5-50);
+    padding: var(--10px) var(--20px);
+    backdrop-filter: blur(2px);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.km {
+    color: var(--red-1);
+    font-weight: bold;
+}

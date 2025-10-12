@@ -1,21 +1,3 @@
-.featuredCardsContainerProperties{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--fonr-dark-color);
-    width: 100%;
-    min-height: 500px;
-    color: var(--font-light-color);
-    margin-top: 50px;
-}
-
-.titleProperties{
-    margin-left: var(--50px);
-}
-
-.featuredCardsContainerProperties h1{
-    font-weight: bold;
-}
-
 .carouselWrapper{
     position: relative;
     width: 100%;

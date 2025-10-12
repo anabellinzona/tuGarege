@@ -64,11 +64,14 @@ export default function Page(){
 
     return (
         <div>
-            {selectedFilter == 'Todos' && (
+            {selectedFilter === 'Todos' ? (
                 <VehicleTypeFilterContainer
                     onFilterChange={handleFilterChange}
-                    selectedFilter={selectedFilter}/>
-            )}: <VehicleFilters />
+                    selectedFilter={selectedFilter}
+                />
+            ) : (
+                <VehicleFilters />
+            )}
 
 
             <div>

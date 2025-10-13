@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class VehiculoService {
     public Vehiculo crearVehiculo(Vehiculo vehiculo) {
         return vehiculoRepository.save(vehiculo);
     }
-//
+
     public List<Vehiculo> obtenerVehiculosPorVendedor(Long vendedorId) {
         return vehiculoRepository.findByVendedor(vendedorId);
     }
@@ -45,6 +46,7 @@ public class VehiculoService {
         return vehiculoRepository.findByTipo(tipo);
     }
 
+    @Transactional(readOnly = true)
     public List<Vehiculo> obtenerDestacados() {
          return vehiculoRepository.findByDestacadoTrue();
     }
@@ -55,8 +57,8 @@ public class VehiculoService {
             vehiculo.setPrecio(datosVehiculo.getPrecio());
             vehiculo.setMoneda(datosVehiculo.getMoneda());
             vehiculo.setDescripcion(datosVehiculo.getDescripcion());
-            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
-            vehiculo.setEstado(datosVehiculo.getEstado());
+//            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
+//            vehiculo.setEstado(datosVehiculo.getEstado());
 //            vehiculo.setVendedor(datosVehiculo.getVendedor());
             return vehiculoRepository.save(vehiculo);
         }).orElse(null);
@@ -98,13 +100,4 @@ public class VehiculoService {
     public Optional<Vehiculo> obtenerVehiculo(Long id) {
         return vehiculoRepository.findById(id);
     }
-
-    //    public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
-//        //lógica de negocio (NO OLVIDAR)
-//        return vehiculoRepository.save(vehiculo);
-//    }
-
-    //    public Optional<Vehiculo> obtenerPorId(Long id) {
-//        return vehiculoRepository.findById(id);
-//    }
 }

@@ -23,7 +23,7 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
 
     @Query("SELECT v FROM Vehiculo v WHERE " +
             "(:modelos IS NULL OR v.modelo IN :modelos) AND " +
-            "(:marcas IS NULL OR v.marca IN :marcas) " )
+            "(:marcas IS NULL OR v.marca IN :marcas) ")
 //            "(:estados IS NULL OR v.estadoPublicacion IN :estados)")
     List<Vehiculo> findByFiltros(
             @Param("modelos") List<String> modelos,
@@ -34,6 +34,6 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
     @Query("SELECT v FROM Vehiculo v WHERE v.vendedorId = :vendedorId ORDER BY v.fechaPublicacion DESC")
     List<Vehiculo> findByVendedor(Long vendedorId);
 
-    @Query("SELECT v FROM Vehiculo v WHERE v.destacado = true")
+    @Query("SELECT v FROM Vehiculo v LEFT JOIN FETCH v.imagenes WHERE v.destacado = true")
     List<Vehiculo> findByDestacadoTrue();
 }

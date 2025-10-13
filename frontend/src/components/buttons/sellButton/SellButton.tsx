@@ -1,9 +1,16 @@
 import styles from './SellButton.module.css';
+import Link from "next/link";
 
-export default function SellButton() {
+type Prop = {
+    nameButton: string;
+    link: string;
+}
+export default function SellButton({nameButton, link}: Prop) {
     return (
-        <button className={styles.button}>
-            <h5>QUIERO VENDER</h5>
-        </button>
+        <Link href={link} >
+            <button className={styles.button}>
+                <h5>{nameButton}</h5>
+            </button>
+        </Link>
     )
 }

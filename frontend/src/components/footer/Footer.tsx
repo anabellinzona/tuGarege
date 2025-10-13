@@ -59,7 +59,7 @@ export default function Footer() {
             </div>
 
             <div className={styles.button}>
-                <SellButton/>
+                <SellButton nameButton={"QUIERO VENDER"} link={"/"}/>
             </div>
 
             <div>

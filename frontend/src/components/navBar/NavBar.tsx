@@ -32,8 +32,8 @@ export default function NavBar() {
                 </Link>
 
                 <Link
-                    href="/vehiculos"
-                    className={pathname === "/vehiculos" ? styles.activeLink : ""}
+                    href="/Vehicles"
+                    className={pathname === "/Vehicles" ? styles.activeLink : ""}
                 >
                     <h5>Vehículos</h5>
                 </Link>
@@ -47,7 +47,7 @@ export default function NavBar() {
             </div>
 
             <div className={styles.actions}>
-                <SellButton />
+                <SellButton nameButton={"QUIERO VENDER"} link={"/"}/>
                 <button
                     onClick={toggleTheme}
                     className={styles.darkModeButton}

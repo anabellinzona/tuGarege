@@ -1,0 +1,14 @@
+.vehicleTypeFilterContainerProperties{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: fit-content;
+    background-color: var(--neutral-2);
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--20px);
+    padding-bottom: var(--20px);
+    border-radius: var(--20px);
+    margin: var(--50px);
+    gap: var(--20px);
+}

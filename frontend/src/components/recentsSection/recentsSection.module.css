@@ -33,6 +33,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: var(--20px);
+    row-gap: var(--20px);
     justify-items: center;
     align-items: center;
 

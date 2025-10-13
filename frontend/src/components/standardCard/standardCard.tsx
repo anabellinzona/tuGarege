@@ -20,6 +20,7 @@ interface Vehiculo {
     logoMarca?: string;
 }
 
+<<<<<<< HEAD
 export default function StandardCard() {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [loading, setLoading] = useState(true);
@@ -69,11 +70,22 @@ export default function StandardCard() {
         );
     }
 
+=======
+type Prop = {
+    id?: number,
+    marca?: string,
+    modelo?: string,
+    km?: number,
+    image: string
+}
+
+export default function StandardCard({id, marca, modelo, km, image}: Prop) {
+>>>>>>> 862d5ce24769b5528bf990aa5556c7d411d132b1
     return (
         <main className={styles.main}>
             <div className={styles.imageContainer}>
                 <Image
-                    src={'/test/camioneta.jpeg'}
+                    src={image}
                     alt={'vehículo descripto en la publicación'}
                     fill
                     style={{ objectFit: "cover" }}
@@ -82,8 +94,8 @@ export default function StandardCard() {
 
             <div className={styles.data}>
                 <div className={styles.details}>
-                    <h6>Toyota Hilux SRX Aut. 2023</h6>
-                    <h6 className={styles.km}>29.000 km</h6>
+                    <h6>{marca} {modelo}</h6>
+                    <h6 className={styles.km}>{km}km</h6>
                 </div>
 
                 <div>

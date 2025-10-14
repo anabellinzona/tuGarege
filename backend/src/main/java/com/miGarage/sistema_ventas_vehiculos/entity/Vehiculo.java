@@ -1,6 +1,5 @@
 package com.miGarage.sistema_ventas_vehiculos.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +37,6 @@ public class Vehiculo {
     private boolean destacado;
 
     @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
-    // ELIMINA @JsonManagedReference
     private List<Imagen> imagenes = new ArrayList<>();
 
     private String marca;

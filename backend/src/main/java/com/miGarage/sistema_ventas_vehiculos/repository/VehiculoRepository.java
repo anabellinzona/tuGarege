@@ -11,7 +11,6 @@ import java.util.List;
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSpecificationExecutor<Vehiculo> {
     List<Vehiculo> findByTipo(String tipo);
 
-    // Obtener todos los modelos distintos con su cantidad
     @Query("SELECT v.modelo as valor, COUNT(v) as cantidad " +
             "FROM Vehiculo v " +
             "GROUP BY v.modelo " +
@@ -36,4 +35,21 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
 
     @Query("SELECT v FROM Vehiculo v LEFT JOIN FETCH v.imagenes WHERE v.destacado = true")
     List<Vehiculo> findByDestacadoTrue();
+
+    @Query("SELECT v FROM Vehiculo v ORDER BY v.fechaPublicacion ASC")
+    List<Vehiculo> findByFechaPublicacion();
+
+    @Query("SELECT v FROM Vehiculo v ORDER BY v.marca ASC")
+    List<Vehiculo> findByMarcas();
+
+    @Query("SELECT v FROM Vehiculo v ORDER BY v.modelo ASC")
+    List<Vehiculo> findVehiculoByModelo();
+
+    @Query("SELECT v FROM Vehiculo v ORDER BY v.precio ASC")
+    List<Vehiculo> findVehiculoByPrecioAsc();
+
+    @Query("SELECT v FROM Vehiculo v ORDER BY v.precio DESC")
+    List<Vehiculo> findVehiculoByPrecioDesc();
+
+    //probar con @Order y OrderBy
 }

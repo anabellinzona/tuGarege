@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +104,9 @@
       <workItem from="1759951796286" duration="2184000" />
       <workItem from="1760038340906" duration="5332000" />
       <workItem from="1760209590175" duration="683000" />
-      <workItem from="1760267588529" duration="10863000" />
+      <workItem from="1760267588529" duration="11133000" />
+      <workItem from="1760310240420" duration="2384000" />
+      <workItem from="1760379574400" duration="3363000" />
     </task>
     <servers />
   </component>

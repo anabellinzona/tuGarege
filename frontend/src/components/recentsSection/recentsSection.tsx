@@ -31,7 +31,7 @@ export default function RecentsSection() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/vehiculos/destacados')
+        fetch('http://localhost:8080/api/vehiculos/recientes')
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");

@@ -11,4 +11,11 @@
     border-radius: var(--20px);
     margin: var(--50px);
     gap: var(--20px);
+    justify-self: center;
+}
+
+@media (min-width: 768px) {
+    .vehicleTypeFilterContainerProperties{
+        justify-self: left;
+    }
 }

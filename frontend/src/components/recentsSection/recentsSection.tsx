@@ -52,7 +52,7 @@ export default function RecentsSection() {
     if (loading) {
         return (
             <section className={styles.featuredCardsContainerProperties}>
-                <h1>Destacados</h1>
+                <h1>Más recientes</h1>
                 <p>Cargando vehículos...</p>
             </section>
         );
@@ -61,7 +61,7 @@ export default function RecentsSection() {
     if (error) {
         return (
             <section className={styles.featuredCardsContainerProperties}>
-                <h1>Destacados</h1>
+                <h1>Más recientes</h1>
                 <p>Error: {error}</p>
             </section>
         );
@@ -70,7 +70,7 @@ export default function RecentsSection() {
     if (vehicle.length === 0) {
         return (
             <section className={styles.featuredCardsContainerProperties}>
-                <h1>Destacados</h1>
+                <h1>Más recientes</h1>
                 <p>No hay vehículos destacados disponibles</p>
             </section>
         );

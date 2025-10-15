@@ -1,10 +1,10 @@
 "use client";
 import {useEffect, useState} from "react";
 import VehicleTypeFilterContainer from "@/components/vehicleTypeFilter/vehicleTypeFilterContainer/vehicleTypeFilterContainer";
-import CardVehicle from "@/components/featuredCards/cardVehicle/cardVehicle";
 import {useSearchParams} from "next/navigation";
 import StandardCard from "@/components/standardCard/standardCard";
 import VehicleFilters from "@/components/vehicleTypeFilter/vehicleFilters/VehicleFilters";
+import styles from "@/components/recentsSection/recentsSection.module.css";
 
 interface Imagen {
     id: number;
@@ -74,7 +74,7 @@ export default function Page(){
             )}
 
 
-            <div>
+            <div className={styles.cardsGrid}>
                 {loading ? (
                     <p>Cargando vehículos...</p>
                 ) : (

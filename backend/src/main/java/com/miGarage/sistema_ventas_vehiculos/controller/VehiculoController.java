@@ -91,7 +91,6 @@ public class VehiculoController {
             FiltroVehiculoDTO filtros,
             @RequestParam(required = false) List<String> modelos,
             @RequestParam(required = false) List<String> marcas
-//            @RequestParam(required = false) List<String> estados
     ) {
         System.out.println(filtros + " " + modelos + " " + marcas);
         if (modelos != null && !modelos.isEmpty()) {
@@ -100,9 +99,6 @@ public class VehiculoController {
         if (marcas != null && !marcas.isEmpty()) {
             filtros.setMarcas(marcas);
         }
-//        if (estados != null && !estados.isEmpty()) {
-//            filtros.setEstados(estados);
-//        }
         return ResponseEntity.ok(vehiculoService.obtenerVehiculosDisponibles(filtros));
     }
 
@@ -121,6 +117,51 @@ public class VehiculoController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(vehiculo);
+    }
+
+    @GetMapping("/recientes")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorFecha() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculosPorFecha();
+        if(vehiculos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(vehiculos);
+    }
+
+    @GetMapping("/marca")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorMarca() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculosOrdenadosPorMarca();
+        if(vehiculos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(vehiculos);
+    }
+
+    @GetMapping("/modelo")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorModelo() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculosOrdenadosPorModelo();
+        if(vehiculos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(vehiculos);
+    }
+
+    @GetMapping("/precioAsc")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorPrecioAsc() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculosOrdenadosPorPrecioAsc();
+        if(vehiculos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(vehiculos);
+    }
+
+    @GetMapping("/precioDesc")
+    public ResponseEntity<List<Vehiculo>> obtenerVehiculosPorPrecioDesc() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculosOrdenadosPorPrecioDesc();
+        if(vehiculos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(vehiculos);
     }
 
 //    @GetMapping("/buscar")

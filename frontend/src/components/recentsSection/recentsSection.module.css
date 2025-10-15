@@ -42,3 +42,9 @@
     margin: var(--20px);
     margin-inline: 0;
 }
+
+@media (max-width: 768px) {
+    .cardsGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

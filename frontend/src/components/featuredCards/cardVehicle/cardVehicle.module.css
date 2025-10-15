@@ -1,6 +1,5 @@
 .carouselWrapper{
     position: relative;
-    width: 100%;
 }
 
 .carouselContainer{
@@ -10,15 +9,12 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     padding: 20px 60px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .carouselContainer::-webkit-scrollbar {
     display: none;
-}
-
-.carouselContainer {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .arrowButton{
@@ -99,4 +95,14 @@
     width: 45px;
     height: 45px;
     position: relative;
+}
+
+@media (max-width: 768px) {
+    .vehicleCardProperties{
+        position: relative;
+        width: 60px;
+        height: 380px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+    }
 }

@@ -33,6 +33,10 @@ public class VehiculoService {
         return vehiculoRepository.findByVendedor(vendedorId);
     }
 
+    public List<Vehiculo> obtenerVehiculosPorFecha() {
+        return vehiculoRepository.findByFechaPublicacion();
+    }
+
     public void eliminarVehiculo(Long id) {
         if (vehiculoRepository.existsById(id)) {
             vehiculoRepository.deleteById(id);
@@ -57,7 +61,7 @@ public class VehiculoService {
             vehiculo.setPrecio(datosVehiculo.getPrecio());
             vehiculo.setMoneda(datosVehiculo.getMoneda());
             vehiculo.setDescripcion(datosVehiculo.getDescripcion());
-//            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
+            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
 //            vehiculo.setEstado(datosVehiculo.getEstado());
 //            vehiculo.setVendedor(datosVehiculo.getVendedor());
             return vehiculoRepository.save(vehiculo);
@@ -99,5 +103,21 @@ public class VehiculoService {
 
     public Optional<Vehiculo> obtenerVehiculo(Long id) {
         return vehiculoRepository.findById(id);
+    }
+
+    public List<Vehiculo> obtenerVehiculosOrdenadosPorMarca() {
+        return vehiculoRepository.findByMarcas();
+    }
+
+    public List<Vehiculo> obtenerVehiculosOrdenadosPorModelo() {
+        return vehiculoRepository.findVehiculoByModelo();
+    }
+
+    public List<Vehiculo> obtenerVehiculosOrdenadosPorPrecioAsc() {
+        return vehiculoRepository.findVehiculoByPrecioAsc();
+    }
+
+    public List<Vehiculo> obtenerVehiculosOrdenadosPorPrecioDesc() {
+        return vehiculoRepository.findVehiculoByPrecioDesc();
     }
 }

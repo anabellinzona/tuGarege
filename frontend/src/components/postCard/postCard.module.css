@@ -16,3 +16,68 @@
 .main img {
     z-index: 0;
 }
+
+/* === Controles === */
+.controls {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-radius: 100px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    z-index: 2;
+    backdrop-filter: blur(2px);
+    height: 20px;
+    background: var(--neutral-1-30);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    transition: all 0.2s ease;
+}
+
+.chev {
+    border: 0;
+    background: transparent;
+    font-size: 18px;
+    line-height: 1;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    border-radius: 9999px;
+    color: var(--neutral-3);
+    transition: all 0.2s ease;
+}
+
+.chev:hover {
+    filter: brightness(0.9);
+    transform: scale(1.05);
+}
+
+.dots {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    opacity: 0.8;
+    border: 0;
+    cursor: pointer;
+    background: var(--neutral-3);
+    transition: all 0.25s ease;
+}
+
+.dot:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.active {
+    background: var(--neutral-5-static);
+    opacity: 1;
+    transform: scale(1.15);
+}

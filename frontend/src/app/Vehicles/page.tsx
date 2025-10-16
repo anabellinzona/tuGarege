@@ -4,7 +4,8 @@ import VehicleTypeFilterContainer from "@/components/vehicleTypeFilter/vehicleTy
 import {useSearchParams} from "next/navigation";
 import StandardCard from "@/components/standardCard/standardCard";
 import VehicleFilters from "@/components/vehicleTypeFilter/vehicleFilters/VehicleFilters";
-import styles from "@/components/recentsSection/recentsSection.module.css";
+import styles from "./page.module.css";
+import SearchBar from "@/components/searchBar/searchBar";
 
 interface Imagen {
     id: number;
@@ -63,26 +64,34 @@ export default function Page(){
     };
 
     return (
-        <div>
-            {selectedFilter === 'Todos' ? (
-                <VehicleTypeFilterContainer
-                    onFilterChange={handleFilterChange}
-                    selectedFilter={selectedFilter}
-                />
-            ) : (
-                <VehicleFilters />
-            )}
-
-
-            <div className={styles.cardsGrid}>
-                {loading ? (
-                    <p>Cargando vehículos...</p>
+        <main className={styles.main}>
+            <div>
+                {selectedFilter === 'Todos' ? (
+                    <VehicleTypeFilterContainer
+                        onFilterChange={handleFilterChange}
+                        selectedFilter={selectedFilter}
+                    />
                 ) : (
-                    vehiculos.map(vehiculo => (
-                        <StandardCard  id={vehiculo.id} marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} image={vehiculo.imagenes[0]?.url}/>
-                    ))
+                    <VehicleFilters />
                 )}
             </div>
-        </div>
+
+
+            <section>
+                <div className={styles.searchPlusOrder}>
+                    <SearchBar/>
+                </div>
+                <div className={styles.cardsGrid}>
+                    {loading ? (
+                        <p>Cargando vehículos...</p>
+                    ) : (
+                        vehiculos.map(vehiculo => (
+                            <StandardCard id={vehiculo.id} marca={vehiculo.marca} modelo={vehiculo.modelo}
+                                          km={vehiculo.km} image={vehiculo.imagenes[0]?.url}/>
+                        ))
+                    )}
+                </div>
+            </section>
+        </main>
     );
 }

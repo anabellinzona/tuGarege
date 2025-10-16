@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    aligne-items: center;
+}
+
+.searchPlusOrder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    aligne-items: center;
+
+    width: 100%;
+    height: fit-content;
+}

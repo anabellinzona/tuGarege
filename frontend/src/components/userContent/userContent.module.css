@@ -1,0 +1,93 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: fit-content;
+}
+
+.bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: fit-content;
+    height: fit-content;
+
+    gap: var(--50px);
+}
+
+.iconContainer {
+    padding: var(--10px);
+    padding-inline: var(--20px);
+
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.6;
+}
+
+.iconContainer:hover {
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+.active {
+    border-bottom: 1px solid var(--neutral-5);
+    opacity: 1;
+}
+
+.postsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--10px);
+    row-gap: var(--10px);
+    justify-items: center;
+    align-items: center;
+
+    max-width: 100%;
+
+    margin-bottom: var(--50px);
+}
+
+.contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 70%;
+
+    padding: var(--50px);
+    margin-bottom: var(--50px);
+    gap: var(--50px);
+
+    border-radius: var(--10px);
+    box-shadow: 0px 1px 7px 0px var(--neutral-1-30);
+}
+
+.contact {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: var(--20px);
+}
+
+.contactImage, .contactImageRed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 100px;
+}
+
+.contactImageRed {
+    background-color: var(--red-1);
+}

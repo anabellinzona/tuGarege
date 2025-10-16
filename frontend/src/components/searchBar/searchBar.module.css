@@ -1,0 +1,19 @@
+.inputProperties{
+    width: 80%;
+    height: 45px;
+    background-color: var(--neutral-1);
+    border: none;
+    border-radius: var(--50px);
+    color: var(--neutral-5);
+    position: relative;
+}
+
+.searchIconProperties{
+    width: fit-content;
+    position: absolute;
+    display: flex;
+}
+
+.inputProperties::placeholder{
+    color: var(--red-2);
+}

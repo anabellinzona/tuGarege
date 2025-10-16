@@ -23,7 +23,7 @@
   --neutral-5-70:  rgba(5, 5, 5, 0.7);
   --neutral-5-90:  rgba(5, 5, 5, 0.9);
   --red-2-50: rgba(153, 0, 0, 0.5);
-  --neutral-1-30: rgba(255, 250, 245, 0.3);
+  --neutral-1-30: rgba(5, 5, 5, 0.4);
 
 
   /*padding/margin values*/
@@ -56,6 +56,8 @@ html.dark {
   --neutral-3: #353535;
   --neutral-2: #202020;
   --neutral-1: #050505;
+
+  --neutral-1-30: rgba(255, 250, 245, 0.4);
 }
 
 /*responsive for tablet*/

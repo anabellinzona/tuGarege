@@ -36,6 +36,10 @@ public class Vehiculo {
 
     private boolean destacado;
 
+    private String estado;
+
+    private int anio;
+
     @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Imagen> imagenes = new ArrayList<>();
 
@@ -44,7 +48,7 @@ public class Vehiculo {
 
     public Vehiculo() {}
 
-    public Vehiculo(String modelo, int km, String marca, double precio, String moneda, String descripcion, String tipo, Date fechaPublicacion, boolean destacado) {
+    public Vehiculo(String modelo, int km, String marca, double precio, String moneda, String descripcion, String tipo, boolean destacado, String estado, int anio) {
         this.modelo = modelo;
         this.precio = precio;
         this.moneda = moneda;
@@ -53,5 +57,7 @@ public class Vehiculo {
         this.destacado = destacado;
         this.marca = marca;
         this.km = km;
+        this.anio = anio;
+        this.estado = estado;
     }
 }

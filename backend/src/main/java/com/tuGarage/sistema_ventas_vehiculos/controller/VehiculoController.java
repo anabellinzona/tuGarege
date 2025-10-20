@@ -163,6 +163,15 @@ public class VehiculoController {
         return ResponseEntity.ok(vehiculos);
     }
 
+    @GetMapping("/sinRepetidos")
+    public ResponseEntity<List<Vehiculo>> obtenerMarcasSinRepetidos() {
+        List<Vehiculo> vehiculos = vehiculoService.obtenerMarcasSinRepetidos();
+        if(vehiculos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(vehiculos);
+    }
+
 //    @GetMapping("/buscar")
 //    public ResponseEntity<List<Vehiculo>> buscarConFiltros(@RequestParam(required = false) List<String> modelos, @RequestParam(required = false) List<String> marcas) {
 //        FiltroVehiculoDTO filtros = new FiltroVehiculoDTO();

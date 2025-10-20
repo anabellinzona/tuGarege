@@ -17,29 +17,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 1. Deshabilitar CSRF (esencial para APIs REST)
                 .csrf(csrf -> csrf.disable())
 
-                // 2. Desactivar la gestión de sesiones (CLAVE para evitar el HTML de login)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
-                // 3. REGLAS DE ACCESO: Permitir todos los GET a vehículos y vendedores
-                .authorizeHttpRequests(auth -> auth
-                        // Permite GET a /api/vehiculos, /api/vehiculos/123, /api/vehiculos/buscar?...
-                                .requestMatchers("/api/vehiculos/buscar/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/api/vehiculos/**").permitAll()
+                .authorizeHttpRequests(auth -> {
+                    System.out.println("🔒 Configurando reglas de seguridad...");
+                    auth
+                            .requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll()
+                            .anyRequest().authenticated();
+                })
 
-                        // Permite GET a /api/vendedores y sub-rutas
-                        .requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll()
-
-                        // Cualquier otra petición (POST, PUT, DELETE, y rutas no GET) requiere autenticación
-                        .anyRequest().authenticated()
-                )
-
-                .logout(logout -> logout.permitAll()); // Puedes dejar el logout, es inofensivo
+                .logout(logout -> logout.permitAll());
 
         return http.build();
     }

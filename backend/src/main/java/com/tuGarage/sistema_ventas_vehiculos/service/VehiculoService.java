@@ -1,15 +1,13 @@
-package com.miGarage.sistema_ventas_vehiculos.service;
+package com.tuGarage.sistema_ventas_vehiculos.service;
 
-import com.miGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
-import com.miGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
-import com.miGarage.sistema_ventas_vehiculos.dto.OpcionFiltroDTO;
-import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
-import com.miGarage.sistema_ventas_vehiculos.repository.VehiculoRepository;
+import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
+import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
+import com.tuGarage.sistema_ventas_vehiculos.dto.OpcionFiltroDTO;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
+import com.tuGarage.sistema_ventas_vehiculos.repository.VehiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jakarta.persistence.criteria.Predicate;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;

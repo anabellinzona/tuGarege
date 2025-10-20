@@ -1,10 +1,9 @@
-package com.miGarage.sistema_ventas_vehiculos.controller;
+package com.tuGarage.sistema_ventas_vehiculos.controller;
 
-import com.miGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
-import com.miGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
-import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
-import com.miGarage.sistema_ventas_vehiculos.entity.Vendedor;
-import com.miGarage.sistema_ventas_vehiculos.service.VehiculoService;
+import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
+import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
+import com.tuGarage.sistema_ventas_vehiculos.service.VehiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

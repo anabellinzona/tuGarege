@@ -1,8 +1,8 @@
-package com.miGarage.sistema_ventas_vehiculos.controller;
+package com.tuGarage.sistema_ventas_vehiculos.controller;
 
-import com.miGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
-import com.miGarage.sistema_ventas_vehiculos.entity.Vendedor;
-import com.miGarage.sistema_ventas_vehiculos.service.VendedorService;
+import com.tuGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
+import com.tuGarage.sistema_ventas_vehiculos.service.VendedorService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

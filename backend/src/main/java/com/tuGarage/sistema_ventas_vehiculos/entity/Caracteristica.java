@@ -1,4 +1,4 @@
-package com.miGarage.sistema_ventas_vehiculos.entity;
+package com.tuGarage.sistema_ventas_vehiculos.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

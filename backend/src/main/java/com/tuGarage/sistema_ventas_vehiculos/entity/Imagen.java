@@ -1,4 +1,4 @@
-package com.miGarage.sistema_ventas_vehiculos.entity;
+package com.tuGarage.sistema_ventas_vehiculos.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -1,8 +1,8 @@
-package com.miGarage.sistema_ventas_vehiculos.service;
+package com.tuGarage.sistema_ventas_vehiculos.service;
 
-import com.miGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
-import com.miGarage.sistema_ventas_vehiculos.entity.Vendedor;
-import com.miGarage.sistema_ventas_vehiculos.repository.VendedorRepository;
+import com.tuGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
+import com.tuGarage.sistema_ventas_vehiculos.repository.VendedorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

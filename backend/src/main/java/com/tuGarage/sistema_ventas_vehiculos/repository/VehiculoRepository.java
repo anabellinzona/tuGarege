@@ -1,6 +1,6 @@
-package com.miGarage.sistema_ventas_vehiculos.repository;
+package com.tuGarage.sistema_ventas_vehiculos.repository;
 
-import com.miGarage.sistema_ventas_vehiculos.entity.Vehiculo;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

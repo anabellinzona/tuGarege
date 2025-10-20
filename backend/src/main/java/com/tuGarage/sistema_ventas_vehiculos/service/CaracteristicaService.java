@@ -1,4 +1,4 @@
-package com.miGarage.sistema_ventas_vehiculos.service;
+package com.tuGarage.sistema_ventas_vehiculos.service;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.miGarage.sistema_ventas_vehiculos.dto;
+package com.tuGarage.sistema_ventas_vehiculos.dto;
 
 import jakarta.validation.constraints.*;
 

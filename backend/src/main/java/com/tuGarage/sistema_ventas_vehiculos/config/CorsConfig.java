@@ -1,4 +1,4 @@
-package com.miGarage.sistema_ventas_vehiculos.config;
+package com.tuGarage.sistema_ventas_vehiculos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

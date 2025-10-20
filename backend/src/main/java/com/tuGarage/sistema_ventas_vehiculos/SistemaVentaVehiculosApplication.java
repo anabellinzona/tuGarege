@@ -1,4 +1,4 @@
-package com.miGarage.sistema_ventas_vehiculos;
+package com.tuGarage.sistema_ventas_vehiculos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

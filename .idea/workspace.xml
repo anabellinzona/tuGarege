@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/FormSale/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +118,8 @@
       <workItem from="1760968091413" duration="339000" />
       <workItem from="1760968448912" duration="6348000" />
       <workItem from="1760983643144" duration="3464000" />
-      <workItem from="1760997961802" duration="4868000" />
+      <workItem from="1760997961802" duration="5681000" />
+      <workItem from="1761053382744" duration="763000" />
     </task>
     <servers />
   </component>

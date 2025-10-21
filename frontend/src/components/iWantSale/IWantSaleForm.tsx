@@ -7,7 +7,7 @@ export default function IWantSaleForm(){
         <section className={styles.formSaleContainerProperties}>
             <div className={styles.formSaleProperties}>
                 <div className={styles.formContainerProperties}>
-                   <FormSale title={"Quiero vender"} message={"Completá el formulario para registrarte o iniciar sesión y empezá a publicar tus vehículos de forma fácil y rápida"} camp1={"Usuario"} camp2={"Contraseña"} infoButton={"Iniciar sesión"} advertationMessage={"¿No tenés cuenta?"} whatDo={"Registrate"}/>
+                   <FormSale />
                     <div className={styles.instructionsContainerProperties}>
                         <div className={styles.titleInstructionsPropertes}>
                             <div className={styles.imageInstructionsPropertes}>

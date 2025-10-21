@@ -2,10 +2,12 @@
 
 import styles from "@/components/iWantSale/form/form.module.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authService } from "@/service/authService";
 
 export default function FormSale(){
+    const router = useRouter();
     const [isLogin, setIsLogin] = useState(true);
     const [registerStep, setRegisterStep] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -39,8 +41,13 @@ export default function FormSale(){
 
         try {
             const result = await authService.login(loginData);
-            setSuccess("Inicio de sesión exitoso");
-            console.log("Usuario autenticado:", result);
+
+            setSuccess("¡Inicio de sesión exitoso! Redirigiendo...");
+
+            setTimeout(() => {
+                router.push('/Profile');
+            }, 1000);
+
         } catch (err) {
             setError(err instanceof Error ? err.message : "Error en el inicio de sesión");
         } finally {
@@ -67,7 +74,7 @@ export default function FormSale(){
 
         try {
             const result = await authService.register(registerData);
-            setSuccess(result.message);
+            setSuccess("¡Registro exitoso! Ahora podés iniciar sesión");
 
             setTimeout(() => {
                 setIsLogin(true);
@@ -105,6 +112,7 @@ export default function FormSale(){
                         value={loginData.email}
                         onChange={(e) => setLoginData({...loginData, email: e.target.value})}
                         required
+                        disabled={loading}
                     />
 
                     <label>Contraseña</label>
@@ -114,6 +122,7 @@ export default function FormSale(){
                         value={loginData.contrasenia}
                         onChange={(e) => setLoginData({...loginData, contrasenia: e.target.value})}
                         required
+                        disabled={loading}
                     />
 
                     <button type="submit" disabled={loading}>
@@ -188,6 +197,7 @@ export default function FormSale(){
                     value={registerData.contrasenia}
                     onChange={(e) => setRegisterData({...registerData, contrasenia: e.target.value})}
                     required
+                    disabled={loading}
                 />
 
                 <label>Confirmar contraseña <span className={styles.required}>*</span></label>
@@ -197,6 +207,7 @@ export default function FormSale(){
                     value={registerData.confirmarContrasenia}
                     onChange={(e) => setRegisterData({...registerData, confirmarContrasenia: e.target.value})}
                     required
+                    disabled={loading}
                 />
 
                 <button type="submit" disabled={loading}>

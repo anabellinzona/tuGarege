@@ -6,7 +6,6 @@ import com.tuGarage.sistema_ventas_vehiculos.repository.VendedorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,52 +25,46 @@ public class VendedorService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private static final String ROL_VENDEDOR = "VENDEDOR";
+    private static final String ROL_VENDEDOR = "ROLE_VENDEDOR";
 
     public List<Vendedor> obtenerVendedores() {
         return vendedorRepository.findAll();
     }
 
     public Optional<Vendedor> obtenerVendedor(Long id) {
-        // Es mejor devolver Optional<Vendedor> para manejar el caso de no encontrado.
         return vendedorRepository.findById(id);
     }
 
     public Vendedor guardarVendedor(Vendedor vendedor) {
         String contrasenaPlana = vendedor.getContrasena();
-
         String contrasenaHash = passwordEncoder.encode(contrasenaPlana);
-
         vendedor.setContrasena(contrasenaHash);
-
         return vendedorRepository.save(vendedor);
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Vendedor vendedor = vendedorRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Email no registrado: " + email));
-        return User.builder()
-                .username(vendedor.getEmail())
-                .password(vendedor.getContrasena())
-                .authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + ROL_VENDEDOR)))
-                .build();
+                .orElseThrow(() -> new UsernameNotFoundException("Vendedor no encontrado con email: " + email));
+
+        // Asignar el rol ROLE_VENDEDOR
+        return new org.springframework.security.core.userdetails.User(
+                vendedor.getEmail(),
+                vendedor.getContrasena(),
+                Collections.singletonList(new SimpleGrantedAuthority(ROL_VENDEDOR))
+        );
     }
 
     @Transactional
     public String registrarVendedor(VendedorRegisterDTO dto) {
-
-        // Validar password y confirm
         if (!dto.getContrasenia().equals(dto.getConfirmarContrasenia())) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
         }
 
-        // Validar email existente
         if (vendedorRepository.existsByEmail(dto.getEmail())) {
             throw new IllegalArgumentException("El email ya está registrado");
         }
 
-        // Crear vendedor
         Vendedor vendedor = new Vendedor();
         vendedor.setNombre(dto.getNombre());
         vendedor.setEmail(dto.getEmail());

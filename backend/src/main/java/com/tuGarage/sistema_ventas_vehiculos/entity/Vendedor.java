@@ -1,12 +1,11 @@
 package com.tuGarage.sistema_ventas_vehiculos.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-
+@Data
 @Entity
 @Table(name = "vendedor")
 public class Vendedor {
@@ -16,25 +15,14 @@ public class Vendedor {
 
     private String nombre;
     private String direccion;
+    @Column(name = "numero_telefono")
     private String telefono;
     private String email;
     private String contrasena;
-    private String instragram;
+    private String instagram;
+    @Column(name = "descripcion_perfil")
     private String descripcion;
+    @Column(name = "foto_perfil")
     private String fotoPerfil;
     private String ciudad;
-
-    public Vendedor() {}
-
-    public Vendedor(String nombre, String direccion, String telefono, String email, String contrasena, String instragram, String descripcion, String fotoPerfil, String ciudad) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-        this.contrasena = contrasena;
-        this.instragram = instragram;
-        this.descripcion = descripcion;
-        this.fotoPerfil = fotoPerfil;
-        this.ciudad = ciudad;
-    }
 }

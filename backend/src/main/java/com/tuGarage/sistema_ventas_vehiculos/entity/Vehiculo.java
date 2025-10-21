@@ -1,16 +1,12 @@
 package com.tuGarage.sistema_ventas_vehiculos.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
+import lombok.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
-
+@Data
 @Entity
 public class Vehiculo {
     @Id
@@ -45,19 +41,4 @@ public class Vehiculo {
 
     private String marca;
     private int km;
-
-    public Vehiculo() {}
-
-    public Vehiculo(String modelo, int km, String marca, double precio, String moneda, String descripcion, String tipo, boolean destacado, String estado, int anio) {
-        this.modelo = modelo;
-        this.precio = precio;
-        this.moneda = moneda;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.destacado = destacado;
-        this.marca = marca;
-        this.km = km;
-        this.anio = anio;
-        this.estado = estado;
-    }
 }

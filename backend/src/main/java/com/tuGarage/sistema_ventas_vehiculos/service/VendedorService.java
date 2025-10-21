@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder; // <-- Importación necesaria
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -62,7 +62,7 @@ public class VendedorService implements UserDetailsService {
     public String registrarVendedor(VendedorRegisterDTO dto) {
 
         // Validar password y confirm
-        if (!dto.getContrasena().equals(dto.getConfirmContrasena())) {
+        if (!dto.getContrasenia().equals(dto.getConfirmarContrasenia())) {
             throw new IllegalArgumentException("Las contraseñas no coinciden");
         }
 
@@ -75,10 +75,10 @@ public class VendedorService implements UserDetailsService {
         Vendedor vendedor = new Vendedor();
         vendedor.setNombre(dto.getNombre());
         vendedor.setEmail(dto.getEmail());
-        vendedor.setContrasena(passwordEncoder.encode(dto.getContrasena()));
+        vendedor.setContrasena(passwordEncoder.encode(dto.getContrasenia()));
         vendedor.setDireccion(dto.getDireccion());
         vendedor.setTelefono(dto.getTelefono());
-        vendedor.setInstragram(dto.getInstagram());
+        vendedor.setInstagram(dto.getInstagram());
         vendedor.setDescripcion(dto.getDescripcion());
         vendedor.setFotoPerfil(dto.getFotoPerfil());
         vendedor.setCiudad(dto.getCiudad());

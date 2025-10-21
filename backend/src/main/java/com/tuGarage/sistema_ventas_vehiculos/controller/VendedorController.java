@@ -43,4 +43,11 @@ public class VendedorController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @GetMapping("/login")
+//    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+//        try {
+//
+//        }
+//    }
 }

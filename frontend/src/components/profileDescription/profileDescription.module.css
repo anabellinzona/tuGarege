@@ -39,7 +39,7 @@
 .description {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
 
     gap: var(--10px);
 }

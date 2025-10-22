@@ -5,36 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tuGarege.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tuGarege.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/dto/JWTResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/dto/VendedorLoginDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/security/JWTUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/SistemaVentaVehiculosApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/SistemaVentaVehiculosApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/controller/VendedorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/FiltroDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/dto/FiltroDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/FiltroVehiculoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/dto/FiltroVehiculoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/OpcionFiltroDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/dto/OpcionFiltroDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/dto/VendedorRegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/dto/VendedorRegisterDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Caracteristica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Caracteristica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Imagen.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Imagen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/entity/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Vendedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/CaracteristicaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/CaracteristicaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/CaracteristicaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/CaracteristicaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/service/VendedorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VendedorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/miGarage/sistema_ventas_vehiculos/util/ColumnaCaracteriticaVehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/util/ColumnaCaracteriticaVehiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VendedorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VendedorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -143,7 +126,11 @@
       <workItem from="1760267588529" duration="10561000" />
       <workItem from="1760966970196" duration="546000" />
       <workItem from="1760968091413" duration="339000" />
-      <workItem from="1760968448912" duration="521000" />
+      <workItem from="1760968448912" duration="6348000" />
+      <workItem from="1760983643144" duration="3464000" />
+      <workItem from="1760997961802" duration="5681000" />
+      <workItem from="1761053382744" duration="7087000" />
+      <workItem from="1761065512076" duration="6731000" />
     </task>
     <servers />
   </component>

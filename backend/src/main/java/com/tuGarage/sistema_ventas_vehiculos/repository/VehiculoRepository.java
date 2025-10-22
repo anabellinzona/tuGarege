@@ -51,5 +51,10 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
     @Query("SELECT v FROM Vehiculo v ORDER BY v.precio DESC")
     List<Vehiculo> findVehiculoByPrecioDesc();
 
+    @Query("SELECT v FROM Vehiculo v WHERE v.id IN " +
+            "(SELECT MIN(v2.id) FROM Vehiculo v2 GROUP BY v2.marca) " +
+            "ORDER BY v.marca ASC")
+    List<Vehiculo> findBrandWithoutRepeated();
+
     //probar con @Order y OrderBy
 }

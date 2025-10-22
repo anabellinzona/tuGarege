@@ -39,15 +39,15 @@ export default function NavBar() {
                 </Link>
 
                 <Link
-                    href="/login"
-                    className={pathname === "/login" ? styles.activeLink : ""}
+                    href="/FormSale"
+                    className={pathname === "/FormSale" ? styles.activeLink : ""}
                 >
                     <h5>Iniciar sesión</h5>
                 </Link>
             </div>
 
             <div className={styles.actions}>
-                <SellButton nameButton={"QUIERO VENDER"} link={"/"}/>
+                <SellButton nameButton={"QUIERO VENDER"} link={"/FormSale"}/>
                 <button
                     onClick={toggleTheme}
                     className={styles.darkModeButton}

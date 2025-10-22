@@ -1,9 +1,14 @@
 package com.tuGarage.sistema_ventas_vehiculos.controller;
 
+import com.tuGarage.sistema_ventas_vehiculos.dto.JWTResponseDTO;
+import com.tuGarage.sistema_ventas_vehiculos.dto.VendedorLoginDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
+import com.tuGarage.sistema_ventas_vehiculos.security.JWTUtils;
+import com.tuGarage.sistema_ventas_vehiculos.service.AuthService;
 import com.tuGarage.sistema_ventas_vehiculos.service.VendedorService;
 import jakarta.validation.Valid;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +18,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vendedores")
+@Data
 public class VendedorController {
     private final VendedorService vendedorService;
-
-    public VendedorController(VendedorService vendedorService) {
-        this.vendedorService = vendedorService;
-    }
+    private final AuthService authService;
 
     @GetMapping
     public ResponseEntity<List<Vendedor>> obtenerTodos() {
@@ -42,5 +45,13 @@ public class VendedorController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<JWTResponseDTO> authenticateUser(@Valid @RequestBody VendedorLoginDTO loginRequest) {
+
+        JWTResponseDTO jwtResponse = authService.authenticateUser(loginRequest);
+
+        return ResponseEntity.ok(jwtResponse);
     }
 }

@@ -118,4 +118,8 @@ public class VehiculoService {
     public List<Vehiculo> obtenerVehiculosOrdenadosPorPrecioDesc() {
         return vehiculoRepository.findVehiculoByPrecioDesc();
     }
+
+    public List<Vehiculo> obtenerMarcasSinRepetidos(){
+        return vehiculoRepository.findBrandWithoutRepeated();
+    }
 }

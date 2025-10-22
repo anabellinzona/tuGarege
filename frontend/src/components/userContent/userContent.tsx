@@ -1,14 +1,44 @@
 "use client";
 
-import { useState, useContext } from "react";
+import {useState, useContext, useEffect} from "react";
 import styles from "./userContent.module.css";
 import Image from "next/image";
 import PostCard from "@/components/postCard/postCard";
 import { ThemeContext } from "@/context/ThemeContext";
+import Link from "next/link";
+
+interface Vendedor {
+    nombre: string;
+    direccion: string;
+    telefono: string;
+    email: string;
+    contrasena: string;
+    instagram: string;
+    descripcion: string;
+    fotoPerfil: string;
+    ciudad: string;
+}
 
 export default function UserContent() {
     const [activeTab, setActiveTab] = useState("posts");
     const { theme } = useContext(ThemeContext);
+    const [vendedor, setVendedor] = useState<Vendedor>();
+
+    useEffect(() => {
+        fetch('http://localhost:8080/api/vendedores/1')
+            .then(response => {
+                if(!response.ok){
+                    throw new Error("Error al cargar los vehículos");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setVendedor(data)
+            })
+            .catch(error => {
+                console.log("El error fue: " + error);
+            })
+    }, []);
 
     return (
         <main className={styles.main}>
@@ -41,36 +71,35 @@ export default function UserContent() {
             {activeTab === "posts" ? (
                 <div className={styles.postsGrid}>
                     <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
                 </div>
             ) : (
                 <div className={styles.contacts}>
                     <div className={styles.contact}>
                         <div className={styles.contactImage}>
-                            <Image
-                                src={"/icons/wp.png"}
-                                alt={"WhatsApp icon"}
-                                fill
-                                style={{ objectFit: "cover" }}
-                            />
+                            <Link href={`https://wa.me/${vendedor?.telefono}`}>
+                                <Image
+                                    src={"/icons/wp.png"}
+                                    alt={"WhatsApp icon"}
+                                    fill
+                                    style={{ objectFit: "cover" }}
+                                />
+                            </Link>
                         </div>
-                        <h3>+54 9 2494629889</h3>
+                        <h3>{vendedor?.telefono}</h3>
                     </div>
 
                     <div className={styles.contact}>
                         <div className={styles.contactImageRed}>
-                            <Image
-                                src={"/icons/phone.png"}
-                                alt={"Phone icon"}
-                                width={40}
-                                height={40}
-                            />
+                            <Link href={`https://${vendedor?.telefono}`}>
+                                <Image
+                                    src={"/icons/phone.png"}
+                                    alt={"Phone icon"}
+                                    width={40}
+                                    height={40}
+                                />
+                            </Link>
                         </div>
-                        <h3>+54 9 2494629889</h3>
+                        <h3>{vendedor?.telefono}</h3>
                     </div>
                 </div>
             )}

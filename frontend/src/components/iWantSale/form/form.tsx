@@ -6,6 +6,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authService } from "@/service/authService";
 
+// <button onClick={() => {
+//     authService.logout();
+//     window.location.href = '/';
+// }}>
+//     Cerrar sesión
+// </button>
+
 export default function FormSale(){
     const router = useRouter();
     const [isLogin, setIsLogin] = useState(true);

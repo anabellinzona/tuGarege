@@ -57,5 +57,28 @@ export const authService = {
             }
             throw new Error('Error desconocido en el inicio de sesión')
         }
-    }
+    },
+
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+    },
+
+    // isAuthenticated(): boolean {
+    //     return !!localStorage.getItem('token');
+    // },
+    //
+    // getToken(): string | null {
+    //     return localStorage.getItem('token');
+    // },
+    //
+    // getUserData() {
+    //     return {
+    //         id: localStorage.getItem('userId'),
+    //         name: localStorage.getItem('userName'),
+    //         email: localStorage.getItem('userEmail'),
+    //     };
+    // }
 }

@@ -1,27 +1,30 @@
 .infoCardsContainerProperties {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin-top: 5%;
-    gap: 5%;
+
+    padding: var(--30px);
+    gap: var(--20px);
 }
 
 .infoCardsProperties {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     position: relative;
-    padding-left: 10px;
     background-image: url("/backgrounds/infoCardBackground.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 420px;
+    width: 100%;
     height: 180px;
     color: var(--font-light-color);
-    gap: 60px;
     overflow: hidden;
+    border-radius: var(--5px);
+    padding-inline: var(--20px);
+    margin-inline: auto;
 }
 
 .infoProperties {
@@ -75,4 +78,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (min-width: 768px) {
+    .infoCardsContainerProperties {
+        flex-direction: row;
+        justify-content: space-between;
+
+        gap: 0;
+    }
+
+    .infoCardsProperties {
+        width: 32%;
+        margin-inline: 0;
+    }
 }

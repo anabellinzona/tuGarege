@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/buttons/orderButton/orderButton.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/buttons/orderButton/orderButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/FormSale/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/formularioVenta/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/perfil/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Vehicles/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/vehiculos/page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/Vehicles/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/vehiculos/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/recentsSection/recentsSection.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recentsSection/recentsSection.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/standardCard/standardCard.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/standardCard/standardCard.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleTypeFilter.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleTypeFilter.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleTypeFilterContainer/vehicleTypeFilterContainer.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleTypeFilterContainer/vehicleTypeFilterContainer.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/service/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/authService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +72,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\usuario\\Desktop\\MAGNO\\garage\\tuGarege\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\anabe\\Downloads\\tuGarege\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -106,8 +94,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -135,10 +123,9 @@
       <workItem from="1760983643144" duration="3464000" />
       <workItem from="1760997961802" duration="5681000" />
       <workItem from="1761053382744" duration="7087000" />
-      <workItem from="1761065512076" duration="6731000" />
-      <workItem from="1761149867166" duration="12000" />
-      <workItem from="1761149948451" duration="4000" />
-      <workItem from="1761151645896" duration="2972000" />
+      <workItem from="1761065512076" duration="8261000" />
+      <workItem from="1761085709932" duration="792000" />
+      <workItem from="1761142341057" duration="508000" />
     </task>
     <servers />
   </component>

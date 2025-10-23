@@ -4,7 +4,6 @@ import com.tuGarage.sistema_ventas_vehiculos.dto.JWTResponseDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.VendedorLoginDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.VendedorRegisterDTO;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
-import com.tuGarage.sistema_ventas_vehiculos.security.JWTUtils;
 import com.tuGarage.sistema_ventas_vehiculos.service.AuthService;
 import com.tuGarage.sistema_ventas_vehiculos.service.VendedorService;
 import jakarta.validation.Valid;

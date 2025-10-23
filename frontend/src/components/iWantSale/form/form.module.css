@@ -1,6 +1,6 @@
 .sectionFormAndInstructions{
     height: 100%;
-    margin-left: var(--50px);
+    width: 90%;
 }
 
 .sectionFormAndInstructions, .advertationProperties{
@@ -10,24 +10,29 @@
 .sectionFormAndInstructions, .infoProperties, .sectionFormAndInstructions form{
     display: flex;
     flex-direction: column;
+
+    margin-inline: auto;
 }
 
 .infoProperties{
-    width: 460px;
+    width: 100%;
+
     margin-bottom: var(--50px);
+
+    text-align: left;
 }
 
 .infoProperties h2{
     font-weight: bold;
-    font-size: var(--40px);
+    font-size: var(--30px);
 }
 
 .infoProperties p, .sectionFormAndInstructions form label{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .sectionFormAndInstructions form{
-    width: 350px;
+    width: 100%;
 }
 
 .sectionFormAndInstructions form input{
@@ -35,7 +40,7 @@
     background-color: var(--neutral-3);
     padding-left: var(--10px);
     margin-bottom: var(--20px);
-    width: 460px;
+    width: 100%;
     height: 40px;
 }
 
@@ -47,7 +52,7 @@
     background-color: var(--green-1);
     border-radius: var(--20px);
     color: var(--font-light-color);
-    width: 460px;
+    width: 100%;
     height: 40px;
 }
 
@@ -60,10 +65,39 @@
 .advertationProperties{
     display: flex;
     gap: var(--10px);
-    margin-top: var(--10px);
-    margin-left: var(--50px);
+    margin: var(--10px);
+    margin-inline: 0;
 }
 
 .advertationProperties span {
     text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+    .infoProperties {
+        width: 460px;
+        text-align: left;
+    }
+
+    .sectionFormAndInstructions, .infoProperties, .sectionFormAndInstructions form {
+        margin-inline: 0;
+    }
+
+    .infoProperties h2{
+        font-size: var(--40px);
+    }
+
+    .infoProperties p, .sectionFormAndInstructions form label{
+        font-size: 18px;
+    }
+
+    .sectionFormAndInstructions{
+        width: fit-content;
+    }
+
+    .advertationProperties{
+        gap: var(--10px);
+        margin-top: var(--10px);
+        margin-left: var(--50px);
+    }
 }

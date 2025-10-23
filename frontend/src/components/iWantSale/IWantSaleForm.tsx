@@ -10,7 +10,7 @@ export default function IWantSaleForm(){
                    <FormSale />
                     <div className={styles.instructionsContainerProperties}>
                         <div className={styles.titleInstructionsPropertes}>
-                            <div className={styles.imageInstructionsPropertes}>
+                            <div className={styles.imageInstructionsProperties}>
                                 <Image src={"/icons/startIcon.png"} alt={"Start icon"} width={30} height={30} />
                             </div>
                             <h3>Publicá tu vehículo en destacados</h3>

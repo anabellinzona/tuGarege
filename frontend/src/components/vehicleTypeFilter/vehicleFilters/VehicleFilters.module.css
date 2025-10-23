@@ -1,8 +1,10 @@
 .vehicleFiltersContainerProperties{
     display: flex;
     flex-direction: column;
-    width: 370px;
+    width: 300px;
     height: fit-content;
+    margin-top: 50px;
+    margin-left: 30px;
 }
 
 .vehicleFiltersContainerProperties h6{

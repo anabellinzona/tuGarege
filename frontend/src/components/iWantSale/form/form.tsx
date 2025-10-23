@@ -6,13 +6,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authService } from "@/service/authService";
 
-// <button onClick={() => {
-//     authService.logout();
-//     window.location.href = '/';
-// }}>
-//     Cerrar sesión
-// </button>
-
 export default function FormSale(){
     const router = useRouter();
     const [isLogin, setIsLogin] = useState(true);
@@ -49,17 +42,18 @@ export default function FormSale(){
         try {
             const result = await authService.login(loginData);
 
+            localStorage.setItem("isAuthenticated", "true");
+
             setSuccess("¡Inicio de sesión exitoso! Redirigiendo...");
 
             setTimeout(() => {
-                router.push('/Profile');
-            }, 1000);
+                router.push('/perfil');
+            }, 500);
 
         } catch (err) {
             setError(err instanceof Error ? err.message : "Error en el inicio de sesión");
-        } finally {
-            setLoading(false);
         }
+
     };
 
     const handleRegisterStep1 = (e: React.FormEvent) => {

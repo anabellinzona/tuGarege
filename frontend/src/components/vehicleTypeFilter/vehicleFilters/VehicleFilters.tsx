@@ -13,6 +13,7 @@ interface Vehiculo {
     fechaPublicacion: string;
     destacado: boolean;
     estado: string;
+    anio: number;
 }
 
 export default function VehicleFilters(){
@@ -53,7 +54,7 @@ export default function VehicleFilters(){
             <select className={styles.vehicleFilterProperties}>
                 <option>Año</option>
                 {vehiculos.map(vehiculo => (
-                    <option>{vehiculo.fechaPublicacion}</option>
+                    <option>{vehiculo.anio}</option>
                 ))}
             </select>
 

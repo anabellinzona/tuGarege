@@ -66,19 +66,19 @@ export const authService = {
         localStorage.removeItem('userEmail');
     },
 
-    // isAuthenticated(): boolean {
-    //     return !!localStorage.getItem('token');
-    // },
-    //
-    // getToken(): string | null {
-    //     return localStorage.getItem('token');
-    // },
-    //
-    // getUserData() {
-    //     return {
-    //         id: localStorage.getItem('userId'),
-    //         name: localStorage.getItem('userName'),
-    //         email: localStorage.getItem('userEmail'),
-    //     };
-    // }
+    isAuthenticated(): boolean {
+        return !!localStorage.getItem('token');
+    },
+
+    getToken(): string | null {
+        return localStorage.getItem('token');
+    },
+
+    getUserData() {
+        return {
+            id: localStorage.getItem('userId'),
+            name: localStorage.getItem('userName'),
+            email: localStorage.getItem('userEmail'),
+        };
+    }
 }

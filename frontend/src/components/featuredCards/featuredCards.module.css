@@ -9,7 +9,8 @@
 }
 
 .titleProperties{
-    margin-left: var(--50px);
+    margin: var(--15px);
+    margin-inline: var(--30px);
 }
 
 .featuredCardsContainerProperties h1 {

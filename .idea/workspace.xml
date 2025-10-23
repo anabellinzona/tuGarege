@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/public/icons/close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/icons/menu.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/vehiculos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/vehiculos/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/searchBar/searchBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/searchSection/searchSection.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/searchSection/searchSection.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/searchSection/searchSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/searchSection/searchSection.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,27 +48,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.SistemaVentaVehiculosApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\usuario\\Desktop\\MAGNO\\garage\\tuGarege\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.SistemaVentaVehiculosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\usuario\\Desktop\\MAGNO\\garage\\tuGarege\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\anabe\Downloads\sistema-ventas-vehiculos\frontend\src\components\featuredCards" />
@@ -102,8 +87,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -134,6 +119,7 @@
       <workItem from="1761065512076" duration="8261000" />
       <workItem from="1761085709932" duration="792000" />
       <workItem from="1761142341057" duration="508000" />
+      <workItem from="1761263391109" duration="94000" />
     </task>
     <servers />
   </component>

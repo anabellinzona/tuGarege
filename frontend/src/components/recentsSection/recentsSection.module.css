@@ -31,7 +31,7 @@
 
 .cardsGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     column-gap: var(--20px);
     row-gap: var(--20px);
     justify-items: center;

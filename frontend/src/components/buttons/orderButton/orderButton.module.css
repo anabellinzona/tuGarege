@@ -1,0 +1,23 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    height: 45px;
+
+    padding: var(--5px);
+    padding-inline: var(--50px);
+
+    border-radius: var(--50px);
+    background-color: var(--red-1);
+    color: var(--searchbar);
+    transition: 0.3s ease-in-out;
+
+    cursor: pointer;
+}
+
+.button:hover {
+    box-shadow: inset 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+    font-weight: bolder;
+}

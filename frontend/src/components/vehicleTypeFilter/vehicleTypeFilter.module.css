@@ -3,7 +3,7 @@
     width: 250px;
     height: 130px;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: var(--5px);
     overflow: hidden;
     display: flex;
     align-items: center;

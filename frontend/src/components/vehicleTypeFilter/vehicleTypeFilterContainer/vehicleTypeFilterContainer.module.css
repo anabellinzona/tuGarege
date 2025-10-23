@@ -3,13 +3,14 @@
     flex-direction: column;
     width: 300px;
     height: fit-content;
-    background-color: var(--neutral-2);
+    background-color: var(--searchbar);
     justify-content: center;
     align-items: center;
     padding-top: var(--20px);
     padding-bottom: var(--20px);
-    border-radius: var(--20px);
+    border-radius: var(--5px);
     margin: var(--50px);
+    margin-inline: var(--30px);
     gap: var(--20px);
     justify-self: center;
 }

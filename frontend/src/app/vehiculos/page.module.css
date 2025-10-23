@@ -1,0 +1,43 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    aligne-items: center;
+}
+
+.filters {
+    width: 25%;
+}
+
+.searchPlusOrderPlusVehicles {
+    display: flex;
+    flex-direction: column;
+
+    width: 75%;
+    height: fit-content;
+
+    margin: var(--50px);
+    margin-inline: 0;
+    margin-right: var(--30px);
+    gap: var(--30px);
+}
+
+.searchPlusOrder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+
+    gap: var(--20px);
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: var(--20px);
+    row-gap: var(--20px);
+    justify-items: center;
+    align-items: center;
+
+    max-width: 100%;
+}

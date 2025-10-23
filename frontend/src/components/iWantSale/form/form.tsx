@@ -99,15 +99,15 @@ export default function FormSale(){
             <div className={styles.sectionFormAndInstructions}>
                 <div className={styles.infoProperties}>
                     <h2>Quiero vender</h2>
-                    <p>Completá el formulario para registrarte o iniciar sesión y empezá a publicar tus vehículos de forma fácil y rápida</p>
+                    <p>Completá el formulario para registrarte o iniciar sesión y empezá a publicar tus vehículos de forma fácil y rápida.</p>
                 </div>
                 <form onSubmit={handleLoginSubmit}>
                     {error && <div className={styles.errorMessage}>{error}</div>}
                     {success && <div className={styles.successMessage}>{success}</div>}
 
-                    <label>Usuario (Email)</label>
+                    <label>Usuario (e-mail)</label>
                     <input
-                        placeholder="Email"
+                        placeholder="Usuario"
                         type="email"
                         value={loginData.email}
                         onChange={(e) => setLoginData({...loginData, email: e.target.value})}

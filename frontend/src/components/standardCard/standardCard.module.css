@@ -6,9 +6,10 @@
     align-items: flex-start;
     overflow: hidden;
 
-    min-width: 405px;
+    min-width: 344px;
     max-width: 420px;
     min-height: 280px;
+    width: 100%;
 
     color: white;
 }

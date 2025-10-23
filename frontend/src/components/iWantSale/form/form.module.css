@@ -33,7 +33,7 @@
 .sectionFormAndInstructions form input{
     border-radius: var(--20px);
     background-color: var(--neutral-3);
-    padding-left: var(--20px);
+    padding-left: var(--10px);
     margin-bottom: var(--20px);
     width: 460px;
     height: 40px;
@@ -53,7 +53,7 @@
 
 .sectionFormAndInstructions form input::placeholder{
     padding-left: var(--10px);
-    color: var(--neutral-1);
+    color: var(--neutral-2);
     font-size: var(--15px);
 }
 

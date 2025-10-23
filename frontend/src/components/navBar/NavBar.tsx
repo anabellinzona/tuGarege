@@ -32,22 +32,22 @@ export default function NavBar() {
                 </Link>
 
                 <Link
-                    href="/Vehicles"
-                    className={pathname === "/Vehicles" ? styles.activeLink : ""}
+                    href="/vehiculos"
+                    className={pathname === "/vehiculos" ? styles.activeLink : ""}
                 >
                     <h5>Vehículos</h5>
                 </Link>
 
                 <Link
-                    href="/FormSale"
-                    className={pathname === "/FormSale" ? styles.activeLink : ""}
+                    href="/formularioVenta"
+                    className={pathname === "/formularioVenta" ? styles.activeLink : ""}
                 >
                     <h5>Iniciar sesión</h5>
                 </Link>
             </div>
 
             <div className={styles.actions}>
-                <SellButton nameButton={"QUIERO VENDER"} link={"/FormSale"}/>
+                <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"}/>
                 <button
                     onClick={toggleTheme}
                     className={styles.darkModeButton}

@@ -6,6 +6,7 @@ import StandardCard from "@/components/standardCard/standardCard";
 import VehicleFilters from "@/components/vehicleTypeFilter/vehicleFilters/VehicleFilters";
 import styles from "./page.module.css";
 import SearchBar from "@/components/searchBar/searchBar";
+import OrderButton from "@/components/buttons/orderButton/orderButton";
 
 interface Imagen {
     id: number;
@@ -65,7 +66,7 @@ export default function Page(){
 
     return (
         <main className={styles.main}>
-            <div>
+            <div className={styles.filters}>
                 {selectedFilter === 'Todos' ? (
                     <VehicleTypeFilterContainer
                         onFilterChange={handleFilterChange}
@@ -77,9 +78,10 @@ export default function Page(){
             </div>
 
 
-            <section>
+            <section className={styles.searchPlusOrderPlusVehicles}>
                 <div className={styles.searchPlusOrder}>
                     <SearchBar/>
+                    <OrderButton/>
                 </div>
                 <div className={styles.cardsGrid}>
                     {loading ? (

@@ -24,8 +24,12 @@
   --neutral-5-70:  rgba(5, 5, 5, 0.7);
   --neutral-5-90:  rgba(5, 5, 5, 0.9);
   --red-2-50: rgba(153, 0, 0, 0.5);
-  --neutral-1-30: rgba(5, 5, 5, 0.4);
+  --neutral-1-30: rgba(5, 5, 5, 0.6);
   --neutral-1-30-static: rgba(255, 250, 245, 0.4);
+
+  /*special colors for specific sections*/
+  --searchbar: #D5D5D5;
+  --filter: #D5D5D5;
 
 
   /*padding/margin values*/
@@ -60,6 +64,10 @@ html.dark {
   --neutral-1: #050505;
 
   --neutral-1-30: rgba(255, 250, 245, 0.4);
+
+  /*special colors for specific sections*/
+  --searchbar: #FFFAF5;
+  --filter: #050505;
 }
 
 /*responsive for tablet*/

@@ -80,7 +80,9 @@ export default function Page(){
 
             <section className={styles.searchPlusOrderPlusVehicles}>
                 <div className={styles.searchPlusOrder}>
-                    <SearchBar/>
+                    <SearchBar
+                        className={'main80'}
+                    />
                     <OrderButton/>
                 </div>
                 <div className={styles.cardsGrid}>

@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VendedorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/authService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +126,8 @@
       <workItem from="1761053382744" duration="7087000" />
       <workItem from="1761065512076" duration="8261000" />
       <workItem from="1761085709932" duration="792000" />
-      <workItem from="1761142341057" duration="508000" />
+      <workItem from="1761142341057" duration="3074000" />
+      <workItem from="1761229858656" duration="1898000" />
     </task>
     <servers />
   </component>

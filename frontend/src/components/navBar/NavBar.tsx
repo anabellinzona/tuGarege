@@ -5,12 +5,31 @@ import SellButton from "@/components/buttons/sellButton/SellButton";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
+import { authService } from "@/service/authService";
 
 export default function NavBar() {
     const pathname = usePathname();
     const { theme, toggleTheme } = useContext(ThemeContext);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const auth = localStorage.getItem("isAuthenticated") === "true";
+            setIsAuthenticated(auth);
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
+
+
+    const handleLogout = () => {
+        authService.logout();
+        setIsAuthenticated(false);
+        window.location.href = "/";
+    };
 
     return (
         <nav className={styles.main}>
@@ -38,16 +57,22 @@ export default function NavBar() {
                     <h5>Vehículos</h5>
                 </Link>
 
-                <Link
-                    href="/formularioVenta"
-                    className={pathname === "/formularioVenta" ? styles.activeLink : ""}
-                >
-                    <h5>Iniciar sesión</h5>
-                </Link>
+                {isAuthenticated ? (
+                    <button onClick={handleLogout} className={styles.logoutButton}>
+                        <h5>Cerrar sesión</h5>
+                    </button>
+                ) : (
+                    <Link
+                        href="/formularioVenta"
+                        className={pathname === "/formularioVenta" ? styles.activeLink : ""}
+                    >
+                        <h5>Iniciar sesión</h5>
+                    </Link>
+                )}
             </div>
 
             <div className={styles.actions}>
-                <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"}/>
+                <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"} />
                 <button
                     onClick={toggleTheme}
                     className={styles.darkModeButton}

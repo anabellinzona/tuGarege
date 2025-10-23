@@ -84,7 +84,7 @@ export default function ProfileDescription() {
             <div className={styles.content}>
                 <div className={styles.profileImage}>
                     <Image
-                        src={vendedor?.fotoPerfil}
+                        src={vendedor?.fotoPerfil || "/logo/vertical.png"}
                         alt={'user profile image'}
                         fill
                         style={{objectFit: 'cover'}}

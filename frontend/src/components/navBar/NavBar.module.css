@@ -1,32 +1,57 @@
 .main {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     width: 100vw;
-    height: fit-content;
-
-    padding: var(--15px);
-
+    padding: var(--15px) var(--20px);
     background-color: var(--neutral-1);
     color: var(--neutral-5);
     box-shadow: 0px 1px 7px 0px var(--neutral-1-30);
+    position: relative;
+    z-index: 10;
 }
 
-.main div, .links {
-    display: flex;
-    flex-direction: row;
+/* === MOBILE (base) === */
+.menuButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+}
+
+.navContent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--neutral-1);
+    flex-direction: column;
     align-items: center;
-
-    gap: var(--30px);
+    gap: var(--20px);
+    padding: var(--20px) 0;
+    transform: translateY(-200%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
 }
 
-.links h5 {
+.navContent.open {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.linksDesktop, .linksMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--15px);
+}
+
+.linksDesktop h5, .linksMobile h5 {
     transition: transform 0.3s ease;
 }
 
-.links h5:hover {
+.linksDesktop h5:hover, .linksMobile h5:hover {
     transform: translateY(-5px);
 }
 
@@ -36,8 +61,9 @@
 
 .actions {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: var(--15px);
 }
 
 .darkModeButton {
@@ -50,4 +76,47 @@
 
 .darkModeButton:hover {
     transform: scale(1.1);
+}
+
+.linksDesktop {
+    display: none;
+}
+.linksMobile {
+    display: flex;
+}
+
+/* === DESKTOP (a partir de 768px) === */
+@media (min-width: 768px) {
+    .menuButton {
+        display: none;
+    }
+
+    .navContent {
+        position: static;
+        transform: none;
+        opacity: 1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        width: auto;
+        gap: var(--30px);
+    }
+
+    .linksDesktop, .linksMobile {
+        flex-direction: row;
+        gap: var(--30px);
+    }
+
+    .actions {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .linksMobile {
+        display: none;
+    }
+    .linksDesktop {
+        display: flex;
+    }
 }

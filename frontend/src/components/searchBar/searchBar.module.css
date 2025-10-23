@@ -1,4 +1,14 @@
-.main {
+.main40 {
+    position: relative;
+    width: 80%;
+    height: 40px;
+}
+
+.main40 .inputProperties{
+    background-color: var(--neutral-1);
+}
+
+.main80 {
     position: relative;
     width: 80%;
     height: 45px;
@@ -37,4 +47,32 @@
 .searchIconProperties img {
     width: 20px;
     height: 20px;
+}
+
+@media (min-width: 768px) {
+    .main40 {
+        position: relative;
+        width: 60%;
+        height: 45px;
+    }
+
+    .main80 {
+        position: relative;
+        width: 80%;
+        height: 45px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main40 {
+        position: relative;
+        width: 40%;
+        height: 45px;
+    }
+
+    .main80 {
+        position: relative;
+        width: 80%;
+        height: 45px;
+    }
 }

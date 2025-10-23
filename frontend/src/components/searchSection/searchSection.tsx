@@ -1,5 +1,6 @@
 import styles from "./searchSection.module.css";
 import Image from "next/image";
+import SearchBar from "@/components/searchBar/searchBar";
 
 export default function searchSection(){
     return(
@@ -9,10 +10,9 @@ export default function searchSection(){
                     <h3>Compra y vende con confianza.</h3>
                     <h3 className={styles.searchPropertiesSubtitleProperties}>Vehículos certificados, tranquilidad asegurada.</h3>
                 </div>
-                <input className={styles.inputProperties} placeholder={"Busca tu próximo vehículo acá"}/>
-                <button className={styles.searchIconProperties}>
-                    <Image src={"/icons/searchIcon.png"} alt={"Search icon"} width={20} height={20} />
-                </button>
+                <SearchBar
+                    className={'main40'}
+                />
             </div>
         </section>
     );

@@ -17,12 +17,14 @@
 
 .searchPropertiesSubtitleProperties{
     font-style: oblique;
+    text-align: center;
 }
 
 .searchProperties h3{
-    font-size: var(--20px);
+    font-size: var(--h1);
     font-family: "Arial";
     font-weight: bolder;
+    text-align: center;
 }
 
 .presentationProperties, .searchProperties{
@@ -34,42 +36,60 @@
     align-self: center;
 }
 
-.inputProperties{
-    width: 80%;
+.main {
+    position: relative;
+    width: 60%;
     height: 45px;
+}
+
+.inputProperties{
+    width: 100%;
+    height: 100%;
+
+    padding-left: var(--20px);
     background-color: var(--neutral-1);
     border: none;
     border-radius: var(--50px);
-    padding-left: var(--20px);
     color: var(--neutral-5);
-    position: relative;
 }
 
-.searchIconProperties{
-    width: fit-content;
+.searchIconProperties {
     position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
     display: flex;
-    margin-top: 27%;
-    margin-left: 65%;
+    align-items: center;
+    justify-content: center;
 }
+
+.searchIconProperties img {
+    width: 20px;
+    height: 20px;
+}
+
 
 .inputProperties::placeholder{
     color: var(--red-2);
 }
 
 @media (min-width: 768px) {
-
     .searchProperties h3{
-        font-size: var(--40px);
+        font-size: var(--30px);
     }
 
     .inputProperties{
         width: 500px;
         height: 45px;
     }
+}
 
-    .searchIconProperties{
-        margin-top: 9%;
-        margin-left: 30%;
+@media (min-width: 768px) {
+    .searchProperties h3{
+        font-size: var(--40px);
     }
 }

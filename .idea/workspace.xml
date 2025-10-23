@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/IWantSaleForm.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/iWantSale/form/form.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
-import { authService } from "@/service/authService";
+import {authService} from "@/service/authService";
 
 export default function NavBar() {
     const pathname = usePathname();
@@ -65,9 +65,9 @@ export default function NavBar() {
                 </Link>
 
                 {isAuthenticated ? (
-                    <button onClick={handleLogout} className={styles.logoutButton}>
-                        <h5>Cerrar sesión</h5>
-                    </button>
+                        <Link href={"/perfil"} >
+                            <h5>Mi perfil</h5>
+                        </Link>
                 ) : (
                     <Link
                         href="/formularioVenta"
@@ -91,9 +91,9 @@ export default function NavBar() {
                     </Link>
 
                     {isAuthenticated ? (
-                        <button onClick={handleLogout} className={styles.logoutButton}>
-                            <h5>Cerrar sesión</h5>
-                        </button>
+                        <Link href={"/perfil"} >
+                            <h5>Mi perfil</h5>
+                        </Link>
                     ) : (
                         <Link
                             href="/formularioVenta"
@@ -105,7 +105,13 @@ export default function NavBar() {
                 </div>
 
                 <div className={styles.actions}>
-                    <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"} />
+                    {isAuthenticated ? (
+                        <button onClick={handleLogout}>
+                            <SellButton nameButton={"CERRAR SESIÓN"} link={"/"} />
+                        </button>
+                    ) : (
+                        <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"} />
+                    ) }
                     <button
                         onClick={toggleTheme}
                         className={styles.darkModeButton}

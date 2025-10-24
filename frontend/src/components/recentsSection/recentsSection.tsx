@@ -80,7 +80,7 @@ export default function RecentsSection() {
         <section className={styles.main}>
             <div className={styles.recents}>
                 <h2>Más recientes</h2>
-                <SellButton nameButton={"VER TODOS"} link={"/Vehicles"}/>
+                <SellButton nameButton={"VER TODOS"} link={"/vehiculos"}/>
             </div>
             <div className={styles.cardsGrid}>
                 {vehicle.map(vehicle => (

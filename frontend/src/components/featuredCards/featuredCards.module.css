@@ -9,9 +9,16 @@
 }
 
 .titleProperties{
-    margin-left: var(--50px);
+    margin: var(--15px);
+    margin-inline: auto;
 }
 
 .featuredCardsContainerProperties h1 {
     font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .titleProperties{
+        margin-inline: var(--30px);
+    }
 }

@@ -6,8 +6,8 @@
     align-items: flex-start;
     overflow: hidden;
 
-    min-width: 344px;
-    max-width: 420px;
+    min-width: 305px;
+    max-width: 320px;
     min-height: 280px;
     width: 100%;
 
@@ -42,10 +42,10 @@
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .main {
-        min-width: 305px;
-        max-width: 320px;
+        min-width: 344px;
+        max-width: 420px;
         min-height: 280px;
     }
 }

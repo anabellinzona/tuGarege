@@ -114,8 +114,32 @@ export default function CardVehicle({id, vehicle}: Prop){
                                     src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
                                     alt={`${vehiculo.marca} ${vehiculo.modelo}`}
                                     fill
-                                    style={{ objectFit: "cover" }}
+                                    style={{objectFit: "cover"}}
                                 />
+
+                                <div className={styles.overlay}>
+                                    <div className={styles.contact}>
+                                        <div className={styles.contactImage}>
+                                            <Image
+                                                src={"/icons/wp.png"}
+                                                alt={"WhatsApp icon"}
+                                                fill
+                                                style={{objectFit: "cover"}}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.contact}>
+                                        <div className={styles.contactImageRed}>
+                                            <Image
+                                                src={"/icons/phone.png"}
+                                                alt={"Phone icon"}
+                                                width={40}
+                                                height={40}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className={styles.infoVehicleProperties}>
                                 <div>
@@ -127,11 +151,12 @@ export default function CardVehicle({id, vehicle}: Prop){
                                         src="/logo/vehicleLogo.png"
                                         alt={`Logo ${vehiculo.marca}`}
                                         fill
-                                        style={{ objectFit: "contain" }}
+                                        style={{objectFit: "contain"}}
                                     />
                                 </div>
                             </div>
                         </div>
+
                     </Link>
                 ))}
             </div>

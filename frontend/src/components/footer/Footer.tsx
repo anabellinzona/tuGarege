@@ -58,7 +58,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className={styles.button}>
+            <div className={styles.buttonDesktop}>
                 <SellButton nameButton={"QUIERO VENDER"} link={"/"}/>
             </div>
 
@@ -69,6 +69,10 @@ export default function Footer() {
                     width={266}
                     height={180}
                 />
+            </div>
+
+            <div className={styles.buttonMobile}>
+                <SellButton nameButton={"QUIERO VENDER"} link={"/"}/>
             </div>
         </footer>
     )

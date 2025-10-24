@@ -1,13 +1,13 @@
 .main {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: end;
+    flex-direction: column;
+    align-items: center;
 
     width: 100vw;
     height: fit-content;
 
     padding: var(--20px);
+    gap: var(--30px);
 
     background-color: var(--neutral-1);
     color: var(--neutral-5);
@@ -26,7 +26,40 @@
     font-weight: bolder;
 }
 
-.button {
-    margin: var(--25px);
+.buttonDesktop, .buttonMobile {
     margin-inline: 0;
+}
+
+.buttonDesktop {
+    display: none;
+}
+
+.buttonMobile {
+    display: flex;
+}
+
+@media (min-width: 768px) {
+    .main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+
+        width: 100vw;
+        height: fit-content;
+
+        padding: var(--20px);
+
+        background-color: var(--neutral-1);
+        color: var(--neutral-5);
+        box-shadow: 0px 4px 10px 0px var(--neutral-5);
+    }
+
+    .buttonDesktop {
+        display: flex;
+    }
+
+    .buttonMobile {
+        display: none;
+    }
 }

@@ -3,6 +3,7 @@ import styles from './profileDescription.module.css'
 import Image from 'next/image';
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import SellButton from "@/components/buttons/sellButton/SellButton";
 
 interface Imagen {
     id: number;

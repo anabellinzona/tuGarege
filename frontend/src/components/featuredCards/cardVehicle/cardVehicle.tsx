@@ -121,7 +121,7 @@ export default function CardVehicle({id, vehicle}: Prop){
                                     <div className={styles.contact}>
                                         <div className={styles.contactImage}>
                                             <Image
-                                                src={"/icons/wp.png"}
+                                                src={"/icons/wp.webp"}
                                                 alt={"WhatsApp icon"}
                                                 fill
                                                 style={{objectFit: "cover"}}
@@ -130,12 +130,12 @@ export default function CardVehicle({id, vehicle}: Prop){
                                     </div>
 
                                     <div className={styles.contact}>
-                                        <div className={styles.contactImageRed}>
+                                        <div className={styles.contactImage}>
                                             <Image
                                                 src={"/icons/phone.png"}
                                                 alt={"Phone icon"}
-                                                width={40}
-                                                height={40}
+                                                width={35}
+                                                height={35}
                                             />
                                         </div>
                                     </div>

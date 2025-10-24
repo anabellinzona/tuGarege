@@ -127,7 +127,7 @@
     color: var(--neutral-5);
 }
 
-.contactImage, .contactImageRed {
+.contactImage {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -141,8 +141,8 @@
     border-radius: 100px;
 }
 
-.contactImageRed {
-    background-color: var(--red-1);
+.contactImage {
+    background-color: var(--neutral-1);
 }
 
 

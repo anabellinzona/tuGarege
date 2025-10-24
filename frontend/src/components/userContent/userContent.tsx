@@ -94,8 +94,8 @@ export default function UserContent() {
                                 <Image
                                     src={"/icons/phone.png"}
                                     alt={"Phone icon"}
-                                    width={40}
-                                    height={40}
+                                    width={24}
+                                    height={24}
                                 />
                             </Link>
                         </div>

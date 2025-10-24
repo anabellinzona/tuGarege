@@ -22,7 +22,7 @@
     width: fit-content;
     height: fit-content;
 
-    gap: var(--30px);
+    gap: var(--20px);
 }
 
 .profileImage {
@@ -30,8 +30,8 @@
     position: relative;
     overflow: hidden;
 
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
 
     border-radius: 100px;
 }
@@ -40,12 +40,9 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-
-    gap: var(--10px);
 }
 
 .description h3 {
-    font-size: 28px;
     font-weight: bolder;
 }
 
@@ -55,7 +52,7 @@
     align-items: center;
     justify-content: space-between;
 
-    gap: var(--30px);
+    gap: var(--20px);
 }
 
 .contactsWrapper {
@@ -72,8 +69,8 @@
     justify-content: center;
     overflow: hidden;
 
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 
     border-radius: 100px;
 }
@@ -89,7 +86,7 @@
     justify-content: center;
 
     padding: var(--5px);
-    padding-inline: var(--50px);
+    padding-inline: var(--30px);
 
     border-radius: var(--10px);
     border: 1px solid var(--neutral-5);
@@ -99,4 +96,33 @@
     display: flex;
 
     max-width: 300px;
+}
+
+@media (min-width: 768px) {
+    .profileImage {
+        width: 150px;
+        height: 150px;
+    }
+
+    .contact, .contactRed {
+        width: 40px;
+        height: 40px;
+    }
+
+    .description {
+        gap: var(--10px);
+    }
+
+    .description h3 {
+        font-size: 28px;
+    }
+
+    .contactPlusPosts {
+        gap: var(--30px);
+    }
+
+    .postsQuantity {
+        padding: var(--5px);
+        padding-inline: var(--50px);
+    }
 }

@@ -39,7 +39,7 @@
 
 .postsGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     column-gap: var(--10px);
     row-gap: var(--10px);
     justify-items: center;
@@ -52,15 +52,15 @@
 
 .contacts {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    width: 70%;
+    width: 90%;
 
-    padding: var(--50px);
+    padding: var(--10px);
     margin-bottom: var(--50px);
-    gap: var(--50px);
+    gap: var(--20px);
 
     border-radius: var(--10px);
     box-shadow: 0px 1px 7px 0px var(--neutral-1-30);
@@ -82,12 +82,33 @@
     position: relative;
     overflow: hidden;
 
-    width: 80px;
-    height: 80px;
+    width: var(--40px);
+    height: var(--40px);
 
     border-radius: 100px;
 }
 
 .contactImageRed {
     background-color: var(--red-1);
+}
+
+@media (min-width: 768px) {
+    .postsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contacts {
+        flex-direction: row;
+
+        width: 70%;
+
+        padding: var(--50px);
+        margin-bottom: var(--50px);
+        gap: var(--50px);
+    }
+
+    .contactImage, .contactImageRed {
+        width: 80px;
+        height: 80px;
+    }
 }

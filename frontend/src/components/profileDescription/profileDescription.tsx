@@ -119,7 +119,7 @@ export default function ProfileDescription() {
                         </div>
 
                         <div className={styles.postsQuantity}>
-                            <h5>{vehiculos.length}</h5>
+                            <h5>{vehiculos.length} publicaciones</h5>
                         </div>
                     </div>
                 </div>

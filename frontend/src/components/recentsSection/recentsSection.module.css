@@ -17,12 +17,16 @@
 
 .recents {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
     width: 100%;
     height: fit-content;
+
+    gap: var(--10px);
+
+    text-align: center;
 }
 
 .recents h2 {
@@ -31,7 +35,7 @@
 
 .cardsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
     column-gap: var(--20px);
     row-gap: var(--20px);
     justify-items: center;
@@ -43,8 +47,18 @@
     margin-inline: 0;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .cardsGrid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    }
+
+    .recents {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        height: fit-content;
     }
 }

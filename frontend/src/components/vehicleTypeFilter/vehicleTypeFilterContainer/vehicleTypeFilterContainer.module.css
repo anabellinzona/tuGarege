@@ -1,16 +1,14 @@
 .vehicleTypeFilterContainerProperties{
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 100%;
     height: fit-content;
     background-color: var(--searchbar);
     justify-content: center;
     align-items: center;
-    padding-top: var(--20px);
-    padding-bottom: var(--20px);
+    padding: var(--20px);
+    padding-inline: 0;
     border-radius: var(--5px);
-    margin: var(--50px);
-    margin-inline: var(--30px);
     gap: var(--20px);
     justify-self: center;
 }
@@ -18,5 +16,10 @@
 @media (min-width: 768px) {
     .vehicleTypeFilterContainerProperties{
         justify-self: left;
+
+        width: 300px;
+
+        margin: var(--50px);
+        margin-inline: var(--30px);
     }
 }

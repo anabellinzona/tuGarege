@@ -15,10 +15,10 @@ export default function VehicleTypeFilter({filtro, image, isSelected}: Prop){
                 src={image}
                 alt={"Vehicle filter image"}
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
             />
             <div className={styles.imageOverlay}></div>
-            <h3 className={styles.filterTitle}>{filtro}</h3>
+            <h2 className={styles.filterTitle}>{filtro}</h2>
         </div>
     );
 }

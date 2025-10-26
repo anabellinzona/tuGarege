@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/fichaVehiculo/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/carrousel/carrousel.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/carrousel/carrousel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/service/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/authService.ts" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
->>>>>>> fdbc532ecaf8ff96343305c41b607d985f5e6427
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -82,11 +75,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-<<<<<<< HEAD
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\anabe\\Downloads\\tuGarege\\frontend\\node_modules\\typescript\\lib&quot;,
-=======
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\usuario\\Desktop\\MAGNO\\garage\\tuGarege\\frontend\\node_modules\\typescript\\lib&quot;,
->>>>>>> fdbc532ecaf8ff96343305c41b607d985f5e6427
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -143,6 +132,7 @@
       <workItem from="1761085709932" duration="792000" />
       <workItem from="1761142341057" duration="508000" />
       <workItem from="1761490745527" duration="56000" />
+      <workItem from="1761513992725" duration="1155000" />
     </task>
     <servers />
   </component>

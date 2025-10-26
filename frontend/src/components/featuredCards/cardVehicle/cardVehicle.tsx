@@ -1,3 +1,4 @@
+"use client"
 import {useEffect, useState, useRef} from "react";
 import styles from "@/components/featuredCards/cardVehicle/cardVehicle.module.css";
 import Link from "next/link";
@@ -22,6 +23,19 @@ interface Vehiculo {
     estado: string;
     imagenes: Imagen[];
     logoMarca?: string;
+    vendedorId: number;
+}
+
+interface Vendedor {
+    nombre: string;
+    direccion: string;
+    telefono: string;
+    email: string;
+    contrasena: string;
+    instagram: string;
+    descripcion: string;
+    fotoPerfil: string;
+    ciudad: string;
 }
 
 type Prop = {
@@ -31,11 +45,13 @@ type Prop = {
 
 export default function CardVehicle({id, vehicle}: Prop){
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
+    const [vendedor, setVendedor] = useState<Vendedor>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const carouselRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        const fetchVehicle = async () => {
         fetch('http://localhost:8080/api/vehiculos/destacados')
             .then(response => {
                 if(!response.ok){
@@ -52,7 +68,30 @@ export default function CardVehicle({id, vehicle}: Prop){
                 setError(error.message);
                 setLoading(false);
             })
+        }
+        fetchVehicle();
     }, [])
+
+
+    const fetchSaller = async (id:number) => {
+        fetch(`http://localhost:8080/api/vendedores/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al cargar los vehículos");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                setVendedor(data)
+                setLoading(false)
+            })
+            .catch(error => {
+                console.log("El error fue: " + error);
+                setError(error.message);
+                setLoading(false);
+            })
+    }
 
     const scroll = (direction: 'left' | 'right') => {
         if (carouselRef.current) {
@@ -108,7 +147,7 @@ export default function CardVehicle({id, vehicle}: Prop){
             <div className={styles.carouselContainer} ref={carouselRef}>
                 {vehiculos.map((vehiculo) => (
                     <Link href={`/fichaVehiculo/${vehiculo.id}`} key={vehiculo.id}>
-                        <div className={styles.vehicleCardProperties}>
+                        <div className={styles.vehicleCardProperties} onMouseEnter={() => fetchSaller(vehiculo.vendedorId)}>
                             <div className={styles.vehicleImageProperties}>
                                 <Image
                                     src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
@@ -120,23 +159,27 @@ export default function CardVehicle({id, vehicle}: Prop){
                                 <div className={styles.overlay}>
                                     <div className={styles.contact}>
                                         <div className={styles.contactImage}>
-                                            <Image
-                                                src={"/icons/wp.webp"}
-                                                alt={"WhatsApp icon"}
-                                                fill
-                                                style={{objectFit: "cover"}}
-                                            />
+                                            <Link href={`https://wa.me/${vendedor?.telefono}`} >
+                                                <Image
+                                                    src={"/icons/wp.webp"}
+                                                    alt={"WhatsApp icon"}
+                                                    fill
+                                                    style={{objectFit: "cover"}}
+                                                />
+                                            </Link>
                                         </div>
                                     </div>
 
                                     <div className={styles.contact}>
                                         <div className={styles.contactImage}>
-                                            <Image
-                                                src={"/icons/phone.png"}
-                                                alt={"Phone icon"}
-                                                width={35}
-                                                height={35}
-                                            />
+                                            <Link href={`https://wa.me/${vendedor?.telefono}`} >
+                                                <Image
+                                                    src={"/icons/phone.png"}
+                                                    alt={"Phone icon"}
+                                                    width={35}
+                                                    height={35}
+                                                />
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +199,6 @@ export default function CardVehicle({id, vehicle}: Prop){
                                 </div>
                             </div>
                         </div>
-
                     </Link>
                 ))}
             </div>

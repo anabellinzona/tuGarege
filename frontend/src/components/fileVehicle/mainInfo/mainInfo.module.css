@@ -1,0 +1,65 @@
+.vehicleInformationProperties{
+    display: flex;
+    flex-direction: column;
+    border: 3px solid var(--neutral-2);
+    width: 470px;
+    height: fit-content;
+    gap: var(--20px);
+    align-items: center;
+    padding: var(--20px);
+    justify-self: center;
+    margin-top: 90px;
+}
+
+.vehicleInformationProperties, .priceInformationProperties, .sallerInformationProperties{
+    border-radius: var(--20px);
+}
+
+
+.vehicleMainInfortationProperties{
+    border-bottom: 3px solid var(--neutral-2);
+}
+
+.priceInformationProperties{
+    background-color: var(--neutral-4);
+    color: var(--neutral-1);
+}
+
+.sallerInformationProperties{
+    background-color: var(--neutral-2);
+}
+
+.vehicleMainInfortationProperties, .priceInformationProperties, .sallerInformationProperties{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: var(--20px);
+    height: 80px;
+    width: 400px;
+}
+
+.vehicleMainInfortationProperties h1{
+    font-size: var(--20px);
+    font-weight: bolder;
+}
+
+.vehicleMainInfortationProperties span{
+    font-size: 16px;
+}
+
+.priceInformationProperties h1, .sallerInformationProperties h1, .sallerInformationProperties span{
+    font-size: 18px;
+}
+
+.priceInformationProperties span{
+    font-size: 28px;
+}
+
+.askButtonProperties{
+    background-color: var(--green-1);
+    border-radius: var(--20px);
+    width: 290px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 22px;
+}

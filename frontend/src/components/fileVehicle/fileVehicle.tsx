@@ -2,6 +2,8 @@
 import {useEffect, useState} from "react";
 import styles from "./fileVehicle.module.css";
 import Image from "next/image";
+import Carrousel from "@/components/fileVehicle/carrousel/carrousel";
+import MainInfo from "@/components/fileVehicle/mainInfo/mainInfo";
 
 type Prop = {
     id: string;
@@ -31,7 +33,6 @@ interface Vehiculo {
 
 export default function FileVehicle({id}: Prop){
     const [vehiculo, setVehiculo] = useState<Vehiculo | null>(null);
-    const [imagenActual, setImagenActual] = useState(0);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -59,27 +60,6 @@ export default function FileVehicle({id}: Prop){
             });
     }, [id]);
 
-
-    const next = () => {
-        if (!vehiculo?.imagenes) return;
-
-        setImagenActual((prev) =>
-            prev === vehiculo.imagenes.length - 1 ? 0 : prev + 1
-        );
-    };
-
-    const prev = () => {
-        if (!vehiculo?.imagenes) return;
-
-        setImagenActual((prev) =>
-            prev === 0 ? vehiculo.imagenes.length - 1 : prev - 1
-        );
-    };
-
-    const irAImagen = (index: number) => {
-        setImagenActual(index);
-    }
-
     if(loading) return <div>Cargando...</div>;
     if(!vehiculo) return <div>No se encontró el vehículo</div>;
     if(!vehiculo.imagenes || vehiculo.imagenes.length === 0) {
@@ -89,51 +69,28 @@ export default function FileVehicle({id}: Prop){
     return(
         <section className={styles.vehicleFileSectionContainerProperties}>
             <div className={styles.carrouselAndVehicleInformationProperties}>
-                <div className={styles.vehicleFileImagesCarrouselProperties}>
-                    <Image
-                        src={vehiculo.imagenes[imagenActual].url}
-                        alt={`${vehiculo.modelo} - Imagen ${imagenActual + 1}`}
-                        fill
-                        style={{objectFit: 'cover'}}
-                        priority={imagenActual === 0}
-                    />
-
-                    {vehiculo.imagenes.length > 1 && (
-                        <div className={styles.carrouselButtonsProperties}>
-                            <button
-                                onClick={prev}
-                                className={styles.botonPrev}
-                            >
-                                ‹
-                            </button>
-                            <button
-                                onClick={next}
-                                className={styles.botonNext}
-                            >
-                                ›
-                            </button>
+                <Carrousel imagenes={vehiculo.imagenes}/>
+                <MainInfo marca={vehiculo.marca} km={vehiculo.km} modelo={vehiculo.modelo} anio={vehiculo.anio} precio={vehiculo.precio} />
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <div className={styles.tableCharacteristicProperties}>
+                            <h1>Características principales</h1>
+                            <div className={styles.underlineProperties}></div>
+                            <p><span>Modelo: </span>{vehiculo.modelo}</p>
+                            <div className={styles.underlineProperties}></div>
+                            <p><span>Kilometraje: </span>{vehiculo.km}km</p>
+                            <div className={styles.underlineProperties}></div>
+                            <p><span>Otras características/detalles: </span>{vehiculo.descripcion}</p>
                         </div>
-                    )}
+                    </div>
+                    <div>
 
-                    {/* Contador */}
-                    <div className={styles.contadorProperties}>
-                        {imagenActual + 1} / {vehiculo.imagenes.length}
                     </div>
-                </div>
-                <div className={styles.vehicleInformationProperties}>
-                    <div className={styles.vehicleMainInfortationProperties}>
-                        <h1>{vehiculo.marca} {vehiculo.modelo}</h1>
-                        <span>{vehiculo.km}km | {vehiculo.anio}</span>
+                    <div>
+
                     </div>
-                    <div className={styles.priceInformationProperties}>
-                        <h1>Precio</h1>
-                        <span>${vehiculo.precio}</span>
-                    </div>
-                    <div className={styles.sallerInformationProperties}>
-                        <h1>Vendedor</h1>
-                        <span>Horacio</span>
-                    </div>
-                    <button className={styles.askButtonProperties}>Consultar</button>
                 </div>
             </div>
             <button>Consultar por este vehículo</button>

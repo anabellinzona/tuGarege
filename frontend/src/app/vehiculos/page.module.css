@@ -1,36 +1,60 @@
 .main {
     display: flex;
-    flex-direction: row;
-    aligne-items: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+.filterToggleBtn {
+    background-color: var(--red-1);
+    border: none;
+    border-radius: var(--50px);
+    padding: 10px var(--40px);
+    cursor: pointer;
+    color: var(--neutral-1);
+    transition: background-color 0.3s ease;
+}
+
+.filterToggleBtn:hover {
+    background-color: var(--red-2);
+}
+
+/* 🔹 Filtros: inicialmente ocultos en mobile */
 .filters {
-    width: 25%;
+    width: 80%;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Oculto o visible */
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+    margin-bottom: 1.5rem;
 }
 
 .searchPlusOrderPlusVehicles {
     display: flex;
     flex-direction: column;
-
-    width: 75%;
+    width: 100%;
     height: fit-content;
-
-    margin: var(--50px);
+    margin: var(--30px);
     margin-inline: 0;
-    margin-right: var(--30px);
     gap: var(--30px);
 }
 
 .searchPlusOrder {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-
     width: 100%;
-
     gap: var(--20px);
 }
 
+/* 🔹 Mantiene las cards igual */
 .cardsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -38,6 +62,88 @@
     row-gap: var(--20px);
     justify-items: center;
     align-items: center;
-
     max-width: 100%;
+}
+
+/* 🔹 Botón "Ordenar" + "Filtrar" */
+.orderPlusFilter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+/* ======================== */
+/* 📱 MOBILE FIRST          */
+/* ======================== */
+@media (max-width: 767px) {
+    /* ✅ truco: tratamos .main como una columna flexible */
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* hacemos que el bloque de búsqueda y cards tenga un orden */
+    .searchPlusOrderPlusVehicles {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* los filtros aparecerán justo después del botón */
+    .filters {
+        order: 2;
+        align-self: center;
+        width: 80%;
+        margin-top: 0.5rem;
+    }
+
+    .cardsGrid {
+        order: 3;
+    }
+}
+
+/* ======================== */
+/* 💻 DESKTOP               */
+/* ======================== */
+@media (min-width: 768px) {
+    .main {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .filterToggleBtn {
+        display: none;
+    }
+
+    .filters {
+        display: block;
+        width: 25%;
+        margin-top: 0;
+        order: 0; /* vuelve a su posición original */
+    }
+
+    .searchPlusOrderPlusVehicles {
+        width: 75%;
+        margin: var(--50px);
+        margin-inline: 0;
+        margin-right: var(--30px);
+        order: 1;
+    }
+
+    .searchPlusOrder {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--20px);
+    }
+
+    .orderPlusFilter {
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        width: fit-content;
+    }
 }

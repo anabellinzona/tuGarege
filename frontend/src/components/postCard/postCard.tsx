@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./postCard.module.css";
 import Image from "next/image";
+import {authService} from "@/service/authService";
 
 interface Imagen {
     id: number;
@@ -33,7 +34,8 @@ export default function PostCard() {
     const [indices, setIndices] = useState<{ [vehiculoId: number]: number }>({});
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/vehiculos/vendedor/1")
+        const { id } = authService.getUserData();
+        fetch(`http://localhost:8080/api/vehiculos/vendedor/${id}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Error al cargar los vehículos");

@@ -3,7 +3,7 @@ import styles from './profileDescription.module.css'
 import Image from 'next/image';
 import {useEffect, useState} from "react";
 import Link from "next/link";
-import SellButton from "@/components/buttons/sellButton/SellButton";
+import {authService} from "@/service/authService";
 
 interface Imagen {
     id: number;
@@ -44,7 +44,8 @@ export default function ProfileDescription() {
 
     useEffect(() => {
         const fetchVehiculo= async () => {
-            fetch('http://localhost:8080/api/vehiculos/vendedor/1')
+            const { id } = authService.getUserData();
+            fetch(`http://localhost:8080/api/vehiculos/vendedor/${id}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Error al cargar los vehículos");
@@ -63,7 +64,8 @@ export default function ProfileDescription() {
 
     useEffect(() => {
         const fetchVendedor = async () => {
-            fetch('http://localhost:8080/api/vendedores/1')
+            const { id } = authService.getUserData();
+            fetch(`http://localhost:8080/api/vendedores/${id}`)
                 .then(response => {
                     if(!response.ok){
                         throw new Error("Error al cargar los vehículos");

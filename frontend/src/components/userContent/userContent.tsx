@@ -6,6 +6,7 @@ import Image from "next/image";
 import PostCard from "@/components/postCard/postCard";
 import { ThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
+import {authService} from "@/service/authService";
 
 interface Vendedor {
     nombre: string;
@@ -25,7 +26,8 @@ export default function UserContent() {
     const [vendedor, setVendedor] = useState<Vendedor>();
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/vendedores/1')
+        const { id } = authService.getUserData();
+        fetch(`http://localhost:8080/api/vendedores/${id}`)
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");

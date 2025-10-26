@@ -42,10 +42,12 @@ public class VehiculoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Vehiculo>> obtenerVehiculo(@PathVariable Long id) {
+    public ResponseEntity<Vehiculo> obtenerVehiculo(@PathVariable Long id) {
         Optional<Vehiculo> vehiculo = vehiculoService.obtenerVehiculo(id);
 
-        return new ResponseEntity<>(vehiculo, HttpStatus.OK);
+        return vehiculo
+                .map(v -> new ResponseEntity<>(v, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/tipo/{tipo}")

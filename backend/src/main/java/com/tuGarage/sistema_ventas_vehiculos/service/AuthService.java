@@ -43,6 +43,8 @@ public class AuthService {
 
             return JWTResponseDTO.builder()
                     .token(jwt)
+                    .id(vendedor.getId())
+                    .nombre(vendedor.getNombre())
                     .type("Bearer")
                     .email(vendedor.getEmail())
                     .build();

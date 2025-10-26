@@ -36,7 +36,7 @@ export const authService = {
         }
     },
 
-    async login(login: Login){
+    async login(login: Login) {
         try {
             const response = await fetch(`${API_URL}/vendedores/login`, {
                 method: 'POST',
@@ -44,20 +44,38 @@ export const authService = {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(login)
-            })
-            const text = await response.json();
-            if(!response.ok){
-                throw  new Error(text || 'Error en el inicio de sesión');
+            });
+
+            const data = await response.json();
+            console.log("Respuesta completa del backend:", data);
+
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Error en el inicio de sesión');
             }
 
-            return { success: true, message: text };
-        } catch (error){
-            if(error instanceof Error){
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+            }
+            if (data.id) {
+                localStorage.setItem('userId', data.id.toString());
+            }
+            if (data.nombre) {
+                localStorage.setItem('userName', data.nombre);
+            }
+            if (data.email) {
+                localStorage.setItem('userEmail', data.email);
+            }
+
+            return data;
+        } catch (error) {
+            if (error instanceof Error) {
                 throw new Error(error.message);
             }
-            throw new Error('Error desconocido en el inicio de sesión')
+            throw new Error('Error desconocido en el inicio de sesión');
         }
     },
+
 
     logout() {
         localStorage.removeItem('token');

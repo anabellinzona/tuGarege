@@ -107,7 +107,7 @@ export default function CardVehicle({id, vehicle}: Prop){
 
             <div className={styles.carouselContainer} ref={carouselRef}>
                 {vehiculos.map((vehiculo) => (
-                    <Link href="../fileVehicle/fileVehicle" key={vehiculo.id}>
+                    <Link href={`/fichaVehiculo/${vehiculo.id}`} key={vehiculo.id}>
                         <div className={styles.vehicleCardProperties}>
                             <div className={styles.vehicleImageProperties}>
                                 <Image

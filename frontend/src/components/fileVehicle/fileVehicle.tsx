@@ -4,6 +4,8 @@ import styles from "./fileVehicle.module.css";
 import Image from "next/image";
 import Carrousel from "@/components/fileVehicle/carrousel/carrousel";
 import MainInfo from "@/components/fileVehicle/mainInfo/mainInfo";
+import SecondInfo from "@/components/fileVehicle/secondInfo/secondInfo";
+import ItemCharacteristic from "@/components/fileVehicle/itemCharacteristic/itemCharacteristic";
 
 type Prop = {
     id: string;
@@ -44,13 +46,6 @@ export default function FileVehicle({id}: Prop){
                 return response.json();
             })
             .then(data => {
-                console.log("=== DEBUG ===");
-                console.log("Data completa:", data);
-                console.log("Tipo de data:", typeof data);
-                console.log("Es array?", Array.isArray(data));
-                console.log("Tiene imagenes?", data?.imagenes);
-                console.log("============");
-
                 setVehiculo(data);
                 setLoading(false);
             })
@@ -73,23 +68,17 @@ export default function FileVehicle({id}: Prop){
                 <MainInfo marca={vehiculo.marca} km={vehiculo.km} modelo={vehiculo.modelo} anio={vehiculo.anio} precio={vehiculo.precio} />
             </div>
             <div>
-                <div>
+                <div className={styles.secondInfoContainerProperties}>
                     <div>
-                        <div className={styles.tableCharacteristicProperties}>
-                            <h1>Características principales</h1>
-                            <div className={styles.underlineProperties}></div>
-                            <p><span>Modelo: </span>{vehiculo.modelo}</p>
-                            <div className={styles.underlineProperties}></div>
-                            <p><span>Kilometraje: </span>{vehiculo.km}km</p>
-                            <div className={styles.underlineProperties}></div>
-                            <p><span>Otras características/detalles: </span>{vehiculo.descripcion}</p>
-                        </div>
+                        <SecondInfo modelo={vehiculo.modelo} descripcion={vehiculo.descripcion} combustible={" "} kilometros={vehiculo.km}/>
                     </div>
-                    <div>
-
+                    <div className={styles.aditionalInfoContainerProperties}>
+                        <h3>Datos adicionales</h3>
+                        <ItemCharacteristic id={vehiculo.id}/>
                     </div>
-                    <div>
-
+                    <div className={styles.descriptionContainerProperties}>
+                        <h3>Descripción</h3>
+                        <div>{vehiculo.descripcion}</div>
                     </div>
                 </div>
             </div>

@@ -38,12 +38,7 @@ interface Vendedor {
     ciudad: string;
 }
 
-type Prop = {
-    id?: string;
-    vehicle?: Vehiculo;
-}
-
-export default function CardVehicle({id, vehicle}: Prop){
+export default function CardVehicle(){
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [vendedor, setVendedor] = useState<Vendedor>();
     const [loading, setLoading] = useState(true);

@@ -65,6 +65,7 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
                     // Todo lo demás requiere autenticación
                     auth.anyRequest().authenticated();

@@ -1,5 +1,6 @@
 package com.tuGarage.sistema_ventas_vehiculos.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ public class Vehiculo {
     @Column(name = "vendedor_id")
     private Long vendedorId;
 
-    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Caracteristica> caracteristicas = new ArrayList<>();
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Caracteristica> caracteristicas;
+
 
     private String modelo;
     private double precio;

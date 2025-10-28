@@ -1,0 +1,11 @@
+.detailItem{
+    display: flex;
+    flex-direction: row;
+    gap: var(--10px);
+}
+
+.itemsContainerProperties{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--15px);
+}

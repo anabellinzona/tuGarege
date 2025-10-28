@@ -1,5 +1,6 @@
 package com.tuGarage.sistema_ventas_vehiculos.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,7 +25,9 @@ public class Caracteristica {
     private String valorTexto;
 
     // Relación Many-to-One con Vehiculo
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_vehiculo", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_vehiculo")
+    @JsonBackReference
     private Vehiculo vehiculo;
+
 }

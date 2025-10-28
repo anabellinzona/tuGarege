@@ -13,22 +13,35 @@
     justify-content: center;
     align-content: center;
 }
+/*----------------------------------------------------*/
+.descriptionContainerProperties{
+    display: flex;
+    flex-direction: column;
+    gap: var(--10px);
+}
 
-.tableCharacteristicProperties{
-    border: 2px solid var(--neutral-3);
+.descriptionContainerProperties, .aditionalInfoContainerProperties{
+    border: 1px solid var(--neutral-3);
     border-radius: var(--20px);
     width: 50%;
-    height: fit-content;
-    padding: var(--20px);
+    padding: 16px 20px;
     margin-left: 5%;
+    color: var(--neutral-5);
+}
+
+.aditionalInfoContainerProperties{
+    background-color: var(--neutral-3);
+}
+
+.secondInfoContainerProperties{
+    display: flex;
+    flex-direction: column;
     gap: var(--20px);
 }
 
-.underlineProperties{
-    width: 100%;
-    border-bottom: 2px solid var(--neutral-3);
+.aditionalInfoContainerProperties{
+    display: flex;
+    flex-direction: column;
+    gap: var(--10px);
 }
 
-.tableCharacteristicProperties span{
-    font-weight: bold;
-}

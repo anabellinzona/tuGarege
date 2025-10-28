@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/carrousel/carrousel.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/carrousel/carrousel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/CaracteristicaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/itemCharacteristic/itemCharacteristic.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/itemCharacteristic/itemCharacteristic.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/secondInfo/secondInfo.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/secondInfo/secondInfo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VendedorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Caracteristica.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Caracteristica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/entity/Vehiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/CaracteristicaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/CaracteristicaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/CaracteristicaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/CaracteristicaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" afterDir="false" />
@@ -132,7 +137,9 @@
       <workItem from="1761085709932" duration="792000" />
       <workItem from="1761142341057" duration="508000" />
       <workItem from="1761490745527" duration="56000" />
-      <workItem from="1761513992725" duration="1155000" />
+      <workItem from="1761513992725" duration="5006000" />
+      <workItem from="1761593743728" duration="295000" />
+      <workItem from="1761660652512" duration="6501000" />
     </task>
     <servers />
   </component>

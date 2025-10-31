@@ -4,6 +4,7 @@ import Image from 'next/image';
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import {authService} from "@/service/authService";
+import {useParams} from "next/navigation";
 
 interface Imagen {
     id: number;
@@ -38,14 +39,20 @@ interface Vendedor {
     ciudad: string;
 }
 
-export default function ProfileDescription() {
+type Prop = {
+    idV?: string;
+}
+
+export default function ProfileDescription({idV}: Prop) {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [vendedor, setVendedor] = useState<Vendedor>();
+    const params = useParams();
+
+    const vendedorId = idV || params?.id || authService.getUserData()?.id;
 
     useEffect(() => {
         const fetchVehiculo= async () => {
-            const { id } = authService.getUserData();
-            fetch(`http://localhost:8080/api/vehiculos/vendedor/${id}`)
+            fetch(`http://localhost:8080/api/vehiculos/vendedor/${vendedorId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Error al cargar los vehículos");
@@ -64,8 +71,7 @@ export default function ProfileDescription() {
 
     useEffect(() => {
         const fetchVendedor = async () => {
-            const { id } = authService.getUserData();
-            fetch(`http://localhost:8080/api/vendedores/${id}`)
+            fetch(`http://localhost:8080/api/vendedores/${vendedorId}`)
                 .then(response => {
                     if(!response.ok){
                         throw new Error("Error al cargar los vehículos");

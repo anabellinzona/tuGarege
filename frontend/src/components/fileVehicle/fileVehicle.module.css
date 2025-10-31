@@ -23,7 +23,7 @@
 .descriptionContainerProperties, .aditionalInfoContainerProperties{
     border: 1px solid var(--neutral-3);
     border-radius: var(--20px);
-    width: 50%;
+    width: 80%;
     padding: 16px 20px;
     margin-left: 5%;
     color: var(--neutral-5);
@@ -36,6 +36,7 @@
 .secondInfoContainerProperties{
     display: flex;
     flex-direction: column;
+    width: 70%;
     gap: var(--20px);
 }
 
@@ -45,3 +46,14 @@
     gap: var(--10px);
 }
 
+.buttonContainerProperties{
+    display: flex;
+    width: 100%;
+    margin: var(--20px);
+    padding-left: var(--50px);
+}
+
+.secondContainerProperties{
+    display: flex;
+    flex-direction: row;
+}

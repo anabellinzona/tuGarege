@@ -56,5 +56,18 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, Long>, JpaSp
             "ORDER BY v.marca ASC")
     List<Vehiculo> findBrandWithoutRepeated();
 
+    @Query("""
+    SELECT v FROM Vehiculo v
+    WHERE v.id <> :id
+      AND (
+        v.marca = :marca
+        OR v.modelo = :modelo
+        OR v.estado = :estado
+      )
+""")
+    List<Vehiculo> findDifferentVehicule(@Param("id") Long id,
+                                         @Param("marca") String marca,
+                                         @Param("modelo") String tipo,
+                                         @Param("estado") String estado);
     //probar con @Order y OrderBy
 }

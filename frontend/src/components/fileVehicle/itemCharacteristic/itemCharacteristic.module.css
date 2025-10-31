@@ -7,5 +7,6 @@
 .itemsContainerProperties{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 80%;
     gap: var(--15px);
 }

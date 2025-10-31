@@ -51,6 +51,10 @@
     font-size: 18px;
 }
 
+.sallerInformationProperties span{
+    text-decoration: underline;
+}
+
 .priceInformationProperties span{
     font-size: 28px;
 }

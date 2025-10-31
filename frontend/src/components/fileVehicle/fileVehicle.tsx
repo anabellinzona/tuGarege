@@ -1,11 +1,12 @@
 "use client";
 import {useEffect, useState} from "react";
 import styles from "./fileVehicle.module.css";
-import Image from "next/image";
 import Carrousel from "@/components/fileVehicle/carrousel/carrousel";
 import MainInfo from "@/components/fileVehicle/mainInfo/mainInfo";
 import SecondInfo from "@/components/fileVehicle/secondInfo/secondInfo";
 import ItemCharacteristic from "@/components/fileVehicle/itemCharacteristic/itemCharacteristic";
+import ConsultButton from "@/components/buttons/consultButton/consultButton";
+import Recommended from "@/components/recommended/recommended";
 
 type Prop = {
     id: string;
@@ -31,6 +32,7 @@ interface Vehiculo {
     imagenes: Imagen[];
     logoMarca?: string;
     anio: number;
+    vendedorId: number;
 }
 
 export default function FileVehicle({id}: Prop){
@@ -65,9 +67,9 @@ export default function FileVehicle({id}: Prop){
         <section className={styles.vehicleFileSectionContainerProperties}>
             <div className={styles.carrouselAndVehicleInformationProperties}>
                 <Carrousel imagenes={vehiculo.imagenes}/>
-                <MainInfo marca={vehiculo.marca} km={vehiculo.km} modelo={vehiculo.modelo} anio={vehiculo.anio} precio={vehiculo.precio} />
+                <MainInfo marca={vehiculo.marca} km={vehiculo.km} modelo={vehiculo.modelo} anio={vehiculo.anio} precio={vehiculo.precio} vendedorId={vehiculo.vendedorId} />
             </div>
-            <div>
+            <div className={styles.secondContainerProperties}>
                 <div className={styles.secondInfoContainerProperties}>
                     <div>
                         <SecondInfo modelo={vehiculo.modelo} descripcion={vehiculo.descripcion} combustible={" "} kilometros={vehiculo.km}/>
@@ -81,8 +83,13 @@ export default function FileVehicle({id}: Prop){
                         <div>{vehiculo.descripcion}</div>
                     </div>
                 </div>
+                <div className={styles.recommendedContainerProperties}>
+                    <Recommended vehicleId={vehiculo.id} />
+                </div>
             </div>
-            <button>Consultar por este vehículo</button>
+            <div className={styles.buttonContainerProperties}>
+                <ConsultButton message={"Consultar por este vehículo"}/>
+            </div>
         </section>
     );
 }

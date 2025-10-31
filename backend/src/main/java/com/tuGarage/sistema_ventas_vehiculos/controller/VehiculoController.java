@@ -174,6 +174,17 @@ public class VehiculoController {
         return ResponseEntity.ok(vehiculos);
     }
 
+    @GetMapping("/sugerencias/{id}")
+    public ResponseEntity<List<Vehiculo>> getSugerencias(@PathVariable Long id) {
+        List<Vehiculo> sugerencias = vehiculoService.sugerirVehiculos(id);
+
+        if (sugerencias.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(sugerencias);
+    }
+
 //    @GetMapping("/buscar")
 //    public ResponseEntity<List<Vehiculo>> buscarConFiltros(@RequestParam(required = false) List<String> modelos, @RequestParam(required = false) List<String> marcas) {
 //        FiltroVehiculoDTO filtros = new FiltroVehiculoDTO();

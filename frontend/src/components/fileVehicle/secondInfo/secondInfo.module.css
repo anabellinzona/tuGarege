@@ -33,7 +33,7 @@
 .descriptionContainerProperties, .tableCharacteristicProperties{
     border: 1px solid var(--neutral-3);
     border-radius: var(--20px);
-    width: 50%;
+    width: 80%;
     padding: 16px 20px;
     margin-left: 5%;
     color: var(--neutral-5);

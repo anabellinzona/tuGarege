@@ -122,4 +122,16 @@ public class VehiculoService {
     public List<Vehiculo> obtenerMarcasSinRepetidos(){
         return vehiculoRepository.findBrandWithoutRepeated();
     }
+
+    public List<Vehiculo> sugerirVehiculos(Long id) {
+        Vehiculo base = vehiculoRepository.findById(id).orElse(null);
+        if (base == null) return List.of();
+
+        return vehiculoRepository.findDifferentVehicule(
+                base.getId(),
+                base.getMarca(),
+                base.getModelo(),
+                base.getEstado()
+        );
+    }
 }

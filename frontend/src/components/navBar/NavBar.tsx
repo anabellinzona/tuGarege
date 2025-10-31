@@ -36,6 +36,8 @@ export default function NavBar() {
         window.location.href = "/";
     };
 
+    const { id } = authService.getUserData();
+
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     return (
@@ -65,7 +67,7 @@ export default function NavBar() {
                 </Link>
 
                 {isAuthenticated ? (
-                        <Link href={"/perfil"} >
+                        <Link href={`/perfil/${id}`} >
                             <h5>Mi perfil</h5>
                         </Link>
                 ) : (
@@ -91,7 +93,7 @@ export default function NavBar() {
                     </Link>
 
                     {isAuthenticated ? (
-                        <Link href={"/perfil"} >
+                        <Link href={`/perfil/${id}`} >
                             <h5>Mi perfil</h5>
                         </Link>
                     ) : (

@@ -7,6 +7,7 @@ import PostCard from "@/components/postCard/postCard";
 import { ThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import {authService} from "@/service/authService";
+import {useParams} from "next/navigation";
 
 interface Vendedor {
     nombre: string;
@@ -20,14 +21,20 @@ interface Vendedor {
     ciudad: string;
 }
 
-export default function UserContent() {
+type Prop = {
+    idV?: string;
+}
+
+export default function UserContent({idV}: Prop) {
     const [activeTab, setActiveTab] = useState("posts");
     const { theme } = useContext(ThemeContext);
     const [vendedor, setVendedor] = useState<Vendedor>();
+    const params = useParams();
+
+    const vendedorId = idV || params?.id || authService.getUserData()?.id;
 
     useEffect(() => {
-        const { id } = authService.getUserData();
-        fetch(`http://localhost:8080/api/vendedores/${id}`)
+        fetch(`http://localhost:8080/api/vendedores/${vendedorId}`)
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");

@@ -1,0 +1,20 @@
+.recommendedProperties{
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+    max-height: 700px;
+    background-color: var(--neutral-1);
+    border: 1px solid var(--neutral-4);
+    border-radius: var(--20px);
+    align-items: center;
+    gap: var(--20px);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: var(--20px);
+}
+
+.recommendedProperties h2{
+    text-decoration: underline;
+}

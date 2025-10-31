@@ -1,0 +1,8 @@
+.askButtonProperties{
+    background-color: var(--green-1);
+    border-radius: var(--20px);
+    width: 290px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 22px;
+}

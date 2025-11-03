@@ -7,9 +7,12 @@ import SecondInfo from "@/components/fileVehicle/secondInfo/secondInfo";
 import ItemCharacteristic from "@/components/fileVehicle/itemCharacteristic/itemCharacteristic";
 import ConsultButton from "@/components/buttons/consultButton/consultButton";
 import Recommended from "@/components/recommended/recommended";
+import EditableText from "@/components/fileVehicle/editableText/editableText";
+import EditButton from "@/components/fileVehicle/editButton/editButton";
 
 type Prop = {
     id: string;
+    mode: 'view' | 'create' | 'edit'
 }
 
 interface Imagen {
@@ -23,11 +26,11 @@ interface Vehiculo {
     modelo: string;
     km: number;
     precio: number;
-    moneda: string;
+    moneda?: string;
     descripcion: string;
     tipo: string;
-    fechaPublicacion: string;
-    destacado: boolean;
+    fechaPublicacion?: string;
+    destacado?: boolean;
     estado: string;
     imagenes: Imagen[];
     logoMarca?: string;
@@ -35,9 +38,12 @@ interface Vehiculo {
     vendedorId: number;
 }
 
-export default function FileVehicle({id}: Prop){
+export default function FileVehicle({id, mode}: Prop){
     const [vehiculo, setVehiculo] = useState<Vehiculo | null>(null);
     const [loading, setLoading] = useState(true);
+    const [editingField, setEditingField] = useState<string | null>(null);
+    const isEmptyFile = mode === "create";
+    const isEditableFile = mode === "edit";
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/vehiculos/${id}`)
@@ -57,17 +63,68 @@ export default function FileVehicle({id}: Prop){
             });
     }, [id]);
 
+    const initialVehicle = vehiculo || {
+        imagenes: [],
+        marca: "Marca",
+        modelo: "Modelo",
+        km: "Kilómetros",
+        precio: 0,
+        descripcion: "Descripción",
+        tipo: "Tipo",
+        estado: "Estado",
+        anio: "Año",
+        fechaPublicacion: new Date().getFullYear(),
+    }
+
+    const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
+
     if(loading) return <div>Cargando...</div>;
     if(!vehiculo) return <div>No se encontró el vehículo</div>;
     if(!vehiculo.imagenes || vehiculo.imagenes.length === 0) {
         return <p>No hay imágenes disponibles</p>;
     }
 
+    // const handleSaveField = async (fieldName: keyof Vehiculo, value: string | number) => {
+    //     setVehiculo(prev => prev ? ({ ...prev, descripcion: value }));
+    //     setEditingField(null);
+    // };
+
+    const handleSaveAddress = async (value: string) => {
+        console.log(`Guardando address:`, value);
+        setVehiculo(prev => prev ? { ...prev, descripcion: value } : null);
+        setEditingField(null);
+    };
+
+    const handleCancelEdit = () => {
+        console.log(`Cancelando edición`);
+        setEditingField(null);
+    };
+
+    const handleStartEdit = (fieldName: keyof Vehiculo) => {
+        setEditingField(fieldName);
+    };
+
+    const handleSaveField = (fieldName: keyof Vehiculo, value: string | number) => {
+        setVehiculo(prev => prev ? { ...prev, [fieldName]: value } : null);
+        setEditingField(null);
+    };
+
+    const handleStartEditHeader = () => setEditingField('descripcion');
+
     return(
         <section className={styles.vehicleFileSectionContainerProperties}>
             <div className={styles.carrouselAndVehicleInformationProperties}>
                 <Carrousel imagenes={vehiculo.imagenes}/>
-                <MainInfo marca={vehiculo.marca} km={vehiculo.km} modelo={vehiculo.modelo} anio={vehiculo.anio} precio={vehiculo.precio} vendedorId={vehiculo.vendedorId} />
+                <MainInfo
+                    vehiculo={vehiculo}
+                    isEditable={isEditableFile}
+                    editingField={editingField}
+                    onStartEdit={handleStartEdit}
+                    onCancelEdit={handleCancelEdit}
+                    onSaveField={handleSaveField}
+                    classname={styles.inputProperties}
+                />
+
             </div>
             <div className={styles.secondContainerProperties}>
                 <div className={styles.secondInfoContainerProperties}>
@@ -79,8 +136,31 @@ export default function FileVehicle({id}: Prop){
                         <ItemCharacteristic id={vehiculo.id}/>
                     </div>
                     <div className={styles.descriptionContainerProperties}>
-                        <h3>Descripción</h3>
-                        <div>{vehiculo.descripcion}</div>
+                        <div className={styles.titleAndEditButtonProperties}>
+                            <h3>Descripción</h3>
+                            <EditButton
+                                onStartEdit={() => handleStartEditHeader()}
+                                onEndEdit={() => handleSaveAddress(localVehicle.descripcion)}
+                                isEditing={editingField === 'descripcion'}
+                                className={styles.editButtonProperties}
+                                show={isEditableFile || isEmptyFile}
+                                img={'/icons/editIcon.png'}
+                            />
+                        </div>
+                        {(isEmptyFile || isEditableFile) && editingField === 'descripcion' ? (
+                            <EditableText
+                                value={vehiculo.descripcion}
+                                isEditing={true}
+                                type={"text"}
+                                onSave={(value) => handleSaveAddress(value)}
+                                onCancel={handleCancelEdit}
+                                className={styles.inputProperties}
+                            />
+                        ) : (
+                            <div onClick={() => handleStartEditHeader()} style={{ cursor: 'pointer' }}>
+                                {vehiculo.descripcion}
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className={styles.recommendedContainerProperties}>

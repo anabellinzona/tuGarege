@@ -67,3 +67,9 @@
     cursor: pointer;
     font-size: 22px;
 }
+
+.editableField{
+    display: flex;
+    flex-direction: row;
+    gap: var(--10px);
+}

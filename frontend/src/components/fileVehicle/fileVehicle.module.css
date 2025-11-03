@@ -57,3 +57,16 @@
     display: flex;
     flex-direction: row;
 }
+
+.titleAndEditButtonProperties{
+    display: flex;
+    flex-direction: row;
+    gap: var(--10px);
+}
+
+.inputProperties{
+    border-radius: var(--20px);
+    border: var(--red-1) 1px solid;
+    padding: var(--10px);
+    width: fit-content;
+}

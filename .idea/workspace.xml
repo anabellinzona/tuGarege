@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/buttons/consultButton/consultButton.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/buttons/consultButton/consultButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/recommended/recommended.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/recommended/recommended.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/controller/VehiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/repository/VehiculoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/perfil/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/perfil/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/itemCharacteristic/itemCharacteristic.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/itemCharacteristic/itemCharacteristic.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/mainInfo/mainInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/secondInfo/secondInfo.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/secondInfo/secondInfo.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navBar/NavBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/standardCard/standardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/standardCard/standardCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +129,10 @@
       <workItem from="1761593743728" duration="295000" />
       <workItem from="1761660652512" duration="7368000" />
       <workItem from="1761829380890" duration="6015000" />
-      <workItem from="1761919620938" duration="6649000" />
+      <workItem from="1761919620938" duration="7134000" />
+      <workItem from="1762112284422" duration="4000" />
+      <workItem from="1762114136576" duration="3000" />
+      <workItem from="1762128931096" duration="12000" />
     </task>
     <servers />
   </component>

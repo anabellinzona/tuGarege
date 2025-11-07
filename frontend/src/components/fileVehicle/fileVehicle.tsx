@@ -84,11 +84,6 @@ export default function FileVehicle({id, mode}: Prop){
         return <p>No hay imágenes disponibles</p>;
     }
 
-    // const handleSaveField = async (fieldName: keyof Vehiculo, value: string | number) => {
-    //     setVehiculo(prev => prev ? ({ ...prev, descripcion: value }));
-    //     setEditingField(null);
-    // };
-
     const handleSaveAddress = async (value: string) => {
         console.log(`Guardando address:`, value);
         setVehiculo(prev => prev ? { ...prev, descripcion: value } : null);

@@ -147,10 +147,30 @@ export default function MainInfo({
                             img={"/icons/editIcon.png"}
                         />
                     )}
+
+                    {editingField === "anio" ? (
+                        <EditableNumeric
+                            value={vehiculo.anio}
+                            isEditing={true}
+                            onSave={(value) => onSaveField("anio", value)}
+                            onCancel={onCancelEdit}
+                            className={classname}
+                        />
+                    ) : (
+                        <p onClick={() => onStartEdit("anio")}>{vehiculo.anio}</p>
+                    )}
+                    {isEditable && (
+                        <EditButton
+                            onStartEdit={() => onStartEdit("anio")}
+                            show={true}
+                            isEditing={editingField === "anio"}
+                            onEndEdit={onCancelEdit}
+                            img={"/icons/editIcon.png"}
+                        />
+                    )}
                 </div>
             </div>
 
-            {/* Precio */}
             <div className={styles.priceInformationProperties}>
                 <div className={styles.editableField}>
                     <h1>Precio</h1>
@@ -177,7 +197,6 @@ export default function MainInfo({
                 )}
             </div>
 
-            {/* Vendedor */}
             <div className={styles.sallerInformationProperties}>
                 <h1>Vendedor</h1>
                 <Link href={`/perfil/${vendedor?.id}`}>

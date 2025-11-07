@@ -92,7 +92,15 @@ export const authService = {
         return localStorage.getItem('token');
     },
 
+    // En authService:
+
     getUserData() {
+        // Añade la comprobación de entorno aquí:
+        if (typeof window === 'undefined') {
+            return null; // O un objeto seguro { id: null, name: null, email: null }
+        }
+
+        // El resto del código solo se ejecuta si estamos en el navegador
         return {
             id: localStorage.getItem('userId'),
             name: localStorage.getItem('userName'),

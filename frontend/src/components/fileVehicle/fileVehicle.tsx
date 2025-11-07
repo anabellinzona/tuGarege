@@ -64,17 +64,19 @@ export default function FileVehicle({id, mode}: Prop){
     }, [id]);
 
     const initialVehicle = vehiculo || {
+        id: '', // o el valor por defecto que corresponda
+        vendedorId: '', // o el valor por defecto que corresponda
         imagenes: [],
-        marca: "Marca",
-        modelo: "Modelo",
-        km: "Kilómetros",
+        marca: '',
+        modelo: '',
+        km: '',
         precio: 0,
-        descripcion: "Descripción",
-        tipo: "Tipo",
-        estado: "Estado",
-        anio: "Año",
-        fechaPublicacion: new Date().getFullYear(),
-    }
+        descripcion: '',
+        tipo: '',
+        estado: '',
+        anio: '',
+        fechaPublicacion: Date.now()
+    };
 
     const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
 

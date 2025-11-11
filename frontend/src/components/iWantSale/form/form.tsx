@@ -45,9 +45,10 @@ export default function FormSale(){
             localStorage.setItem("isAuthenticated", "true");
 
             setSuccess("¡Inicio de sesión exitoso! Redirigiendo...");
+            const id = authService.getUserData()?.id;
 
             setTimeout(() => {
-                router.push('/perfil');
+                router.push(`/perfil/${id}`);
             }, 500);
 
         } catch (err) {

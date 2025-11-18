@@ -31,9 +31,9 @@ export default function UserContent({idV}: Prop) {
     const [vendedor, setVendedor] = useState<Vendedor>();
     const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null); // Nuevo estado
     const params = useParams();
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        // 1. Obtenemos el ID del usuario SOLAMENTE en el entorno del navegador
         let idFromAuth: string | null = null;
         if (typeof window !== 'undefined') {
             const userData = authService.getUserData();
@@ -42,16 +42,13 @@ export default function UserContent({idV}: Prop) {
             }
         }
 
-        // 2. Determinamos el ID final
         const paramId = (params?.id as string | undefined);
         const finalVendedorId = idV || paramId || idFromAuth;
 
-        // 3. Guardamos el ID en el estado
         if (finalVendedorId) {
             setSafeVendedorId(finalVendedorId);
 
-            // 4. Hacemos el fetch con el ID seguro
-            fetch(`http://localhost:8080/api/vendedores/${finalVendedorId}`)
+            fetch(`${API_URL}/api/vendedores/${finalVendedorId}`)
                 .then(response => {
                     if(!response.ok){
                         throw new Error("Error al cargar los datos del vendedor");
@@ -63,10 +60,9 @@ export default function UserContent({idV}: Prop) {
                 })
                 .catch(error => {
                     console.error("El error fue: " + error);
-                    // Aquí podrías establecer un estado de error si lo deseas
                 })
         }
-    }, [idV, params?.id]); // Dependencias: idV (prop) y el ID de la URL
+    }, [idV, params?.id]);
 
     return (
         <main className={styles.main}>

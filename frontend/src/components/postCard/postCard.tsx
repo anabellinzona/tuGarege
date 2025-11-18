@@ -31,13 +31,12 @@ export default function PostCard() {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    // Estado para almacenar el ID del vendedor de forma segura (se inicializa en el cliente)
     const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null);
-
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [indices, setIndices] = useState<{ [vehiculoId: number]: number }>({});
     const params = useParams();
 
-    // LÍNEA ORIGINAL ELIMINADA: const vendedorId = params?.id || authService.getUserData()?.id;
+
 
     useEffect(() => {
         // Inicializamos la carga en true al principio de la lógica
@@ -60,9 +59,9 @@ export default function PostCard() {
         // 3. Guardamos el ID en el estado del componente
         setSafeVendedorId(finalVendedorId);
 
-        // 4. Si tenemos un ID, hacemos el fetch
+
         if (finalVendedorId) {
-            fetch(`http://localhost:8080/api/vehiculos/vendedor/${finalVendedorId}`)
+            fetch(`${API_URL}/api/vehiculos/vendedor/${finalVendedorId}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Error al cargar los vehículos");

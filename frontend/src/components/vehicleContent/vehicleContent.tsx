@@ -33,24 +33,20 @@ export default function VehiclesContent() {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [showFilters, setShowFilters] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-
     const searchParams = useSearchParams();
-
     const tipoFromUrl = searchParams.get("tipo") || "Todos";
     const [selectedFilter, setSelectedFilter] = useState(tipoFromUrl);
     const [loading, setLoading] = useState(false);
-
-    // ... (rest of your useEffects and functions) ...
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         const fetchVehiculos = async () => {
             setLoading(true);
             try {
-                // **NOTA IMPORTANTE:** DEBES REEMPLAZAR ESTO CON process.env.NEXT_PUBLIC_API_URL
                 const url =
                     selectedFilter === "Todos"
-                        ? "http://localhost:8080/api/vehiculos"
-                        : `http://localhost:8080/api/vehiculos/tipo/${selectedFilter}`;
+                        ? `${API_URL}/api/vehiculos`
+                        : `${API_URL}/api/vehiculos/tipo/${selectedFilter}`;
 
                 const response = await fetch(url);
                 if (!response.ok) throw new Error("Error al cargar los vehículos");

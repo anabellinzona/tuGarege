@@ -48,12 +48,9 @@ export default function ProfileDescription({idV}: Prop) {
     const [vendedor, setVendedor] = useState<Vendedor>();
     const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null);
     const params = useParams();
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    // const vendedorId = idV || params?.id || authService.getUserData()?.id;
-
-// 1. useEffect para determinar el ID y hacer el fetch de VEHÍCULOS
     useEffect(() => {
-        // Lógica de determinación de ID (Segura en el cliente)
         let idFromAuth: string | null = null;
         if (typeof window !== 'undefined') {
             const userData = authService.getUserData();
@@ -66,11 +63,9 @@ export default function ProfileDescription({idV}: Prop) {
         const finalVendedorId = idV || paramId || idFromAuth;
 
         if (finalVendedorId) {
-            // Establecer el ID en el estado
             setSafeVendedorId(finalVendedorId);
 
-            // Usar 'finalVendedorId' directamente para el fetch de vehículos (evita el valor 'null')
-            fetch(`http://localhost:8080/api/vehiculos/vendedor/${finalVendedorId}`)
+            fetch(`${API_URL}/api/vehiculos/vendedor/${finalVendedorId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Error al cargar los vehículos");
@@ -88,7 +83,6 @@ export default function ProfileDescription({idV}: Prop) {
 
     useEffect(() => {
         const fetchVendedor = async () => {
-            // Solo hace fetch si safeVendedorId ya tiene un valor
             if (safeVendedorId) {
                 fetch(`http://localhost:8080/api/vendedores/${safeVendedorId}`)
                     .then(response => {

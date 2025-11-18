@@ -7,6 +7,14 @@
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recentsSection/recentsSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recentsSection/recentsSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recommended/recommended.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recommended/recommended.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleContent/vehicleContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleContent/vehicleContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/vehicleTypeFilter/vehicleFilters/VehicleFilters.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -146,7 +154,7 @@
       <workItem from="1762872700343" duration="3031000" />
       <workItem from="1762897392514" duration="10000" />
       <workItem from="1763466828548" duration="7230000" />
-      <workItem from="1763483644949" duration="6498000" />
+      <workItem from="1763483644949" duration="8581000" />
     </task>
     <servers />
   </component>

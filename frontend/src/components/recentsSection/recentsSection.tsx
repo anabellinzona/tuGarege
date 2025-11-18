@@ -29,9 +29,10 @@ export default function RecentsSection() {
     const [vehicle, setVehicle] = useState<Vehicle[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/vehiculos/recientes')
+        fetch(`${API_URL}/api/vehiculos/recientes`)
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");

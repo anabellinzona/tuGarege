@@ -48,7 +48,7 @@ export default function CardVehicle(){
 
     useEffect(() => {
         const fetchVehicle = async () => {
-        fetch(`http://${API_URL}/api/vehiculos/destacados`)
+        fetch(`${API_URL}/api/vehiculos/destacados`)
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");
@@ -70,7 +70,7 @@ export default function CardVehicle(){
 
 
     const fetchSaller = async (id:number) => {
-        fetch(`http://localhost:8080/api/vendedores/${id}`)
+        fetch(`${API_URL}/api/vendedores/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Error al cargar los vehículos");

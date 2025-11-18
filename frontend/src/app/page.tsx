@@ -1,3 +1,5 @@
+"use client"; // si estás en app router
+
 import SearchSection from "../components/searchSection/searchSection";
 import InfoCard from "../components/infoCards/infoCards";
 import FeatureCards from "../components/featuredCards/featuredCards";

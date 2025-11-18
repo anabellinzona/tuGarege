@@ -46,13 +46,31 @@ type Prop = {
 export default function ProfileDescription({idV}: Prop) {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [vendedor, setVendedor] = useState<Vendedor>();
+    const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null);
     const params = useParams();
 
-    const vendedorId = idV || params?.id || authService.getUserData()?.id;
+    // const vendedorId = idV || params?.id || authService.getUserData()?.id;
 
+// 1. useEffect para determinar el ID y hacer el fetch de VEHÍCULOS
     useEffect(() => {
-        const fetchVehiculo= async () => {
-            fetch(`http://localhost:8080/api/vehiculos/vendedor/${vendedorId}`)
+        // Lógica de determinación de ID (Segura en el cliente)
+        let idFromAuth: string | null = null;
+        if (typeof window !== 'undefined') {
+            const userData = authService.getUserData();
+            if (userData && userData.id) {
+                idFromAuth = userData.id;
+            }
+        }
+
+        const paramId = (params?.id as string | undefined);
+        const finalVendedorId = idV || paramId || idFromAuth;
+
+        if (finalVendedorId) {
+            // Establecer el ID en el estado
+            setSafeVendedorId(finalVendedorId);
+
+            // Usar 'finalVendedorId' directamente para el fetch de vehículos (evita el valor 'null')
+            fetch(`http://localhost:8080/api/vehiculos/vendedor/${finalVendedorId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Error al cargar los vehículos");
@@ -60,34 +78,35 @@ export default function ProfileDescription({idV}: Prop) {
                     return response.json();
                 })
                 .then(data => {
-                    setVehiculos(data)
+                    setVehiculos(data);
                 })
                 .catch(error => {
-                    console.log("El error fue: " + error);
-                })
+                    console.error("Error al cargar vehículos: " + error);
+                });
         }
-        fetchVehiculo();
-    }, []);
+    }, [idV, params?.id]);
 
     useEffect(() => {
         const fetchVendedor = async () => {
-            fetch(`http://localhost:8080/api/vendedores/${vendedorId}`)
-                .then(response => {
-                    if(!response.ok){
-                        throw new Error("Error al cargar los vehículos");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    setVendedor(data)
-                })
-                .catch(error => {
-                    console.log("El error fue: " + error);
-                })
+            // Solo hace fetch si safeVendedorId ya tiene un valor
+            if (safeVendedorId) {
+                fetch(`http://localhost:8080/api/vendedores/${safeVendedorId}`)
+                    .then(response => {
+                        if(!response.ok){
+                            throw new Error("Error al cargar los datos del vendedor");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        setVendedor(data)
+                    })
+                    .catch(error => {
+                        console.error("Error al cargar vendedor: " + error);
+                    })
+            }
         }
         fetchVendedor();
-    }, []);
-
+    }, [safeVendedorId]);
     return(
         <main className={styles.main}>
             <div className={styles.content}>

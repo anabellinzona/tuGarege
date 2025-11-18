@@ -14,10 +14,19 @@ export default function NavBar() {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    // Nuevo estado para el ID del usuario
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
+        // Toda la lógica que accede a `localStorage` debe estar aquí
         const auth = localStorage.getItem("isAuthenticated") === "true";
         setIsAuthenticated(auth);
+
+        // Obtenemos el ID del usuario SOLO en el cliente (dentro de useEffect)
+        const user = authService.getUserData();
+        if (user) {
+            setUserId(user.id);
+        }
 
         const handleStorageChange = () => {
             const authStatus = localStorage.getItem("isAuthenticated") === "true";
@@ -33,10 +42,12 @@ export default function NavBar() {
         authService.logout();
         localStorage.setItem("isAuthenticated", "false");
         setIsAuthenticated(false);
+        setUserId(null); // Limpiamos el ID al cerrar sesión
         window.location.href = "/";
     };
 
-    const { id } = authService.getUserData();
+    // ELIMINADA la línea: const id = authService.getUserData();
+    // Ahora usamos el estado `userId`
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -66,10 +77,11 @@ export default function NavBar() {
                     <h5>Vehículos</h5>
                 </Link>
 
-                {isAuthenticated ? (
-                        <Link href={`/perfil/${id}`} >
-                            <h5>Mi perfil</h5>
-                        </Link>
+                {/* Usamos 'userId' para generar el enlace al perfil */}
+                {isAuthenticated && userId ? (
+                    <Link href={`/perfil/${userId}`} >
+                        <h5>Mi perfil</h5>
+                    </Link>
                 ) : (
                     <Link
                         href="/formularioVenta"
@@ -92,8 +104,9 @@ export default function NavBar() {
                         <h5>Vehículos</h5>
                     </Link>
 
-                    {isAuthenticated ? (
-                        <Link href={`/perfil/${id}`} >
+                    {/* Usamos 'userId' para generar el enlace al perfil en móvil */}
+                    {isAuthenticated && userId ? (
+                        <Link href={`/perfil/${userId}`} >
                             <h5>Mi perfil</h5>
                         </Link>
                     ) : (

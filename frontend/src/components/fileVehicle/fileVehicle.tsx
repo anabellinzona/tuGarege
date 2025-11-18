@@ -125,7 +125,13 @@ export default function FileVehicle({id, mode}: Prop){
             <div className={styles.secondContainerProperties}>
                 <div className={styles.secondInfoContainerProperties}>
                     <div>
-                        <SecondInfo modelo={vehiculo.modelo} descripcion={vehiculo.descripcion} combustible={" "} kilometros={vehiculo.km}/>
+                        <SecondInfo vehiculo={vehiculo}
+                                    isEditable={isEditableFile}
+                                    editingField={editingField}
+                                    onStartEdit={handleStartEdit}
+                                    onCancelEdit={handleCancelEdit}
+                                    onSaveField={handleSaveField}
+                                    classname={styles.inputProperties}/>
                     </div>
                     <div className={styles.aditionalInfoContainerProperties}>
                         <h3>Datos adicionales</h3>

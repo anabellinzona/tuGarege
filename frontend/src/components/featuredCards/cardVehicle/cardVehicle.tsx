@@ -43,11 +43,12 @@ export default function CardVehicle(){
     const [vendedor, setVendedor] = useState<Vendedor>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const carouselRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const fetchVehicle = async () => {
-        fetch('http://localhost:8080/api/vehiculos/destacados')
+        fetch(`http://${API_URL}/api/vehiculos/destacados`)
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");

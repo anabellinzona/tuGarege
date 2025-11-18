@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +146,7 @@
       <workItem from="1762872700343" duration="3031000" />
       <workItem from="1762897392514" duration="10000" />
       <workItem from="1763466828548" duration="7230000" />
-      <workItem from="1763483644949" duration="5540000" />
+      <workItem from="1763483644949" duration="6498000" />
     </task>
     <servers />
   </component>

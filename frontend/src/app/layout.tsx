@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/navBar/NavBar";
 import ThemeProvider from "@/context/ThemeContext";
 import Footer from "@/components/footer/Footer";
+import {Suspense} from "react";
 
 export const metadata: Metadata = {
   title: "TuGarage",
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider>
-            <NavBar/>
+            <Suspense>
+                <NavBar/>
+            </Suspense>
             {children}
             <Footer/>
         </ThemeProvider>

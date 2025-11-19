@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/app/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/fichaVehiculo/[id]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/formularioVenta/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/globals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/perfil/[id]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/vehiculos/page.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/vehiculos/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/fichaVehiculo/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/fichaVehiculo/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/formularioVenta/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/formularioVenta/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/perfil/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/perfil/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/vehiculos/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/vehiculos/page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/vehiculos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/vehiculos/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,11 +77,11 @@
       <recent name="C:\Users\anabe\Downloads\tuGarege\frontend" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\anabe\Downloads\tuGarege\frontend" />
       <recent name="C:\Users\anabe\Downloads\tuGarege\frontend\src\app\perfil\[id]" />
       <recent name="C:\Users\anabe\Downloads\tuGarege\frontend\src\app\perfil" />
       <recent name="C:\Users\anabe\Downloads\tuGarege\frontend\src\app\fichaVehiculo\[id]" />
       <recent name="C:\Users\anabe\Downloads\tuGarege\frontend\src\app\[id]" />
-      <recent name="C:\Users\anabe\Downloads\sistema-ventas-vehiculos\frontend\src\components\featuredCards" />
     </key>
   </component>
   <component name="RunManager">
@@ -170,7 +152,7 @@
       <workItem from="1762897392514" duration="10000" />
       <workItem from="1763466828548" duration="7230000" />
       <workItem from="1763483644949" duration="9246000" />
-      <workItem from="1763581644557" duration="1635000" />
+      <workItem from="1763581644557" duration="2729000" />
     </task>
     <servers />
   </component>

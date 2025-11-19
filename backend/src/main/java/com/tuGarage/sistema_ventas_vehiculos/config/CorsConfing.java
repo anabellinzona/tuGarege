@@ -1,9 +1,11 @@
 package com.tuGarage.sistema_ventas_vehiculos.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+@Configuration
 public class CorsConfing {
     @Bean
     public WebMvcConfigurer corsConfigurer() {

@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/CorsConfing.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/config/CorsConfing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +152,7 @@
       <workItem from="1762897392514" duration="10000" />
       <workItem from="1763466828548" duration="7230000" />
       <workItem from="1763483644949" duration="9246000" />
-      <workItem from="1763581644557" duration="2729000" />
+      <workItem from="1763581644557" duration="3509000" />
     </task>
     <servers />
   </component>

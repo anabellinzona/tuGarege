@@ -41,15 +41,21 @@ export default function FormSale(){
 
         try {
             const result = await authService.login(loginData);
-
-            localStorage.setItem("isAuthenticated", "true");
-
-            setSuccess("¡Inicio de sesión exitoso! Redirigiendo...");
             const id = authService.getUserData()?.id;
 
-            setTimeout(() => {
-                router.push(`/perfil/${id}`);
-            }, 500);
+
+            if (typeof window === "undefined") {
+                return null;
+            }
+            else {
+                localStorage.setItem("isAuthenticated", "true");
+
+                setSuccess("¡Inicio de sesión exitoso! Redirigiendo...");
+
+                setTimeout(() => {
+                    router.push(`/perfil/${id}`);
+                }, 500);
+            }
 
         } catch (err) {
             setError(err instanceof Error ? err.message : "Error en el inicio de sesión");

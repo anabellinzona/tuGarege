@@ -18,7 +18,7 @@ public class Caracteristica {
 
     // Confirma que el nombre es "valorNumerico" (con N mayúscula)
     @Column(name = "valor_numerico")
-    private Double valorNumerico;
+    private Integer valorNumerico;
 
     // Confirma que el nombre es "valorTexto" (con T mayúscula)
     @Column(name = "valor_texto")

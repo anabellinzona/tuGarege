@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import styles from "./postCard.module.css";
 import Image from "next/image";
-import {authService} from "@/service/authService";
-import {useParams} from "next/navigation";
+import { authService } from "@/service/authService";
+import { useParams } from "next/navigation";
 
 interface Imagen {
     id: number;
@@ -31,33 +31,60 @@ export default function PostCard() {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
+    const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [indices, setIndices] = useState<{ [vehiculoId: number]: number }>({});
     const params = useParams();
 
-    const vendedorId = params?.id || authService.getUserData()?.id;
+
 
     useEffect(() => {
-        const { id } = authService.getUserData();
-        fetch(`http://localhost:8080/api/vehiculos/vendedor/${vendedorId}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Error al cargar los vehículos");
-                }
-                return response.json();
-            })
-            .then((data: Vehiculo[]) => {
-                setVehiculos(data);
-                const inicial = Object.fromEntries(data.map(v => [v.id, 0]));
-                setIndices(inicial);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.log("El error fue: " + error);
-                setError(error.message);
-                setLoading(false);
-            });
-    }, []);
+        // Inicializamos la carga en true al principio de la lógica
+        setLoading(true);
+
+        // 1. Obtenemos el ID del usuario SOLAMENTE en el entorno del navegador
+        let idFromAuth: string | null = null;
+        if (typeof window !== 'undefined') {
+            const userData = authService.getUserData();
+            if (userData && userData.id) {
+                // Asumimos que userData.id es de tipo string
+                idFromAuth = userData.id;
+            }
+        }
+
+        // 2. Determinamos el ID final (desde la URL o desde la autenticación)
+        const paramId = (params?.id as string | undefined);
+        const finalVendedorId = paramId || idFromAuth;
+
+        // 3. Guardamos el ID en el estado del componente
+        setSafeVendedorId(finalVendedorId);
+
+
+        if (finalVendedorId) {
+            fetch(`${API_URL}/api/vehiculos/vendedor/${finalVendedorId}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Error al cargar los vehículos");
+                    }
+                    return response.json();
+                })
+                .then((data: Vehiculo[]) => {
+                    setVehiculos(data);
+                    const inicial = Object.fromEntries(data.map(v => [v.id, 0]));
+                    setIndices(inicial);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error("Error al obtener vehículos:", error);
+                    setError(error.message);
+                    setLoading(false);
+                });
+        } else {
+            // 5. Si no hay ID de vendedor (ni en URL ni en auth), terminamos la carga.
+            setError("No se pudo determinar el ID del vendedor para mostrar vehículos.");
+            setLoading(false);
+        }
+    }, [params?.id]); // Re-ejecutar si el ID en la URL cambia
 
     const prev = (vehiculoId: number) => {
         setIndices((prevIndices) => {

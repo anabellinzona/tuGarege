@@ -18,9 +18,10 @@ interface Vehiculo {
 
 export default function VehicleFilters(){
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/vehiculos/sinRepetidos')
+        fetch(`${API_URL}/api/vehiculos/sinRepetidos`)
             .then(response => {
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");

@@ -29,25 +29,40 @@ export default function UserContent({idV}: Prop) {
     const [activeTab, setActiveTab] = useState("posts");
     const { theme } = useContext(ThemeContext);
     const [vendedor, setVendedor] = useState<Vendedor>();
+    const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null); // Nuevo estado
     const params = useParams();
-
-    const vendedorId = idV || params?.id || authService.getUserData()?.id;
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/vendedores/${vendedorId}`)
-            .then(response => {
-                if(!response.ok){
-                    throw new Error("Error al cargar los vehículos");
-                }
-                return response.json();
-            })
-            .then(data => {
-                setVendedor(data)
-            })
-            .catch(error => {
-                console.log("El error fue: " + error);
-            })
-    }, []);
+        let idFromAuth: string | null = null;
+        if (typeof window !== 'undefined') {
+            const userData = authService.getUserData();
+            if (userData && userData.id) {
+                idFromAuth = userData.id;
+            }
+        }
+
+        const paramId = (params?.id as string | undefined);
+        const finalVendedorId = idV || paramId || idFromAuth;
+
+        if (finalVendedorId) {
+            setSafeVendedorId(finalVendedorId);
+
+            fetch(`${API_URL}/api/vendedores/${finalVendedorId}`)
+                .then(response => {
+                    if(!response.ok){
+                        throw new Error("Error al cargar los datos del vendedor");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    setVendedor(data)
+                })
+                .catch(error => {
+                    console.error("El error fue: " + error);
+                })
+        }
+    }, [idV, params?.id]);
 
     return (
         <main className={styles.main}>
@@ -79,6 +94,8 @@ export default function UserContent({idV}: Prop) {
 
             {activeTab === "posts" ? (
                 <div className={styles.postsGrid}>
+                    {/* 5. Nota: Si PostCard necesita el ID, debes pasarlo como prop */}
+                    {/* <PostCard vendedorId={safeVendedorId} /> */}
                     <PostCard />
                 </div>
             ) : (
@@ -99,7 +116,7 @@ export default function UserContent({idV}: Prop) {
 
                     <div className={styles.contact}>
                         <div className={styles.contactImageRed}>
-                            <Link href={`https://${vendedor?.telefono}`}>
+                            <Link href={`tel:${vendedor?.telefono}`}> {/* Corregido a 'tel:' para llamadas */}
                                 <Image
                                     src={"/icons/phone.png"}
                                     alt={"Phone icon"}

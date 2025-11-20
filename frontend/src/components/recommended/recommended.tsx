@@ -30,12 +30,12 @@ interface Vehiculo {
 }
 
 export default function Recommended({vehicleId}: Prop){
-
     const [sugerencias, setSugerencias] = useState<Vehiculo[]>([]);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         if (!vehicleId) return;
-        fetch(`http://localhost:8080/api/vehiculos/sugerencias/${vehicleId}`)
+        fetch(`${API_URL}/api/vehiculos/sugerencias/${vehicleId}`)
             .then(res => {
                 if (!res.ok) throw new Error("Error al cargar sugerencias");
                 return res.json();

@@ -44,9 +44,10 @@ export default function FileVehicle({id, mode}: Prop){
     const [editingField, setEditingField] = useState<string | null>(null);
     const isEmptyFile = mode === "create";
     const isEditableFile = mode === "edit";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/vehiculos/${id}`)
+        fetch(`${API_URL}/api/vehiculos/${id}`)
             .then((response) =>{
                 if(!response.ok){
                     throw new Error("Error al cargar los vehículos");
@@ -125,7 +126,13 @@ export default function FileVehicle({id, mode}: Prop){
             <div className={styles.secondContainerProperties}>
                 <div className={styles.secondInfoContainerProperties}>
                     <div>
-                        <SecondInfo modelo={vehiculo.modelo} descripcion={vehiculo.descripcion} combustible={" "} kilometros={vehiculo.km}/>
+                        <SecondInfo vehiculo={vehiculo}
+                                    isEditable={isEditableFile}
+                                    editingField={editingField}
+                                    onStartEdit={handleStartEdit}
+                                    onCancelEdit={handleCancelEdit}
+                                    onSaveField={handleSaveField}
+                                    classname={styles.inputProperties}/>
                     </div>
                     <div className={styles.aditionalInfoContainerProperties}>
                         <h3>Datos adicionales</h3>

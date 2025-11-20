@@ -100,11 +100,14 @@ export const authService = {
             return null; // O un objeto seguro { id: null, name: null, email: null }
         }
 
+        const id = localStorage.getItem('userId');
+        const name = localStorage.getItem('userName');
+        const email = localStorage.getItem('userEmail');
         // El resto del código solo se ejecuta si estamos en el navegador
         return {
-            id: localStorage.getItem('userId'),
-            name: localStorage.getItem('userName'),
-            email: localStorage.getItem('userEmail'),
+            id: id ? Number(id) : null,
+            name,
+            email,
         };
     }
 }

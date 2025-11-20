@@ -80,4 +80,19 @@ public class VendedorService implements UserDetailsService {
 
         return "Registro exitoso";
     }
+
+    public Vendedor actualizarVendedor(Long id, Vendedor cambios) {
+        Vendedor vendedor = vendedorRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Vendedor no encontrado"));
+
+        vendedor.setNombre(cambios.getNombre());
+        vendedor.setDireccion(cambios.getDireccion());
+        vendedor.setTelefono(cambios.getTelefono());
+        vendedor.setInstagram(cambios.getInstagram());
+        vendedor.setDescripcion(cambios.getDescripcion());
+        vendedor.setCiudad(cambios.getCiudad());
+
+        return vendedorRepository.save(vendedor);
+    }
+
 }

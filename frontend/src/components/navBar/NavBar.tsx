@@ -36,7 +36,14 @@ export default function NavBar() {
         window.location.href = "/";
     };
 
-    const { id } = authService.getUserData();
+    const user = authService.getUserData();
+
+    if (!user) {
+        // usuario NO logueado → evita crashear
+        return null;
+    }
+
+    const { id } = user;
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
 

@@ -1,5 +1,4 @@
 import styles from "./searchSection.module.css";
-import Image from "next/image";
 import SearchBar from "@/components/searchBar/searchBar";
 
 export default function searchSection(){

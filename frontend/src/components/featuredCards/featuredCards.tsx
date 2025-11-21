@@ -3,7 +3,7 @@
 import styles from "./featuredCards.module.css";
 import CardVehicle from "@/components/featuredCards/cardVehicle/cardVehicle";
 
-export default function featuredCards(){
+export default function FeaturedCards(){
     return(
         <section className={styles.featuredCardsContainerProperties}>
             <div className={styles.titleProperties}>

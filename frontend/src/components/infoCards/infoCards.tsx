@@ -1,7 +1,7 @@
 import styles from "./infoCards.module.css";
 import Image from "next/image";
 
-export default function infoCards(){
+export default function InfoCards(){
     return(
         <section className={styles.infoCardsContainerProperties}>
             <div className={styles.infoCardsProperties}>

@@ -1,7 +1,7 @@
 import styles from "./searchSection.module.css";
 import SearchBar from "@/components/searchBar/searchBar";
 
-export default function searchSection(){
+export default function SearchSection(){
     return(
         <section className={styles.searchSectionContainerProperties}>
             <div className={styles.searchProperties}>

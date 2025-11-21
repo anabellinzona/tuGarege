@@ -15,11 +15,11 @@ public class CorsConfing {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:3000",
-                                "https://tugarege-frontend.vercel.app/",   // cuando esté deployado
-                                "https://tugarege.onrender.com" // opcional
+                                "https://tugarege-frontend.vercel.app"
                         )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedHeaders("*");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);  // Importante si usas cookies/JWT
             }
         };
     }

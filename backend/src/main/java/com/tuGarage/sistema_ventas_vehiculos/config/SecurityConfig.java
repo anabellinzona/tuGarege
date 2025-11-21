@@ -67,10 +67,15 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
+                    // 👇👇👇 AÑADÍ ESTO
+                    // Endpoints que requieren estar logueado
+                    auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
+                    auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
+                    // ☝☝☝ AÑADIDOS
+
                     // Todo lo demás requiere autenticación
                     auth.anyRequest().authenticated();
                 })
-                // Agregar el filtro JWT antes del filtro de autenticación de Spring
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(logout -> logout.permitAll());
 

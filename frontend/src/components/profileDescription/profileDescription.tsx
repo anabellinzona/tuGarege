@@ -1,14 +1,22 @@
-"use client"
+"use client";
 import styles from './profileDescription.module.css'
 import Image from 'next/image';
-import {useEffect, useState} from "react";
 import Link from "next/link";
-import {authService} from "@/service/authService";
-import {useParams} from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { authService } from "@/service/authService";
 
-interface Imagen {
-    id: number;
-    url: string;
+interface Vendedor {
+    id?: number;
+    nombre: string;
+    direccion: string;
+    telefono: string;
+    email: string;
+    contrasena: string;
+    instagram: string;
+    descripcion: string;
+    fotoPerfil: string;
+    ciudad: string;
 }
 
 interface Vehiculo {
@@ -23,85 +31,119 @@ interface Vehiculo {
     fechaPublicacion: string;
     destacado: boolean;
     estado: string;
-    imagenes: Imagen[];
-    logoMarca?: string;
-}
-
-interface Vendedor {
-    nombre: string;
-    direccion: string;
-    telefono: string;
-    email: string;
-    contrasena: string;
-    instagram: string;
-    descripcion: string;
-    fotoPerfil: string;
-    ciudad: string;
+    imagenes: { id: number; url: string }[];
 }
 
 type Prop = {
     idV?: string;
-}
+};
 
-export default function ProfileDescription({idV}: Prop) {
+export default function ProfileDescription({ idV }: Prop) {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
-    const [vendedor, setVendedor] = useState<Vendedor>();
-    const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null);
+    const [vendedor, setVendedor] = useState<Vendedor | null>(null);
+    const [editMode, setEditMode] = useState(false);
+    const [editedVendedor, setEditedVendedor] = useState<Vendedor | null>(null);
+    const [isOwner, setIsOwner] = useState(false); // 👈 nuevo estado para controlar visibilidad del botón
+
     const params = useParams();
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const vendedorId = idV || params?.id || authService.getUserData()?.id;
+    const loggedUserId = authService.getUserData()?.id;
 
+    // 👇 Convertimos ambos IDs a número para evitar problemas de tipo
+    const numericVendedorId = Number(vendedorId);
+    const numericLoggedId = Number(loggedUserId);
+
+    // 🔹 Verificar si el usuario logueado es el dueño del perfil
     useEffect(() => {
-        let idFromAuth: string | null = null;
-        if (typeof window !== 'undefined') {
-            const userData = authService.getUserData();
-            if (userData && userData.id) {
-                idFromAuth = userData.id;
-            }
+        if (numericLoggedId && numericVendedorId && numericLoggedId === numericVendedorId) {
+            setIsOwner(true);
         }
+    }, [numericLoggedId, numericVendedorId]);
 
-        const paramId = (params?.id as string | undefined);
-        const finalVendedorId = idV || paramId || idFromAuth;
-
-        if (finalVendedorId) {
-            setSafeVendedorId(finalVendedorId);
-
-            fetch(`${API_URL}/api/vehiculos/vendedor/${finalVendedorId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Error al cargar los vehículos");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    setVehiculos(data);
-                })
-                .catch(error => {
-                    console.error("Error al cargar vehículos: " + error);
-                });
-        }
-    }, [idV, params?.id]);
-
+    // 🔹 Fetch vendedor y vehículos
     useEffect(() => {
-        const fetchVendedor = async () => {
-            if (safeVendedorId) {
-                fetch(`http://localhost:8080/api/vendedores/${safeVendedorId}`)
-                    .then(response => {
-                        if(!response.ok){
-                            throw new Error("Error al cargar los datos del vendedor");
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        setVendedor(data)
-                    })
-                    .catch(error => {
-                        console.error("Error al cargar vendedor: " + error);
-                    })
+        if (!vendedorId) return;
+
+        fetch(`http://localhost:8080/api/vendedores/${vendedorId}`)
+            .then(res => res.json())
+            .then(data => {
+                setVendedor(data);
+                setEditedVendedor(data);
+            })
+            .catch(err => console.log("Error:", err));
+
+        fetch(`http://localhost:8080/api/vehiculos/vendedor/${vendedorId}`)
+            .then(res => res.json())
+            .then(data => setVehiculos(data))
+            .catch(err => console.log("Error:", err));
+    }, [vendedorId]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        if (!editedVendedor) return;
+        const { name, value } = e.target;
+        setEditedVendedor({ ...editedVendedor, [name]: value });
+    };
+
+    console.log("Guardando vendedor:", editedVendedor);
+    const handleSave = async () => {
+        console.log("Guardando vendedor:", editedVendedor);
+        if (!editedVendedor) return;
+
+        try {
+            const id = Number(vendedorId);
+            const token = authService.getToken(); // 👈 obtenemos token del localStorage
+
+            const body = {
+                nombre: editedVendedor.nombre,
+                direccion: editedVendedor.direccion,
+                telefono: editedVendedor.telefono,
+                email: editedVendedor.email,
+                instagram: editedVendedor.instagram,
+                descripcion: editedVendedor.descripcion,
+                ciudad: editedVendedor.ciudad,
+                fotoPerfil: editedVendedor.fotoPerfil,
+            };
+
+            console.log("Token enviado:", token);
+            const response = await fetch(`http://localhost:8080/api/vendedores/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                },
+                body: JSON.stringify(body),
+            });
+
+// 🔥 si el back responde 204 → NO intentes hacer response.json()
+            if (response.status === 204) {
+                setVendedor(editedVendedor);
+                setEditMode(false);
+                alert("✅ Cambios guardados correctamente (204)");
+                return;
             }
+
+// si hay error
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Error al guardar los cambios");
+            }
+
+// si devuelve JSON → lo leemos
+            const updated = await response.json();
+            setVendedor(updated);
+            setEditedVendedor(updated);
+            setEditMode(false);
+
+            alert("✅ Cambios guardados correctamente");
+
+        } catch (error) {
+            console.error("Error al guardar:", error);
+            alert("❌ No se pudieron guardar los cambios. Revisa la consola.");
         }
-        fetchVendedor();
-    }, [safeVendedorId]);
-    return(
+    };
+
+
+    return (
         <main className={styles.main}>
             <div className={styles.content}>
                 <div className={styles.profileImage}>
@@ -110,10 +152,22 @@ export default function ProfileDescription({idV}: Prop) {
                         alt={'user profile image'}
                         fill
                         style={{objectFit: 'cover'}}
+                        priority
                     />
                 </div>
+
                 <div className={styles.description}>
-                    <h3>{vendedor?.nombre}</h3>
+                    {editMode ? (
+                        <input
+                            type="text"
+                            name="nombre"
+                            value={editedVendedor?.nombre || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                        />
+                    ) : (
+                        <h3>{vendedor?.nombre}</h3>
+                    )}
 
                     <div className={styles.contactPlusPosts}>
                         <div className={styles.contactsWrapper}>
@@ -128,10 +182,10 @@ export default function ProfileDescription({idV}: Prop) {
                                 </Link>
                             </div>
                             <div className={styles.contactRed}>
-                                <Link href={`https://wa.me/${vendedor?.telefono}`}>
+                                <Link href={`tel:${vendedor?.telefono}`}>
                                     <Image
                                         src={'/icons/phone.png'}
-                                        alt={'user profile image'}
+                                        alt={'phone icon'}
                                         width={22}
                                         height={22}
                                     />
@@ -147,8 +201,96 @@ export default function ProfileDescription({idV}: Prop) {
             </div>
 
             <div className={styles.moreInfo}>
-                <h5>{vendedor?.direccion} Instragram: {vendedor?.instagram}</h5>
+                {editMode ? (
+                    <>
+                        <input
+                            type="text"
+                            name="direccion"
+                            value={editedVendedor?.direccion || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                            placeholder="Dirección"
+                        />
+
+                        <input
+                            type="text"
+                            name="telefono"
+                            value={editedVendedor?.telefono || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                            placeholder="Teléfono"
+                        />
+
+                        <input
+                            type="email"
+                            name="email"
+                            value={editedVendedor?.email || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                            placeholder="Email"
+                        />
+
+                        <input
+                            type="text"
+                            name="instagram"
+                            value={editedVendedor?.instagram || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                            placeholder="Instagram"
+                        />
+
+                        <input
+                            type="text"
+                            name="ciudad"
+                            value={editedVendedor?.ciudad || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                            placeholder="Ciudad"
+                        />
+
+                        <textarea
+                            name="descripcion"
+                            value={editedVendedor?.descripcion || ""}
+                            onChange={handleChange}
+                            className={styles.textareaEdit}
+                            placeholder="Descripción"
+                        />
+
+                        <input
+                            type="text"
+                            name="fotoPerfil"
+                            value={editedVendedor?.fotoPerfil || ""}
+                            onChange={handleChange}
+                            className={styles.inputEdit}
+                            placeholder="URL de foto de perfil"
+                        />
+                    </>
+                ) : (
+                    <h5>
+                        {vendedor?.direccion} — {vendedor?.ciudad}<br/>
+                        Instagram: {vendedor?.instagram}<br/>
+                        Email: {vendedor?.email}<br/>
+                        Tel: {vendedor?.telefono}<br/><br/>
+                        {vendedor?.descripcion}
+                    </h5>
+                )}
             </div>
+
+
+            {/* 👇 ahora controlamos con isOwner */}
+            {isOwner && (
+                <div className={styles.editButtons}>
+                    {!editMode ? (
+                        <button onClick={() => setEditMode(true)} className={styles.editBtn}>
+                            Editar perfil
+                        </button>
+                    ) : (
+                        <button onClick={handleSave} className={styles.saveBtn}>
+                            Guardar cambios
+                        </button>
+                    )}
+                </div>
+            )}
         </main>
-    )
+    );
 }

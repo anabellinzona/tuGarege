@@ -62,10 +62,11 @@ export default function MainInfo({
                                      classname
                                  }: Prop) {
     const [vendedor, setVendedor] = useState<Vendedor>();
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         if (!vehiculo?.vendedorId) return;
-        fetch(`http://localhost:8080/api/vendedores/${vehiculo.vendedorId}`)
+        fetch(`${API_URL}/api/vendedores/${vehiculo.vendedorId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Error al cargar el vendedor");

@@ -17,8 +17,9 @@ interface Caracteristica {
 
 export default function ItemCharacteristic({id}: Prop){
     const [caracteristicas, setCaracteristica] = useState<Caracteristica[]>([])
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     useEffect(() => {
-        fetch(`http://localhost:8080/api/caracteristicas/vehiculo/${id}`)
+        fetch(`${API_URL}/api/caracteristicas/vehiculo/${id}`)
             .then(response => {
                 if (!response.ok) {
                     console.error("Status:", response.status);

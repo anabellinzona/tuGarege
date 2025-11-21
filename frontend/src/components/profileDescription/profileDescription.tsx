@@ -43,28 +43,26 @@ export default function ProfileDescription({ idV }: Prop) {
     const [vendedor, setVendedor] = useState<Vendedor | null>(null);
     const [editMode, setEditMode] = useState(false);
     const [editedVendedor, setEditedVendedor] = useState<Vendedor | null>(null);
-    const [isOwner, setIsOwner] = useState(false); // 👈 nuevo estado para controlar visibilidad del botón
+    const [isOwner, setIsOwner] = useState(false);
 
     const params = useParams();
     const vendedorId = idV || params?.id || authService.getUserData()?.id;
     const loggedUserId = authService.getUserData()?.id;
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    // 👇 Convertimos ambos IDs a número para evitar problemas de tipo
     const numericVendedorId = Number(vendedorId);
     const numericLoggedId = Number(loggedUserId);
 
-    // 🔹 Verificar si el usuario logueado es el dueño del perfil
     useEffect(() => {
         if (numericLoggedId && numericVendedorId && numericLoggedId === numericVendedorId) {
             setIsOwner(true);
         }
     }, [numericLoggedId, numericVendedorId]);
 
-    // 🔹 Fetch vendedor y vehículos
     useEffect(() => {
         if (!vendedorId) return;
 
-        fetch(`http://localhost:8080/api/vendedores/${vendedorId}`)
+        fetch(`${API_URL}/api/vendedores/${vendedorId}`)
             .then(res => res.json())
             .then(data => {
                 setVendedor(data);
@@ -72,7 +70,7 @@ export default function ProfileDescription({ idV }: Prop) {
             })
             .catch(err => console.log("Error:", err));
 
-        fetch(`http://localhost:8080/api/vehiculos/vendedor/${vendedorId}`)
+        fetch(`${API_URL}/api/vehiculos/vendedor/${vendedorId}`)
             .then(res => res.json())
             .then(data => setVehiculos(data))
             .catch(err => console.log("Error:", err));
@@ -91,7 +89,7 @@ export default function ProfileDescription({ idV }: Prop) {
 
         try {
             const id = Number(vendedorId);
-            const token = authService.getToken(); // 👈 obtenemos token del localStorage
+            const token = authService.getToken();
 
             const body = {
                 nombre: editedVendedor.nombre,
@@ -105,7 +103,7 @@ export default function ProfileDescription({ idV }: Prop) {
             };
 
             console.log("Token enviado:", token);
-            const response = await fetch(`http://localhost:8080/api/vendedores/${id}`, {
+            const response = await fetch(`${API_URL}/api/vendedores/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -114,34 +112,30 @@ export default function ProfileDescription({ idV }: Prop) {
                 body: JSON.stringify(body),
             });
 
-// 🔥 si el back responde 204 → NO intentes hacer response.json()
             if (response.status === 204) {
                 setVendedor(editedVendedor);
                 setEditMode(false);
-                alert("✅ Cambios guardados correctamente (204)");
+                alert("Cambios guardados correctamente (204)");
                 return;
             }
 
-// si hay error
             if (!response.ok) {
                 const errorText = await response.text();
                 throw new Error(errorText || "Error al guardar los cambios");
             }
 
-// si devuelve JSON → lo leemos
             const updated = await response.json();
             setVendedor(updated);
             setEditedVendedor(updated);
             setEditMode(false);
 
-            alert("✅ Cambios guardados correctamente");
+            alert("Cambios guardados correctamente");
 
         } catch (error) {
             console.error("Error al guardar:", error);
-            alert("❌ No se pudieron guardar los cambios. Revisa la consola.");
+            alert("No se pudieron guardar los cambios. Revisa la consola.");
         }
     };
-
 
     return (
         <main className={styles.main}>

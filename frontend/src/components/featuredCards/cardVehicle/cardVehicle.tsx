@@ -1,6 +1,6 @@
 "use client"
 import {useEffect, useState, useRef} from "react";
-import styles from "@/components/featuredCards/cardVehicle/cardVehicle.module.css";
+import styles from "../cardVehicle/cardVehicle.module.css";
 import Link from "next/link";
 import Image from "next/image";
 

@@ -1,4 +1,4 @@
-import styles from "@/components/fileVehicle/secondInfo/secondInfo.module.css";
+import styles from "../secondInfo.module.css";
 import EditableText from "@/components/fileVehicle/editableText/editableText";
 import EditButton from "@/components/fileVehicle/editButton/editButton";
 

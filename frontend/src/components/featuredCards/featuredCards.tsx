@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "./featuredCards.module.css";
-import CardVehicle from "@/components/featuredCards/cardVehicle/cardVehicle";
+import CardVehicle from "../featuredCards/cardVehicle/cardVehicle";
 
 export default function FeaturedCards(){
     return(

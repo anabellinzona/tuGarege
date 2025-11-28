@@ -1,4 +1,4 @@
-import IWantSaleForm from "@/components/iWantSale/IWantSaleForm";
+import IWantSaleForm from "@/src/components/iWantSale/IWantSaleForm";
 
 export default function page(){
     return(

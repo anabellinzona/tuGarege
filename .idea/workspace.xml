@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/fichaVehiculo/[id]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/formularioVenta/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/globals.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/perfil/[id]/page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/vehiculos/page.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/vehiculos/page.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/fichaVehiculo/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/fichaVehiculo/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/formularioVenta/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/formularioVenta/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/perfil/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/perfil/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/buttons/consultButton/consultButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/buttons/consultButton/consultButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/featuredCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/featuredCards.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/secondInfo/secondInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/secondInfo/secondInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +162,7 @@
       <workItem from="1763843906145" duration="1941000" />
       <workItem from="1764001758692" duration="31000" />
       <workItem from="1764246237810" duration="1660000" />
-      <workItem from="1764247958216" duration="1446000" />
+      <workItem from="1764247958216" duration="1905000" />
     </task>
     <servers />
   </component>

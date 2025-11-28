@@ -1,4 +1,4 @@
-import styles from "../consultButton/consultButton.module.css";
+import styles from "./consultButton.module.css";
 
 type Prop = {
     message: string;

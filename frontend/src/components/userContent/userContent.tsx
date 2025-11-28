@@ -3,10 +3,10 @@
 import {useState, useContext, useEffect} from "react";
 import styles from "./userContent.module.css";
 import Image from "next/image";
-import PostCard from "@/src/components/postCard/postCard";
-import { ThemeContext } from "@/src/context/ThemeContext";
+import PostCard from "@/components/postCard/postCard";
+import { ThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
-import {authService} from "@/src/service/authService";
+import {authService} from "@/service/authService";
 import {useParams} from "next/navigation";
 
 interface Vendedor {

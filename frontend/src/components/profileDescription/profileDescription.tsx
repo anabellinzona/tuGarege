@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { authService } from "@/src/service/authService";
+import { authService } from "@/service/authService";
 
 interface Vendedor {
     id?: number;

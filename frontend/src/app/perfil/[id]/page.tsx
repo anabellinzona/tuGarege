@@ -1,5 +1,5 @@
-import ProfileDescription from "@/src/components/profileDescription/profileDescription";
-import UserContent from "@/src/components/userContent/userContent";
+import ProfileDescription from "@/components/profileDescription/profileDescription";
+import UserContent from "@/components/userContent/userContent";
 import {Suspense} from "react";
 
 export default async function Profile() {

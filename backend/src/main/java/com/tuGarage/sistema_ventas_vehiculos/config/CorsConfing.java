@@ -15,7 +15,7 @@ public class CorsConfing {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:3000",
-                                "https://tu-garege-rgxkhnquy-anabellinzonas-projects.vercel.app"
+                                "https://tu-garege.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                         .allowedHeaders("*")

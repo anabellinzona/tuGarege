@@ -29,12 +29,12 @@ export default function UserContent({idV}: Prop) {
     const [activeTab, setActiveTab] = useState("posts");
     const { theme } = useContext(ThemeContext);
     const [vendedor, setVendedor] = useState<Vendedor>();
-    const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null); // Nuevo estado
+    const [safeVendedorId, setSafeVendedorId] = useState<string | number | null>(null); // Nuevo estado
     const params = useParams();
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        let idFromAuth: string | null = null;
+        let idFromAuth: number | null = null;
         if (typeof window !== 'undefined') {
             const userData = authService.getUserData();
             if (userData && userData.id) {

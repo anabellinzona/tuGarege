@@ -31,7 +31,7 @@ export default function PostCard() {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [safeVendedorId, setSafeVendedorId] = useState<string | null>(null);
+    const [safeVendedorId, setSafeVendedorId] = useState<number | string | null>(null);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [indices, setIndices] = useState<{ [vehiculoId: number]: number }>({});
     const params = useParams();
@@ -43,7 +43,7 @@ export default function PostCard() {
         setLoading(true);
 
         // 1. Obtenemos el ID del usuario SOLAMENTE en el entorno del navegador
-        let idFromAuth: string | null = null;
+        let idFromAuth: number | null = null;
         if (typeof window !== 'undefined') {
             const userData = authService.getUserData();
             if (userData && userData.id) {

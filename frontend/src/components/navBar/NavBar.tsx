@@ -15,7 +15,7 @@ export default function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     // Nuevo estado para el ID del usuario
-    const [userId, setUserId] = useState<string | null>(null);
+    const [userId, setUserId] = useState<number | null>(null);
 
     useEffect(() => {
         // Toda la lógica que accede a `localStorage` debe estar aquí

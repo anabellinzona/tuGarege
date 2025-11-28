@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/fichaVehiculo/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/fichaVehiculo/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/formularioVenta/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/formularioVenta/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/perfil/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/perfil/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/buttons/consultButton/consultButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/buttons/consultButton/consultButton.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +157,7 @@
       <workItem from="1763843906145" duration="1941000" />
       <workItem from="1764001758692" duration="31000" />
       <workItem from="1764246237810" duration="1660000" />
-      <workItem from="1764247958216" duration="1905000" />
+      <workItem from="1764247958216" duration="2381000" />
     </task>
     <servers />
   </component>

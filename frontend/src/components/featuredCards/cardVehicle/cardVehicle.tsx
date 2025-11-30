@@ -47,6 +47,7 @@ export default function CardVehicle(){
     const carouselRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        console.log(process.env.NEXT_PUBLIC_API_URL)
         const fetchVehicle = async () => {
         fetch(`${API_URL}/api/vehiculos/destacados`)
             .then(response => {

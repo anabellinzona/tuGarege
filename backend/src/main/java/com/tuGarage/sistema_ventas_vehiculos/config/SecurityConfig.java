@@ -41,15 +41,19 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:3000",
+                "https://tu-garege.vercel.app"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", configuration);
+        source.registerCorsConfiguration("/**", configuration); // ACEPTA TODO
         return source;
     }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -67,13 +71,9 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
-                    // 👇👇👇 AÑADÍ ESTO
-                    // Endpoints que requieren estar logueado
                     auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
                     auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
-                    // ☝☝☝ AÑADIDOS
 
-                    // Todo lo demás requiere autenticación
                     auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

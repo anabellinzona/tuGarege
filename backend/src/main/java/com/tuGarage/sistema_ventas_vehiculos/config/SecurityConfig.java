@@ -55,26 +55,33 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
                 .authorizeHttpRequests(auth -> {
-                    // Endpoints públicos
+                    // Endpoints públicos de USUARIO (agregar estos)
+                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/register").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/usuario/**").permitAll();
+
+                    // Endpoints públicos de VENDEDORES
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
+
+                    // Otros endpoints públicos
+                    auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
+                    // Endpoints protegidos
                     auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
                     auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
+                    auth.requestMatchers(HttpMethod.PUT, "/api/usuario/**").authenticated();
+                    auth.requestMatchers(HttpMethod.DELETE, "/api/usuario/**").authenticated();
 
+                    // Todo lo demás requiere autenticación
                     auth.anyRequest().authenticated();
                 })
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .logout(logout -> logout.permitAll());
-
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
         return http.build();
     }
 

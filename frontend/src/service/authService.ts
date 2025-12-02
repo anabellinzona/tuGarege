@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
 export interface Register {
     nombre: string,
@@ -15,7 +15,7 @@ export interface Login {
 export const authService = {
     async register(data: Register){
         try {
-            const response = await fetch(`${API_URL}/vendedores/register`, {
+            const response = await fetch(`${API_URL}/api/vendedores/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export const authService = {
 
     async login(login: Login) {
         try {
-            const response = await fetch(`${API_URL}/vendedores/login`, {
+            const response = await fetch(`${API_URL}/api/vendedores/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

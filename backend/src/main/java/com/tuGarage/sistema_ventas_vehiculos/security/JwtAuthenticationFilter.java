@@ -25,8 +25,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final List<String> PUBLIC_ENDPOINTS = Arrays.asList(
             "/api/vendedores/register",
             "/api/vendedores/login",
-            "/api/usuario/register",
-            "/api/usuario/login"
+            "/vendedores/register",
+            "/vendedores/login"
     );
 
     public JwtAuthenticationFilter(JWTUtils jwtUtil, UserDetailsService userDetailsService) {

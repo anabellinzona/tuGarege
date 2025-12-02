@@ -82,12 +82,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     System.out.println("🛡️ Configurando reglas de autorización...");
 
-                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/register").permitAll();
-                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/usuario/**").permitAll();
-
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/vendedores/register").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/vendedores/login").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
 
                     auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();

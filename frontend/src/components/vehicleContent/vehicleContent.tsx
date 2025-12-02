@@ -48,6 +48,8 @@ export default function VehiclesContent() {
     const [selectedFilter, setSelectedFilter] = useState(tipoFromUrl);
     const [loading, setLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const [order, setOrder] = useState("");
+
 
     // -------------------------
     // Cargar vehículos por TIPO
@@ -150,6 +152,38 @@ export default function VehiclesContent() {
         </div>
     );
 
+    const applyOrdering = (orderType: string) => {
+        setOrder(orderType);
+
+        const sorted = [...filteredVehiculos];
+
+        switch (orderType) {
+            case "precio-asc":
+                sorted.sort((a, b) => a.precio - b.precio);
+                break;
+            case "precio-desc":
+                sorted.sort((a, b) => b.precio - a.precio);
+                break;
+            case "km-asc":
+                sorted.sort((a, b) => a.km - b.km);
+                break;
+            case "km-desc":
+                sorted.sort((a, b) => b.km - a.km);
+                break;
+            case "anio-asc":
+                sorted.sort((a, b) => a.anio - b.anio);
+                break;
+            case "anio-desc":
+                sorted.sort((a, b) => b.anio - a.anio);
+                break;
+            default:
+                return;
+        }
+
+        setFilteredVehiculos(sorted);
+    };
+
+
     return (
         <main className={styles.main}>
             {!isMobile && renderFilters}
@@ -158,7 +192,7 @@ export default function VehiclesContent() {
                 <div className={styles.searchPlusOrder}>
                     <SearchBar className={"main80"} />
                     <div className={styles.orderPlusFilter}>
-                        <OrderButton />
+                        <OrderButton onSelect={applyOrdering} />
                         <button
                             className={styles.filterToggleBtn}
                             onClick={() => setShowFilters(!showFilters)}

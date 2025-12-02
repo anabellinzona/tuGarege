@@ -53,7 +53,7 @@ export default function VehicleFilters({ tipo, allVehicles, onApplyFilters }: Pr
             <h6>Filtros</h6>
 
             <select
-                className={styles.vehicleFilterProperties}
+                className={`${styles.vehicleFilterProperties} ${selectedMarca ? styles.selectActive : ""}`}
                 value={selectedMarca}
                 onChange={(e) => setSelectedMarca(e.target.value)}
             >
@@ -64,7 +64,7 @@ export default function VehicleFilters({ tipo, allVehicles, onApplyFilters }: Pr
             </select>
 
             <select
-                className={styles.vehicleFilterProperties}
+                className={`${styles.vehicleFilterProperties} ${selectedModelo ? styles.selectActive : ""}`}
                 value={selectedModelo}
                 onChange={(e) => setSelectedModelo(e.target.value)}
             >
@@ -75,7 +75,7 @@ export default function VehicleFilters({ tipo, allVehicles, onApplyFilters }: Pr
             </select>
 
             <select
-                className={styles.vehicleFilterProperties}
+                className={`${styles.vehicleFilterProperties} ${selectedAnio ? styles.selectActive : ""}`}
                 value={selectedAnio}
                 onChange={(e) =>
                     setSelectedAnio(e.target.value === "" ? "" : Number(e.target.value))
@@ -88,7 +88,7 @@ export default function VehicleFilters({ tipo, allVehicles, onApplyFilters }: Pr
             </select>
 
             <select
-                className={styles.vehicleFilterProperties}
+                className={`${styles.vehicleFilterProperties} ${selectedEstado ? styles.selectActive : ""}`}
                 value={selectedEstado}
                 onChange={(e) => setSelectedEstado(e.target.value)}
             >

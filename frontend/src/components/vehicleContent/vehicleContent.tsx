@@ -49,6 +49,7 @@ export default function VehiclesContent() {
     const [loading, setLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [order, setOrder] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
 
     // -------------------------
@@ -183,6 +184,36 @@ export default function VehiclesContent() {
         setFilteredVehiculos(sorted);
     };
 
+    // --------------------------------------------------
+// 🔍 BUSCADOR MULTIPALABRAS
+// --------------------------------------------------
+    useEffect(() => {
+        if (!searchQuery.trim()) {
+            setFilteredVehiculos(vehiculos);
+            return;
+        }
+
+        const query = searchQuery.toLowerCase();
+        const words = query.split(" ").filter(w => w.trim() !== "");
+
+        const filtered = vehiculos.filter(v => {
+            const fields = [
+                v.marca?.toLowerCase() || "",
+                v.modelo?.toLowerCase() || "",
+                v.descripcion?.toLowerCase() || "",
+                String(v.anio)
+            ];
+
+
+            return words.every(word =>
+                fields.some(field => field.includes(word))
+            );
+        });
+
+        setFilteredVehiculos(filtered);
+    }, [searchQuery, vehiculos]);
+
+
 
     return (
         <main className={styles.main}>
@@ -190,7 +221,12 @@ export default function VehiclesContent() {
 
             <section className={styles.searchPlusOrderPlusVehicles}>
                 <div className={styles.searchPlusOrder}>
-                    <SearchBar className={"main80"} />
+                    <SearchBar
+                        className={"main80"}
+                        value={searchQuery}
+                        onChange={(value: string) => setSearchQuery(value)}
+                    />
+
                     <div className={styles.orderPlusFilter}>
                         <OrderButton onSelect={applyOrdering} />
                         <button

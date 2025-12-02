@@ -28,7 +28,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
+    public SecurityConfig(@Lazy JwtAuthenticationFilter jwtAuthenticationFilter,
                           @Lazy UserDetailsService userDetailsService) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.userDetailsService = userDetailsService;
@@ -68,10 +68,23 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println("🔧 Configurando SecurityFilterChain...");
+
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
+                .cors(cors -> {
+                    System.out.println("🌐 Configurando CORS...");
+                    cors.configurationSource(corsConfigurationSource());
+                })
+                .csrf(csrf -> {
+                    System.out.println("🔒 Deshabilitando CSRF...");
+                    csrf.disable();
+                })
                 .authorizeHttpRequests(auth -> {
+                    System.out.println("🛡️ Configurando reglas de autorización...");
+
+                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/register").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/usuario/**").permitAll();
 
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
@@ -80,11 +93,10 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
-                    auth.requestMatchers("/api/health").permitAll();
-
-                    // Endpoints protegidos
                     auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
                     auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
+                    auth.requestMatchers(HttpMethod.PUT, "/api/usuario/**").authenticated();
+                    auth.requestMatchers(HttpMethod.DELETE, "/api/usuario/**").authenticated();
 
                     auth.anyRequest().authenticated();
                 })
@@ -93,6 +105,8 @@ public class SecurityConfig {
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        System.out.println("✅ SecurityFilterChain configurado correctamente");
 
         return http.build();
     }

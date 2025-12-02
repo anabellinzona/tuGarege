@@ -1,5 +1,5 @@
 import styles from "./VehicleFilters.module.css";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useState } from "react";
 
 interface Vehiculo {
     id: number;
@@ -16,7 +16,11 @@ interface Vehiculo {
     anio: number;
 }
 
-export default function VehicleFilters(){
+interface Props {
+    tipo: string;
+}
+
+export default function VehicleFilters({ tipo }: Props) {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -28,41 +32,52 @@ export default function VehicleFilters(){
                 }
                 return response.json();
             })
-            .then(data => {
-                setVehiculos(data)
-            })
-            .catch(error => {
-                console.log("El error fue: " + error);
-            })
-    }, [])
-    return(
+            .then(data => setVehiculos(data))
+            .catch(error => console.log("El error fue: " + error));
+    }, []);
+
+    // Normalizamos filtrado
+    const vehiculosFiltrados =
+        tipo === "Todos"
+            ? vehiculos
+            : vehiculos.filter(
+                v => v.tipo.toLowerCase() === tipo.toLowerCase()
+            );
+
+    const marcas = [...new Set(vehiculosFiltrados.map(v => v.marca))];
+    const modelos = [...new Set(vehiculosFiltrados.map(v => v.modelo))];
+    const anios = [...new Set(vehiculosFiltrados.map(v => v.anio))];
+    const estados = [...new Set(vehiculosFiltrados.map(v => v.estado))];
+
+    return (
         <div className={styles.vehicleFiltersContainerProperties}>
             <h6>Filtros</h6>
+
             <select className={styles.vehicleFilterProperties}>
                 <option>Marca</option>
-                {vehiculos.map(vehiculo => (
-                    <option>{vehiculo.marca}</option>
+                {marcas.map(m => (
+                    <option key={m}>{m}</option>
                 ))}
             </select>
 
             <select className={styles.vehicleFilterProperties}>
                 <option>Modelo</option>
-                {vehiculos.map(vehiculo => (
-                    <option>{vehiculo.modelo}</option>
+                {modelos.map(m => (
+                    <option key={m}>{m}</option>
                 ))}
             </select>
 
             <select className={styles.vehicleFilterProperties}>
                 <option>Año</option>
-                {vehiculos.map(vehiculo => (
-                    <option>{vehiculo.anio}</option>
+                {anios.map(a => (
+                    <option key={a}>{a}</option>
                 ))}
             </select>
 
             <select className={styles.vehicleFilterProperties}>
                 <option>Estado</option>
-                {vehiculos.map(vehiculo => (
-                    <option>{vehiculo.estado}</option>
+                {estados.map(e => (
+                    <option key={e}>{e}</option>
                 ))}
             </select>
         </div>

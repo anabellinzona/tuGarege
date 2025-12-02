@@ -17,11 +17,11 @@ import java.util.Date;
 @Component
 public class JWTUtils {
 
-    @Value("${application.security.jwt.secret-key}")
-    private String jwtSecret;
+    @Value("${jwt.secret}")
+    private String secret;
 
-    @Value("${application.security.jwt.expiration}")
-    private int jwtExpirationMs;
+    @Value("${jwt.expiration}")
+    private Long expiration;
 
     public String generateJwtToken(Authentication authentication) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
@@ -35,13 +35,13 @@ public class JWTUtils {
                 .setSubject(userPrincipal.getUsername())
                 .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .setExpiration(new Date((new Date()).getTime() + expiration))
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     private Key key() {
-        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     }
 
     public boolean validateJwtToken(String authToken) {

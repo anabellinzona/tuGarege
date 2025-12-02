@@ -83,14 +83,11 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency>
-
-		<!-- Dependencia de Validación (si estás usando Java EE/Jakarta EE) -->
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>3.0.2</version> <!-- Usar la versión apropiada para tu Spring Boot -->
 		</dependency>
-
 	</dependencies>
 
 	<build>

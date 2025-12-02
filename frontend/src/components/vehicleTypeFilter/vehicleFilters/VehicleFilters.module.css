@@ -25,6 +25,24 @@
     color: var(--fonr-dark-color);
 }
 
+.applyButton {
+    margin-top: 20px;
+    border: 2px solid var(--red-1);
+    background: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--font-dark-color);
+    transition: 0.2s ease;
+}
+
+.applyButton:hover {
+    background: var(--red-1);
+    color: white;
+}
+
+
 @media (min-width: 768px) {
     .vehicleFiltersContainerProperties {
         margin-top: 50px;

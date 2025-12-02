@@ -26,19 +26,32 @@ interface Vehiculo {
     destacado: boolean;
     estado: string;
     imagenes: Imagen[];
+    anio: number;
     logoMarca?: string;
+}
+
+interface AdvancedFilters {
+    marca?: string;
+    modelo?: string;
+    anio?: number | string;
+    estado?: string;
 }
 
 export default function VehiclesContent() {
     const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
+    const [filteredVehiculos, setFilteredVehiculos] = useState<Vehiculo[]>([]);
     const [showFilters, setShowFilters] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilters>({});
     const searchParams = useSearchParams();
     const tipoFromUrl = searchParams.get("tipo") || "Todos";
     const [selectedFilter, setSelectedFilter] = useState(tipoFromUrl);
     const [loading, setLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+    // -------------------------
+    // Cargar vehículos por TIPO
+    // -------------------------
     useEffect(() => {
         const fetchVehiculos = async () => {
             setLoading(true);
@@ -51,7 +64,9 @@ export default function VehiclesContent() {
                 const response = await fetch(url);
                 if (!response.ok) throw new Error("Error al cargar los vehículos");
                 const data = await response.json();
+
                 setVehiculos(data);
+                setFilteredVehiculos(data); // inicial
             } catch (error) {
                 console.error("Error:", error);
             } finally {
@@ -62,6 +77,9 @@ export default function VehiclesContent() {
         fetchVehiculos();
     }, [selectedFilter]);
 
+    // -------------------------
+    // Detectar mobile
+    // -------------------------
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         handleResize();
@@ -70,17 +88,48 @@ export default function VehiclesContent() {
     }, []);
 
     const handleFilterChange = (tipo: string) => {
-        setSelectedFilter(tipo);
+        setSelectedFilter(tipo.toLowerCase());
     };
 
-    // 🔥 ETAPA 1 (cards) / ETAPA 2 (filtros avanzados) + botón volver
+    // --------------------------------------------------
+    // 🍀 APLICAR FILTROS AVANZADOS (marca/modelo/año)
+    // --------------------------------------------------
+    const applyAdvancedFilters = (filters: AdvancedFilters) => {
+        setAdvancedFilters(filters);
+
+        const filtered = vehiculos.filter((v) => {
+            const matchMarca =
+                !filters.marca || v.marca.toLowerCase() === filters.marca.toLowerCase();
+
+            const matchModelo =
+                !filters.modelo || v.modelo.toLowerCase() === filters.modelo.toLowerCase();
+
+            const matchAnio =
+                !filters.anio || v.anio === Number(filters.anio);
+
+            const matchEstado =
+                !filters.estado || v.estado.toLowerCase() === filters.estado.toLowerCase();
+
+            return matchMarca && matchModelo && matchAnio && matchEstado;
+        });
+
+        setFilteredVehiculos(filtered);
+    };
+
+    // --------------------------------------------------
+    // RENDER FILTROS
+    // --------------------------------------------------
     const renderFilters = (
         <div className={`${styles.filters} ${showFilters ? styles.show : styles.hide}`}>
 
             {selectedFilter !== "Todos" && (
                 <button
                     className={styles.backButton}
-                    onClick={() => setSelectedFilter("Todos")}
+                    onClick={() => {
+                        setSelectedFilter("Todos");
+                        setAdvancedFilters({});
+                        setFilteredVehiculos(vehiculos);
+                    }}
                 >
                     ← Volver
                 </button>
@@ -92,7 +141,11 @@ export default function VehiclesContent() {
                     selectedFilter={selectedFilter}
                 />
             ) : (
-                <VehicleFilters tipo={selectedFilter} />
+                <VehicleFilters
+                    tipo={selectedFilter}
+                    allVehicles={vehiculos}
+                    onApplyFilters={applyAdvancedFilters}
+                />
             )}
         </div>
     );
@@ -121,7 +174,7 @@ export default function VehiclesContent() {
                     {loading ? (
                         <p>Cargando vehículos...</p>
                     ) : (
-                        vehiculos.map((vehiculo) => (
+                        filteredVehiculos.map((vehiculo) => (
                             <StandardCard
                                 key={vehiculo.id}
                                 id={vehiculo.id}

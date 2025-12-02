@@ -1,85 +1,106 @@
 import styles from "./VehicleFilters.module.css";
 import { useEffect, useState } from "react";
 
-interface Vehiculo {
+interface Vehicle {
     id: number;
     marca: string;
     modelo: string;
-    km: number;
-    precio: number;
-    moneda: string;
-    descripcion: string;
-    tipo: string;
-    fechaPublicacion: string;
-    destacado: boolean;
-    estado: string;
     anio: number;
+    estado: string;
 }
 
 interface Props {
     tipo: string;
+    allVehicles: Vehicle[];
+    onApplyFilters: (filters: {
+        marca: string;
+        modelo: string;
+        anio: number | "";
+        estado: string;
+    }) => void;
 }
 
-export default function VehicleFilters({ tipo }: Props) {
-    const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export default function VehicleFilters({ tipo, allVehicles, onApplyFilters }: Props) {
+    const [marcas, setMarcas] = useState<string[]>([]);
+    const [modelos, setModelos] = useState<string[]>([]);
+    const [anios, setAnios] = useState<number[]>([]);
+    const [estados, setEstados] = useState<string[]>([]);
+
+    // Estados de filtros seleccionados
+    const [selectedMarca, setSelectedMarca] = useState("");
+    const [selectedModelo, setSelectedModelo] = useState("");
+    const [selectedAnio, setSelectedAnio] = useState<number | "">("");
+    const [selectedEstado, setSelectedEstado] = useState("");
 
     useEffect(() => {
-        fetch(`${API_URL}/api/vehiculos/sinRepetidos`)
-            .then(response => {
-                if(!response.ok){
-                    throw new Error("Error al cargar los vehículos");
-                }
-                return response.json();
-            })
-            .then(data => setVehiculos(data))
-            .catch(error => console.log("El error fue: " + error));
-    }, []);
+        setMarcas(Array.from(new Set(allVehicles.map((v) => v.marca))));
+        setModelos(Array.from(new Set(allVehicles.map((v) => v.modelo))));
+        setAnios(Array.from(new Set(allVehicles.map((v) => v.anio))));
+        setEstados(Array.from(new Set(allVehicles.map((v) => v.estado))));
+    }, [allVehicles]);
 
-    // Normalizamos filtrado
-    const vehiculosFiltrados =
-        tipo === "Todos"
-            ? vehiculos
-            : vehiculos.filter(
-                v => v.tipo.toLowerCase() === tipo.toLowerCase()
-            );
-
-    const marcas = [...new Set(vehiculosFiltrados.map(v => v.marca))];
-    const modelos = [...new Set(vehiculosFiltrados.map(v => v.modelo))];
-    const anios = [...new Set(vehiculosFiltrados.map(v => v.anio))];
-    const estados = [...new Set(vehiculosFiltrados.map(v => v.estado))];
+    const applyFilters = () => {
+        onApplyFilters({
+            marca: selectedMarca,
+            modelo: selectedModelo,
+            anio: selectedAnio,
+            estado: selectedEstado,
+        });
+    };
 
     return (
         <div className={styles.vehicleFiltersContainerProperties}>
             <h6>Filtros</h6>
 
-            <select className={styles.vehicleFilterProperties}>
-                <option>Marca</option>
-                {marcas.map(m => (
-                    <option key={m}>{m}</option>
+            <select
+                className={styles.vehicleFilterProperties}
+                value={selectedMarca}
+                onChange={(e) => setSelectedMarca(e.target.value)}
+            >
+                <option value="">Marca</option>
+                {marcas.map((m, index) => (
+                    <option key={index}>{m}</option>
                 ))}
             </select>
 
-            <select className={styles.vehicleFilterProperties}>
-                <option>Modelo</option>
-                {modelos.map(m => (
-                    <option key={m}>{m}</option>
+            <select
+                className={styles.vehicleFilterProperties}
+                value={selectedModelo}
+                onChange={(e) => setSelectedModelo(e.target.value)}
+            >
+                <option value="">Modelo</option>
+                {modelos.map((m, index) => (
+                    <option key={index}>{m}</option>
                 ))}
             </select>
 
-            <select className={styles.vehicleFilterProperties}>
-                <option>Año</option>
-                {anios.map(a => (
-                    <option key={a}>{a}</option>
+            <select
+                className={styles.vehicleFilterProperties}
+                value={selectedAnio}
+                onChange={(e) =>
+                    setSelectedAnio(e.target.value === "" ? "" : Number(e.target.value))
+                }
+            >
+                <option value="">Año</option>
+                {anios.map((a, index) => (
+                    <option key={index}>{a}</option>
                 ))}
             </select>
 
-            <select className={styles.vehicleFilterProperties}>
-                <option>Estado</option>
-                {estados.map(e => (
-                    <option key={e}>{e}</option>
+            <select
+                className={styles.vehicleFilterProperties}
+                value={selectedEstado}
+                onChange={(e) => setSelectedEstado(e.target.value)}
+            >
+                <option value="">Estado</option>
+                {estados.map((e, index) => (
+                    <option key={index}>{e}</option>
                 ))}
             </select>
+
+            <button className={styles.applyButton} onClick={applyFilters}>
+                Aplicar filtros
+            </button>
         </div>
     );
 }

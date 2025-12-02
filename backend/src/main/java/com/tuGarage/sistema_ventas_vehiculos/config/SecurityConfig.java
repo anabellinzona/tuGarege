@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -40,45 +38,49 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOriginPatterns(List.of("*")); // <-- PERMITIR TODO PARA PROBAR
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", configuration);
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(Customizer.withDefaults())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // ← AGREGAR ESTO
                 .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
                 .authorizeHttpRequests(auth -> {
-                    // Endpoints públicos
+                    // Endpoints públicos de USUARIO (agregar estos)
+                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/register").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/api/usuario/login").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/usuario/**").permitAll();
+
+                    // Endpoints públicos de VENDEDORES
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
+
+                    // Otros endpoints públicos
+                    auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
-                    // 👇👇👇 AÑADÍ ESTO
-                    // Endpoints que requieren estar logueado
+                    // Endpoints protegidos
                     auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
                     auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
-                    // ☝☝☝ AÑADIDOS
+                    auth.requestMatchers(HttpMethod.PUT, "/api/usuario/**").authenticated();
+                    auth.requestMatchers(HttpMethod.DELETE, "/api/usuario/**").authenticated();
 
                     // Todo lo demás requiere autenticación
                     auth.anyRequest().authenticated();
                 })
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .logout(logout -> logout.permitAll());
-
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
         return http.build();
     }
 

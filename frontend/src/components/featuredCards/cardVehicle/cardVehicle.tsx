@@ -47,6 +47,7 @@ export default function CardVehicle(){
     const carouselRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        console.log(process.env.NEXT_PUBLIC_API_URL)
         const fetchVehicle = async () => {
         fetch(`${API_URL}/api/vehiculos/destacados`)
             .then(response => {
@@ -142,60 +143,52 @@ export default function CardVehicle(){
 
             <div className={styles.carouselContainer} ref={carouselRef}>
                 {vehiculos.map((vehiculo) => (
-                    <Link href={`/fichaVehiculo/${vehiculo.id}`} key={vehiculo.id}>
-                        <div className={styles.vehicleCardProperties} onMouseEnter={() => fetchSaller(vehiculo.vendedorId)}>
-                            <div className={styles.vehicleImageProperties}>
-                                <Image
-                                    src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
-                                    alt={`${vehiculo.marca} ${vehiculo.modelo}`}
-                                    fill
-                                    style={{objectFit: "cover"}}
-                                />
-
-                                <div className={styles.overlay}>
-                                    <div className={styles.contact}>
-                                        <div className={styles.contactImage}>
-                                            <Link href={`https://wa.me/${vendedor?.telefono}`} >
-                                                <Image
-                                                    src={"/icons/wp.webp"}
-                                                    alt={"WhatsApp icon"}
-                                                    fill
-                                                    style={{objectFit: "cover"}}
-                                                />
-                                            </Link>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.contact}>
-                                        <div className={styles.contactImage}>
-                                            <Link href={`https://wa.me/${vendedor?.telefono}`} >
-                                                <Image
-                                                    src={"/icons/phone.png"}
-                                                    alt={"Phone icon"}
-                                                    width={35}
-                                                    height={35}
-                                                />
-                                            </Link>
-                                        </div>
+                    <div className={styles.vehicleCardProperties} onClick={ () => <Link href={`/fichaVehiculo/${vehiculo.id}`} key={vehiculo.id}/>} onMouseEnter={() => fetchSaller(vehiculo.vendedorId)}>
+                        <div className={styles.vehicleImageProperties}>
+                            <Image
+                                src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
+                                alt={`${vehiculo.marca} ${vehiculo.modelo}`}
+                                fill
+                                style={{objectFit: "cover"}}
+                            />
+                            <div className={styles.overlay}>
+                                <div className={styles.contact}>
+                                    <div onClick={ () => <Link href={`https://wa.me/${vendedor?.telefono}`}/>} className={styles.contactImage}>
+                                        <Image
+                                            src={"/icons/wp.webp"}
+                                            alt={"WhatsApp icon"}
+                                            fill
+                                            style={{objectFit: "cover"}}
+                                        />
                                     </div>
                                 </div>
-                            </div>
-                            <div className={styles.infoVehicleProperties}>
-                                <div>
-                                    <h6>{vehiculo.marca} {vehiculo.modelo}</h6>
-                                    <span>{vehiculo.km}km</span>
-                                </div>
-                                <div className={styles.logoVehicleProperties}>
-                                    <Image
-                                        src="/logo/vehicleLogo.png"
-                                        alt={`Logo ${vehiculo.marca}`}
-                                        fill
-                                        style={{objectFit: "contain"}}
-                                    />
+                                <div className={styles.contact}>
+                                    <div onClick={ () => <Link href={`https://wa.me/${vendedor?.telefono}`}/>}  className={styles.contactImage}>
+                                        <Image
+                                            src={"/icons/phone.png"}
+                                            alt={"Phone icon"}
+                                            width={35}
+                                            height={35}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </Link>
+                        <div className={styles.infoVehicleProperties}>
+                            <div>
+                                <h6>{vehiculo.marca} {vehiculo.modelo}</h6>
+                                <span>{vehiculo.km}km</span>
+                            </div>
+                            <div className={styles.logoVehicleProperties}>
+                                <Image
+                                    src="/logo/vehicleLogo.png"
+                                    alt={`Logo ${vehiculo.marca}`}
+                                    fill
+                                    style={{objectFit: "contain"}}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 ))}
             </div>
 

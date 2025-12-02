@@ -74,6 +74,22 @@
     width: 80%;
 }
 
+.backButton {
+    background-color: transparent;
+    color: var(--red-2);
+    border: none;
+    padding: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: lighter;
+    transition: 0.2s;
+}
+
+.backButton:hover {
+    font-weight: 600;
+}
+
+
 /* ======================== */
 /* 📱 MOBILE FIRST          */
 /* ======================== */

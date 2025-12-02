@@ -73,15 +73,26 @@ export default function VehiclesContent() {
         setSelectedFilter(tipo);
     };
 
+    // 🔥 ETAPA 1 (cards) / ETAPA 2 (filtros avanzados) + botón volver
     const renderFilters = (
         <div className={`${styles.filters} ${showFilters ? styles.show : styles.hide}`}>
+
+            {selectedFilter !== "Todos" && (
+                <button
+                    className={styles.backButton}
+                    onClick={() => setSelectedFilter("Todos")}
+                >
+                    ← Volver
+                </button>
+            )}
+
             {selectedFilter === "Todos" ? (
                 <VehicleTypeFilterContainer
                     onFilterChange={handleFilterChange}
                     selectedFilter={selectedFilter}
                 />
             ) : (
-                <VehicleFilters />
+                <VehicleFilters tipo={selectedFilter} />
             )}
         </div>
     );

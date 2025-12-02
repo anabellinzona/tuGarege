@@ -42,6 +42,10 @@
     color: white;
 }
 
+.selectActive {
+    color: var(--red-1);
+    font-weight: bolder;
+}
 
 @media (min-width: 768px) {
     .vehicleFiltersContainerProperties {

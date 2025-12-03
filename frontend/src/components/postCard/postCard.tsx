@@ -147,6 +147,16 @@ export default function PostCard() {
 
     return (
         <>
+            {isOwner && (
+                <Link href="/vehiculos/crear">
+                    <main className={styles.main}>
+                        <div className={styles.emptyCard}>
+                            <span className={styles.plus}>+</span>
+                        </div>
+                    </main>
+                </Link>
+            )}
+
             {vehiculos.map((vehiculo) => {
                 const index = indices[vehiculo.id] ?? 0;
                 const imagenActual = vehiculo.imagenes[index];

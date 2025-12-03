@@ -145,6 +145,33 @@
     z-index: 999;
 }
 
+.emptyCard {
+    flex: 1;
+    min-height: inherit;
+    height: auto;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--neutral-5-90);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.emptyCard:hover {
+    background: var(--neutral-5);
+}
+
+.plus {
+    font-size: 80px;
+    font-weight: 300;
+    color: white;
+    line-height: 0;
+}
+
+
 @media (min-width: 768px) {
     .main {
         min-width: 370px;

@@ -81,121 +81,26 @@ export default function MainInfo({
 
     return (
         <div className={styles.vehicleInformationProperties}>
+            <button>Editar</button>
             <div className={styles.vehicleMainInfortationProperties}>
                 <div className={styles.editableField}>
-                    {editingField === "marca" ? (
-                        <EditableText
-                            value={vehiculo.marca}
-                            isEditing={true}
-                            onSave={(value) => onSaveField("marca", value)}
-                            onCancel={onCancelEdit}
-                            className={classname}
-                        />
-                    ) : (
-                        <h1 onClick={() => onStartEdit("marca")}>{vehiculo.marca}</h1>
-                    )}
-                    {isEditable && (
-                        <EditButton
-                            onStartEdit={() => onStartEdit("marca")}
-                            show={true}
-                            isEditing={editingField === "marca"}
-                            onEndEdit={onCancelEdit}
-                            img={"/icons/editIcon.png"}
-                        />
-                    )}
-
-                    {editingField === "modelo" ? (
-                        <EditableText
-                            value={vehiculo.modelo}
-                            isEditing={true}
-                            onSave={(value) => onSaveField("modelo", value)}
-                            onCancel={onCancelEdit}
-                            className={classname}
-                        />
-                    ) : (
-                        <h1 onClick={() => onStartEdit("modelo")}>{vehiculo.modelo}</h1>
-                    )}
-                    {isEditable && (
-                        <EditButton
-                            onStartEdit={() => onStartEdit("modelo")}
-                            show={true}
-                            isEditing={editingField === "modelo"}
-                            onEndEdit={onCancelEdit}
-                            img={"/icons/editIcon.png"}
-                        />
-                    )}
+                    <h1>{vehiculo.marca}</h1>
+                    <h1>{vehiculo.modelo}</h1>
                 </div>
 
                 {/* Kilómetros */}
                 <div className={styles.editableField}>
-                    {editingField === "km" ? (
-                        <EditableNumeric
-                            value={vehiculo.km}
-                            isEditing={true}
-                            onSave={(value) => onSaveField("km", value)}
-                            onCancel={onCancelEdit}
-                            className={classname}
-                        />
-                    ) : (
-                        <p onClick={() => onStartEdit("km")}>{vehiculo.km} km</p>
-                    )}
-                    {isEditable && (
-                        <EditButton
-                            onStartEdit={() => onStartEdit("km")}
-                            show={true}
-                            isEditing={editingField === "km"}
-                            onEndEdit={onCancelEdit}
-                            img={"/icons/editIcon.png"}
-                        />
-                    )}
-
-                    {editingField === "anio" ? (
-                        <EditableNumeric
-                            value={vehiculo.anio}
-                            isEditing={true}
-                            onSave={(value) => onSaveField("anio", value)}
-                            onCancel={onCancelEdit}
-                            className={classname}
-                        />
-                    ) : (
-                        <p onClick={() => onStartEdit("anio")}>{vehiculo.anio}</p>
-                    )}
-                    {isEditable && (
-                        <EditButton
-                            onStartEdit={() => onStartEdit("anio")}
-                            show={true}
-                            isEditing={editingField === "anio"}
-                            onEndEdit={onCancelEdit}
-                            img={"/icons/editIcon.png"}
-                        />
-                    )}
+                    <p>{vehiculo.km} km</p>
+                    <span>|</span>
+                    <p>{vehiculo.anio}</p>
                 </div>
             </div>
 
             <div className={styles.priceInformationProperties}>
                 <div className={styles.editableField}>
                     <h1>Precio</h1>
-                    {isEditable && (
-                        <EditButton
-                            onStartEdit={() => onStartEdit("precio")}
-                            show={true}
-                            isEditing={editingField === "precio"}
-                            onEndEdit={onCancelEdit}
-                            img={"/icons/editIcon.png"}
-                        />
-                    )}
                 </div>
-                {editingField === "precio" ? (
-                    <EditableNumeric
-                        value={vehiculo.precio}
-                        isEditing={true}
-                        onSave={(value) => onSaveField("precio", value)}
-                        onCancel={onCancelEdit}
-                        className={classname}
-                    />
-                ) : (
-                    <span onClick={() => onStartEdit("precio")}>${vehiculo.precio}</span>
-                )}
+                <span>${vehiculo.precio}</span>
             </div>
 
             <div className={styles.sallerInformationProperties}>

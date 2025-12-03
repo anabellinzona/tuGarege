@@ -9,6 +9,7 @@ import ConsultButton from "@/components/buttons/consultButton/consultButton";
 import Recommended from "@/components/recommended/recommended";
 import EditableText from "@/components/fileVehicle/editableText/editableText";
 import EditButton from "@/components/fileVehicle/editButton/editButton";
+import FormEdit from "@/components/fileVehicle/formEdit/formEdit";
 
 type Prop = {
     id: string;
@@ -172,6 +173,10 @@ export default function FileVehicle({id, mode}: Prop){
             </div>
             <div className={styles.buttonContainerProperties}>
                 <ConsultButton message={"Consultar por este vehículo"}/>
+            </div>
+
+            <div className={styles.formProperties}>
+                <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} />
             </div>
         </section>
     );

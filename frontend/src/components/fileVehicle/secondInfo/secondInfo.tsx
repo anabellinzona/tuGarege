@@ -46,28 +46,29 @@ export default function SecondInfo({vehiculo,
     return(
         <div className={styles.tableCharacteristicProperties}>
             <h3>Características principales</h3>
-            <div>
-                {editingField === "modelo" ? (
-                    <EditableText
-                        value={vehiculo?.modelo || " "}
-                        isEditing={true}
-                        onSave={(value) => onSaveField("modelo", value)}
-                        onCancel={onCancelEdit}
-                        className={classname}
-                    />
-                ) : (
-                    <p onClick={() => onStartEdit("modelo")}><strong>Modelo: </strong>{vehiculo?.marca}</p>
-                )}
-                {isEditable && (
-                    <EditButton
-                        onStartEdit={() => onStartEdit("modelo")}
-                        show={true}
-                        isEditing={editingField === "modelo"}
-                        onEndEdit={onCancelEdit}
-                        img={"/icons/editIcon.png"}
-                    />
-                )}
-            </div>
+            {/*<div>*/}
+            {/*    {editingField === "modelo" ? (*/}
+            {/*        <EditableText*/}
+            {/*            value={vehiculo?.modelo || " "}*/}
+            {/*            isEditing={true}*/}
+            {/*            onSave={(value) => onSaveField("modelo", value)}*/}
+            {/*            onCancel={onCancelEdit}*/}
+            {/*            className={classname}*/}
+            {/*        />*/}
+            {/*    ) : (*/}
+            {/*        <p onClick={() => onStartEdit("modelo")}><strong>Modelo: </strong>{vehiculo?.marca}</p>*/}
+            {/*    )}*/}
+            {/*    {isEditable && (*/}
+            {/*        <EditButton*/}
+            {/*            onStartEdit={() => onStartEdit("modelo")}*/}
+            {/*            show={true}*/}
+            {/*            isEditing={editingField === "modelo"}*/}
+            {/*            onEndEdit={onCancelEdit}*/}
+            {/*            img={"/icons/editIcon.png"}*/}
+            {/*        />*/}
+            {/*    )}*/}
+            {/*</div>*/}
+            <p><strong>Modelo:</strong> {vehiculo?.modelo}</p>
             <p><strong>Tipo de combustible:</strong> {""}</p>
             <p><strong>Kilometraje:</strong> {vehiculo?.km}km</p>
             <p><strong>Otras características y/o detalles:</strong> {vehiculo?.descripcion}</p>

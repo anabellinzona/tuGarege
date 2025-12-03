@@ -107,7 +107,6 @@ export default function CardVehicle(){
     if (loading) {
         return (
             <section className={styles.featuredCardsContainerProperties}>
-                <h1>Destacados</h1>
                 <p>Cargando vehículos...</p>
             </section>
         );

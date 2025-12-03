@@ -73,3 +73,7 @@
     flex-direction: row;
     gap: var(--10px);
 }
+
+.editableField h1{
+    font-size: 22px;
+}

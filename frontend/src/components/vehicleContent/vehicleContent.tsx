@@ -44,6 +44,7 @@ export default function VehiclesContent() {
     const [isMobile, setIsMobile] = useState(false);
     const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilters>({});
     const searchParams = useSearchParams();
+    const searchFromURL = searchParams.get("search") || "";
     const tipoFromUrl = searchParams.get("tipo") || "Todos";
     const [selectedFilter, setSelectedFilter] = useState(tipoFromUrl);
     const [loading, setLoading] = useState(false);
@@ -184,9 +185,6 @@ export default function VehiclesContent() {
         setFilteredVehiculos(sorted);
     };
 
-    // --------------------------------------------------
-// 🔍 BUSCADOR MULTIPALABRAS
-// --------------------------------------------------
     useEffect(() => {
         if (!searchQuery.trim()) {
             setFilteredVehiculos(vehiculos);
@@ -213,6 +211,11 @@ export default function VehiclesContent() {
         setFilteredVehiculos(filtered);
     }, [searchQuery, vehiculos]);
 
+    useEffect(() => {
+        if (searchFromURL) {
+            setSearchQuery(searchFromURL);
+        }
+    }, [searchFromURL]);
 
 
     return (

@@ -115,7 +115,6 @@ export default function ProfileDescription({ idV }: Prop) {
             if (response.status === 204) {
                 setVendedor(editedVendedor);
                 setEditMode(false);
-                alert("Cambios guardados correctamente (204)");
                 return;
             }
 
@@ -133,7 +132,7 @@ export default function ProfileDescription({ idV }: Prop) {
 
         } catch (error) {
             console.error("Error al guardar:", error);
-            alert("No se pudieron guardar los cambios. Revisa la consola.");
+            alert("No se pudieron guardar los cambios. Intentelo nuevamente.");
         }
     };
 

@@ -8,9 +8,9 @@ type Prop = {
 export default function SellButton({nameButton, link}: Prop) {
     return (
         <Link href={link} >
-            <button className={styles.button}>
+            <div className={styles.button}>
                 <h5>{nameButton}</h5>
-            </button>
+            </div>
         </Link>
     )
 }

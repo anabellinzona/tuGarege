@@ -270,7 +270,7 @@ export default function ProfileDescription({ idV }: Prop) {
             </div>
 
 
-            {/* 👇 ahora controlamos con isOwner */}
+
             {isOwner && (
                 <div className={styles.editButtons}>
                     {!editMode ? (

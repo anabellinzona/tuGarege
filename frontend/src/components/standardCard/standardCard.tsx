@@ -5,11 +5,11 @@ type Prop = {
     id?: number,
     marca?: string,
     modelo?: string,
-    km?: number,
-    image: string
+    image: string,
+    precio: number
 }
 
-export default function StandardCard({id, marca, modelo, km, image}: Prop) {
+export default function StandardCard({id, marca, modelo, image, precio}: Prop) {
     return (
         <Link href={`/fichaVehiculo/${id}`} >
             <main className={styles.main}>
@@ -25,7 +25,7 @@ export default function StandardCard({id, marca, modelo, km, image}: Prop) {
                 <div className={styles.data}>
                     <div className={styles.details}>
                         <h6>{marca} {modelo}</h6>
-                        <h6 className={styles.km}>{km}km</h6>
+                        <h6 className={styles.price}>${precio}</h6>
                     </div>
 
                     <div>

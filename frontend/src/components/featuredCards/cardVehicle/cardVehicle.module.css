@@ -78,6 +78,7 @@
 
 .infoVehicleProperties span{
     color: var(--red-1);
+    font-size: var(--h4);
 }
 
 .infoVehicleProperties h6{

@@ -116,12 +116,12 @@ export default function UserContent({idV}: Prop) {
 
                     <div className={styles.contact}>
                         <div className={styles.contactImageRed}>
-                            <Link href={`tel:${vendedor?.telefono}`}> {/* Corregido a 'tel:' para llamadas */}
+                            <Link href={`tel:${vendedor?.telefono}`}>
                                 <Image
-                                    src={"/icons/phone.png"}
+                                    src={"/icons/white-phone.png"}
                                     alt={"Phone icon"}
-                                    width={24}
-                                    height={24}
+                                    width={40}
+                                    height={40}
                                 />
                             </Link>
                         </div>

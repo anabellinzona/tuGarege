@@ -82,6 +82,96 @@
     transform: scale(1.15);
 }
 
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.main:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.actionBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+
+    padding: var(--5px) 0;
+
+    font-size: var(--h5);
+    border-radius: var(--50px);
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.editBtn {
+    background: var(--neutral-1);
+    color: var(--red-1);
+}
+
+.editBtn:hover {
+    background: var(--neutral-5);
+}
+
+.deleteBtn {
+    background: var(--red-2);
+    color: var(--neutral-1);
+}
+
+.deleteBtn:hover {
+    background: var(--red-1);
+}
+
+.actions {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+
+    z-index: 999;
+}
+
+.emptyCard {
+    flex: 1;
+    min-height: inherit;
+    height: auto;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--neutral-5-90);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.emptyCard:hover {
+    background: var(--neutral-5);
+}
+
+.plus {
+    font-size: 80px;
+    font-weight: 300;
+    color: white;
+    line-height: 0;
+}
+
+
 @media (min-width: 768px) {
     .main {
         min-width: 370px;

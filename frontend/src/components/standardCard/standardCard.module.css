@@ -27,9 +27,8 @@
     align-items: center;
     justify-content: space-between;
 
-    background: var(--neutral-5-50);
+    background: var(--neutral-5-90);
     padding: var(--10px) var(--20px);
-    backdrop-filter: blur(2px);
 }
 
 .details {
@@ -37,9 +36,10 @@
     flex-direction: column;
 }
 
-.km {
+.price {
     color: var(--red-1);
-    font-weight: bold;
+    font-size: var(--h4);
+    font-width: bold;
 }
 
 @media (min-width: 768px) {

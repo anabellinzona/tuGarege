@@ -44,6 +44,7 @@ export default function VehiclesContent() {
     const [isMobile, setIsMobile] = useState(false);
     const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilters>({});
     const searchParams = useSearchParams();
+    const searchFromURL = searchParams.get("search") || "";
     const tipoFromUrl = searchParams.get("tipo") || "Todos";
     const [selectedFilter, setSelectedFilter] = useState(tipoFromUrl);
     const [loading, setLoading] = useState(false);
@@ -184,9 +185,6 @@ export default function VehiclesContent() {
         setFilteredVehiculos(sorted);
     };
 
-    // --------------------------------------------------
-// 🔍 BUSCADOR MULTIPALABRAS
-// --------------------------------------------------
     useEffect(() => {
         if (!searchQuery.trim()) {
             setFilteredVehiculos(vehiculos);
@@ -213,6 +211,11 @@ export default function VehiclesContent() {
         setFilteredVehiculos(filtered);
     }, [searchQuery, vehiculos]);
 
+    useEffect(() => {
+        if (searchFromURL) {
+            setSearchQuery(searchFromURL);
+        }
+    }, [searchFromURL]);
 
 
     return (
@@ -243,6 +246,10 @@ export default function VehiclesContent() {
                 <div className={styles.cardsGrid}>
                     {loading ? (
                         <p>Cargando vehículos...</p>
+                    ) : filteredVehiculos.length === 0 ? (
+                        <p className={styles.noResults}>
+                            No se han encontrado resultados para: <strong>{searchQuery}</strong>
+                        </p>
                     ) : (
                         filteredVehiculos.map((vehiculo) => (
                             <StandardCard
@@ -250,12 +257,13 @@ export default function VehiclesContent() {
                                 id={vehiculo.id}
                                 marca={vehiculo.marca}
                                 modelo={vehiculo.modelo}
-                                km={vehiculo.km}
                                 image={vehiculo.imagenes[0]?.url}
+                                precio={vehiculo.precio}
                             />
                         ))
                     )}
                 </div>
+
             </section>
         </main>
     );

@@ -3,6 +3,8 @@ import {useEffect, useState, useRef} from "react";
 import styles from "../cardVehicle/cardVehicle.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 interface Imagen {
     id: number;
@@ -45,6 +47,7 @@ export default function CardVehicle(){
     const [error, setError] = useState(null);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const carouselRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     useEffect(() => {
         console.log(process.env.NEXT_PUBLIC_API_URL)
@@ -142,7 +145,12 @@ export default function CardVehicle(){
 
             <div className={styles.carouselContainer} ref={carouselRef}>
                 {vehiculos.map((vehiculo) => (
-                    <div className={styles.vehicleCardProperties} onClick={ () => <Link href={`/fichaVehiculo/${vehiculo.id}`} key={vehiculo.id}/>} onMouseEnter={() => fetchSaller(vehiculo.vendedorId)}>
+                    <div
+                        key={vehiculo.id}
+                        className={styles.vehicleCardProperties}
+                        onClick={() => router.push(`/fichaVehiculo/${vehiculo.id}`)}
+                        onMouseEnter={() => fetchSaller(vehiculo.vendedorId)}
+                    >
                         <div className={styles.vehicleImageProperties}>
                             <Image
                                 src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
@@ -152,7 +160,13 @@ export default function CardVehicle(){
                             />
                             <div className={styles.overlay}>
                                 <div className={styles.contact}>
-                                    <div onClick={ () => <Link href={`https://wa.me/${vendedor?.telefono}`}/>} className={styles.contactImage}>
+                                    <div
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            router.push(`https://wa.me/${vendedor?.telefono}`);
+                                        }}
+                                        className={styles.contactImage}
+                                    >
                                         <Image
                                             src={"/icons/wp.webp"}
                                             alt={"WhatsApp icon"}
@@ -161,8 +175,15 @@ export default function CardVehicle(){
                                         />
                                     </div>
                                 </div>
+
                                 <div className={styles.contact}>
-                                    <div onClick={ () => <Link href={`https://wa.me/${vendedor?.telefono}`}/>}  className={styles.contactImage}>
+                                    <div
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            router.push(`https://wa.me/${vendedor?.telefono}`);
+                                        }}
+                                        className={styles.contactImage}
+                                    >
                                         <Image
                                             src={"/icons/phone.png"}
                                             alt={"Phone icon"}
@@ -173,14 +194,16 @@ export default function CardVehicle(){
                                 </div>
                             </div>
                         </div>
+
                         <div className={styles.infoVehicleProperties}>
                             <div>
                                 <h6>{vehiculo.marca} {vehiculo.modelo}</h6>
-                                <span>{vehiculo.km}km</span>
+                                <span>${vehiculo.precio}</span>
                             </div>
+
                             <div className={styles.logoVehicleProperties}>
                                 <Image
-                                    src="/logo/vehicleLogo.png"
+                                    src={vendedor?.fotoPerfil || "/logo/vertical.png"}
                                     alt={`Logo ${vehiculo.marca}`}
                                     fill
                                     style={{objectFit: "contain"}}
@@ -190,6 +213,7 @@ export default function CardVehicle(){
                     </div>
                 ))}
             </div>
+
 
             <button
                 className={`${styles.arrowButton} ${styles.arrowRight}`}

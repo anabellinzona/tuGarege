@@ -5,6 +5,7 @@ import styles from "./postCard.module.css";
 import Image from "next/image";
 import { authService } from "@/service/authService";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 interface Imagen {
     id: number;
@@ -35,6 +36,8 @@ export default function PostCard() {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const [indices, setIndices] = useState<{ [vehiculoId: number]: number }>({});
     const params = useParams();
+    const userData = authService.getUserData();
+    const userId = userData?.id;
 
 
 
@@ -86,6 +89,8 @@ export default function PostCard() {
         }
     }, [params?.id]); // Re-ejecutar si el ID en la URL cambia
 
+    const isOwner = !!(userId && safeVendedorId && Number(userId) === Number(safeVendedorId));
+
     const prev = (vehiculoId: number) => {
         setIndices((prevIndices) => {
             const indexActual = prevIndices[vehiculoId] ?? 0;
@@ -109,11 +114,54 @@ export default function PostCard() {
     if (loading) return <p>Cargando vehículos...</p>;
     if (error) return <p>Error: {error}</p>;
 
+    const handleDelete = async (vehiculoId: number) => {
+        if (!confirm("¿Seguro que deseas eliminar esta publicación? Esta acción no se puede deshacer.")) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/api/vehiculos/${vehiculoId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al eliminar el vehículo");
+            }
+
+            // actualizar lista sin recargar
+            setVehiculos(prev => prev.filter(v => v.id !== vehiculoId));
+
+        } catch (error) {
+            console.error("Error al eliminar:", error);
+            alert("Hubo un error al eliminar la publicación.");
+        }
+    };
+
+    console.log("userId:", userId);
+    console.log("safeVendedorId:", safeVendedorId);
+    console.log("canEdit:", Number(userId) === Number(safeVendedorId));
+
+
     return (
         <>
+            {isOwner && (
+                <Link href="/vehiculos/crear">
+                    <main className={styles.main}>
+                        <div className={styles.emptyCard}>
+                            <span className={styles.plus}>+</span>
+                        </div>
+                    </main>
+                </Link>
+            )}
+
             {vehiculos.map((vehiculo) => {
                 const index = indices[vehiculo.id] ?? 0;
                 const imagenActual = vehiculo.imagenes[index];
+
+                const canEdit = Number(userId) === Number(safeVendedorId);
 
                 return (
                     <main key={vehiculo.id} className={styles.main}>
@@ -160,6 +208,21 @@ export default function PostCard() {
                                 ›
                             </button>
                         </div>
+
+                        {canEdit && (
+                            <div className={styles.overlay}>
+                                <Link href={`/vehiculos/editar/${vehiculo.id}`} className={styles.actionBtn + " " + styles.editBtn}>
+                                    Editar publicación ✏
+                                </Link>
+
+                                <button
+                                    className={styles.actionBtn + " " + styles.deleteBtn}
+                                    onClick={() => handleDelete(vehiculo.id)}
+                                >
+                                    Eliminar publicación 🗙
+                                </button>
+                            </div>
+                        )}
                     </main>
                 );
             })}

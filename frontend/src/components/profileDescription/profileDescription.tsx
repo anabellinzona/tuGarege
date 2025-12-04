@@ -177,7 +177,7 @@ export default function ProfileDescription({ idV }: Prop) {
                             <div className={styles.contactRed}>
                                 <Link href={`tel:${vendedor?.telefono}`}>
                                     <Image
-                                        src={'/icons/phone.png'}
+                                        src={'/icons/white-phone.png'}
                                         alt={'phone icon'}
                                         width={22}
                                         height={22}

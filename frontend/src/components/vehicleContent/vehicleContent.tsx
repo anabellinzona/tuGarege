@@ -246,6 +246,10 @@ export default function VehiclesContent() {
                 <div className={styles.cardsGrid}>
                     {loading ? (
                         <p>Cargando vehículos...</p>
+                    ) : filteredVehiculos.length === 0 ? (
+                        <p className={styles.noResults}>
+                            No se han encontrado resultados para: <strong>{searchQuery}</strong>
+                        </p>
                     ) : (
                         filteredVehiculos.map((vehiculo) => (
                             <StandardCard
@@ -253,12 +257,13 @@ export default function VehiclesContent() {
                                 id={vehiculo.id}
                                 marca={vehiculo.marca}
                                 modelo={vehiculo.modelo}
-                                km={vehiculo.km}
                                 image={vehiculo.imagenes[0]?.url}
+                                precio={vehiculo.precio}
                             />
                         ))
                     )}
                 </div>
+
             </section>
         </main>
     );

@@ -85,7 +85,7 @@ export default function RecentsSection() {
             </div>
             <div className={styles.cardsGrid}>
                 {vehicle.map(vehicle => (
-                    <StandardCard id={vehicle.id} marca={vehicle.marca} modelo={vehicle.modelo} km={vehicle.km} image={vehicle.imagenes[0]?.url}/>
+                    <StandardCard id={vehicle.id} marca={vehicle.marca} modelo={vehicle.modelo} precio={vehicle.precio} image={vehicle.imagenes[0]?.url}/>
                 ))}
             </div>
         </section>

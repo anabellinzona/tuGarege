@@ -77,3 +77,10 @@
 .editableField h1{
     font-size: 22px;
 }
+
+.modifeButtonProperties{
+    background-color: var(--red-2);
+    border-radius: var(--20px);
+    padding: var(--10px) var(--50px);
+    cursor: pointer;
+}

@@ -89,7 +89,7 @@ export default function ProfileDescription({ idV }: Prop) {
 
         try {
             const id = Number(vendedorId);
-            const token = authService.getToken();
+            const token = localStorage.getItem('token');
 
             const body = {
                 nombre: editedVendedor.nombre,
@@ -107,7 +107,7 @@ export default function ProfileDescription({ idV }: Prop) {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                    "Authorization": `Bearer ${token}` // ← AGREGAR ESTO
                 },
                 body: JSON.stringify(body),
             });
@@ -268,8 +268,6 @@ export default function ProfileDescription({ idV }: Prop) {
                     </h5>
                 )}
             </div>
-
-
 
             {isOwner && (
                 <div className={styles.editButtons}>

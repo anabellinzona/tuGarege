@@ -1,0 +1,58 @@
+.formProperties{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    border: var(--red-1) 2px solid;
+    background-color: var(--neutral-1);
+    height: fit-content;
+    border-radius: var(--20px);
+    justify-self: center;
+    align-self: center;
+    position: absolute;
+    bottom: 3%;
+    padding-right: 10px;
+    padding-top: 10px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.formProperties input{
+    width: 100%;
+    border: var(--neutral-5) 1px solid;
+    padding: var(--10px);
+    border-radius: var(--20px);
+}
+
+.inputsAndLabelProperties{
+    display: flex;
+    flex-direction: column;
+    gap: var(--5px);
+}
+
+.modifeButton{
+    width: fit-content;
+    height: fit-content;
+    padding: var(--10px) var(--40px);
+    background-color: var(--green-2);
+    border-radius: var(--20px);
+    cursor: pointer;
+}
+
+.formComponentsProperties{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: var(--20px);
+    justify-content: center;
+    align-items: center;
+    padding: var(--50px);
+}
+
+.closesButtonProperties button{
+    cursor: pointer;
+}
+
+.notShow{
+    opacity: 0;
+    visibility: hidden;
+}

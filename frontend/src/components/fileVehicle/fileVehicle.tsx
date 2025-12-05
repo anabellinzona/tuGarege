@@ -176,7 +176,7 @@ export default function FileVehicle({id, mode}: Prop){
             </div>
 
             <div className={styles.formProperties}>
-                <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} />
+                <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} idV={vehiculo.id} />
             </div>
         </section>
     );

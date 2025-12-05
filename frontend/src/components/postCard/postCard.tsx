@@ -120,18 +120,19 @@ export default function PostCard() {
         }
 
         try {
-            const response = await fetch(`${API_URL}/api/vehiculos/${vehiculoId}`, {
+            const response = await fetch(`${API_URL}/api/vehiculos/eliminar/${vehiculoId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
                 }
-            });
+            })
+                .then((response) =>{
+                if(!response.ok){
+                    throw new Error("Error al eliminar el vehículo");
+                }
+                return response.json();
+            })
 
-            if (!response.ok) {
-                throw new Error("Error al eliminar el vehículo");
-            }
-
-            // actualizar lista sin recargar
             setVehiculos(prev => prev.filter(v => v.id !== vehiculoId));
 
         } catch (error) {

@@ -47,6 +47,26 @@ export default function FileVehicle({id, mode}: Prop){
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+    const initialVehicle: Vehiculo = vehiculo || {
+        id: 0,
+        vendedorId: 0,
+        imagenes: [],
+        marca: '',
+        modelo: '',
+        km: 0,
+        precio: 0,
+        descripcion: '',
+        tipo: '',
+        estado: '',
+        anio: 0
+    };
+
+    const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
+
+    // 1. Estado para almacenar el vehículo que se está editando
+    const [vehiculoAEditar, setVehiculoAEditar] = useState(true);
+
+
     useEffect(() => {
         fetch(`${API_URL}/api/vehiculos/${id}`)
             .then((response) =>{
@@ -64,22 +84,6 @@ export default function FileVehicle({id, mode}: Prop){
                 setLoading(false);
             });
     }, [id]);
-
-    const initialVehicle: Vehiculo = vehiculo || {
-        id: 0,
-        vendedorId: 0,
-        imagenes: [],
-        marca: '',
-        modelo: '',
-        km: 0,
-        precio: 0,
-        descripcion: '',
-        tipo: '',
-        estado: '',
-        anio: 0
-    };
-
-    const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
 
     if(loading) return <div>Cargando...</div>;
     if(!vehiculo) return <div>No se encontró el vehículo</div>;
@@ -109,6 +113,18 @@ export default function FileVehicle({id, mode}: Prop){
 
     const handleStartEditHeader = () => setEditingField('descripcion');
 
+
+    // 2. Función para abrir el formulario
+    const handleOpenEdit = () => {
+        // Al hacer clic en Editar, cargamos los datos
+        setVehiculoAEditar(true);
+    };
+
+    // 3. Función para cerrar el formulario (resetear el estado)
+    const handleCloseEdit = () => {
+        setVehiculoAEditar(false);
+    };
+
     return(
         <section className={styles.vehicleFileSectionContainerProperties}>
             <div className={styles.carrouselAndVehicleInformationProperties}>
@@ -117,8 +133,7 @@ export default function FileVehicle({id, mode}: Prop){
                     vehiculo={vehiculo}
                     isEditable={isEditableFile}
                     editingField={editingField}
-                    onStartEdit={handleStartEdit}
-                    onCancelEdit={handleCancelEdit}
+                    onEditClick={handleOpenEdit}
                     onSaveField={handleSaveField}
                     classname={styles.inputProperties}
                 />
@@ -176,7 +191,9 @@ export default function FileVehicle({id, mode}: Prop){
             </div>
 
             <div className={styles.formProperties}>
-                <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} idV={vehiculo.id} />
+                {vehiculoAEditar && (
+                    <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} idV={vehiculo.id} />
+                )}
             </div>
         </section>
     );

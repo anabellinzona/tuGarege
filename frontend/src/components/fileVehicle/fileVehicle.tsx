@@ -46,6 +46,7 @@ export default function FileVehicle({id, mode}: Prop){
     const isEmptyFile = mode === "create";
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const parametrosF:string[] = ["marca", "modelo", "km", "anio"]
 
     const initialVehicle: Vehiculo = vehiculo || {
         id: 0,
@@ -64,7 +65,7 @@ export default function FileVehicle({id, mode}: Prop){
     const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
 
     // 1. Estado para almacenar el vehículo que se está editando
-    const [vehiculoAEditar, setVehiculoAEditar] = useState(true);
+    const [vehiculoAEditar, setVehiculoAEditar] = useState(false);
 
 
     useEffect(() => {
@@ -133,7 +134,7 @@ export default function FileVehicle({id, mode}: Prop){
                     vehiculo={vehiculo}
                     isEditable={isEditableFile}
                     editingField={editingField}
-                    onEditClick={handleOpenEdit}
+                    onEditClick={() => setVehiculoAEditar(true)}
                     onSaveField={handleSaveField}
                     classname={styles.inputProperties}
                 />
@@ -192,7 +193,7 @@ export default function FileVehicle({id, mode}: Prop){
 
             <div className={styles.formProperties}>
                 {vehiculoAEditar && (
-                    <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} idV={vehiculo.id} />
+                    <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} idV={vehiculo.id} onCloseForm={() => setVehiculoAEditar(false)} parametrosForm={parametrosF}/>
                 )}
             </div>
         </section>

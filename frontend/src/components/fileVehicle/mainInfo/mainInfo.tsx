@@ -33,7 +33,7 @@ type Prop = {
     vehiculo: Vehiculo | null;
     isEditable: boolean;
     editingField: string | null;
-    onEditClick: (field: keyof Vehiculo) => void;
+    onEditClick: () => void;
     onSaveField: (field: keyof Vehiculo, value: string | number) => void;
     classname: string;
 };
@@ -108,7 +108,7 @@ export default function MainInfo({
             </div>
 
             {isEditable ? (
-                <button onClick={() => onEditClick} className={styles.modifeButtonProperties}>Editar</button>
+                <button onClick={onEditClick} className={styles.modifeButtonProperties}>Editar</button>
             ): (
                 <Link href={`https://wa.me/${vendedor?.telefono}`}>
                     <ConsultButton message={"Consultar"} />

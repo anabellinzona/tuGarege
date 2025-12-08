@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import {authService} from "@/service/authService";
 
 type Prop = {
+    parametrosForm: string[],
     marca: string,
     modelo: string,
     km: number,
     anio: number,
-    idV: number
+    idV: number,
+    onCloseForm: () => void
 }
 
 interface Vehiculo {
@@ -27,7 +29,7 @@ interface Vehiculo {
     imagenes: { id: number; url: string }[];
 }
 
-export default function FormEdit({ marca, modelo, km, anio, idV }: Prop) {
+export default function FormEdit({ marca, modelo, km, anio, idV, onCloseForm, parametrosForm }: Prop) {
     const [closeButton, setCloseButton] = useState(false);
     const [editedVehiculo, setEditedVehiculo] = useState<Vehiculo | null>(null);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -61,7 +63,6 @@ export default function FormEdit({ marca, modelo, km, anio, idV }: Prop) {
     };
 
     const handleSave = async () => {
-        console.log("ENTRÉ A LA FUNCIÓN", editedVehiculo);
         if (!editedVehiculo) return;
 
         try {
@@ -74,39 +75,52 @@ export default function FormEdit({ marca, modelo, km, anio, idV }: Prop) {
 
             const token = authService.getToken();
 
-            console.log(token);
+            if (!token) {
+                alert("Debes iniciar sesión para modificar vehículos");
+                window.location.href = '/login';
+                return;
+            }
 
-            console.log("ESTO MANDO POR EL BODY", body);
+            // Verificar que el token tenga el formato correcto
+            if (!token.startsWith('eyJ')) {
+                alert("Token inválido. Por favor, vuelve a iniciar sesión.");
+                localStorage.removeItem('token');
+                window.location.href = '/login';
+                return;
+            }
 
-            const response = await fetch(`${API_URL}/vehiculos/${idV}`, {
+            const headers = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            };
+
+            const response = await fetch(`${API_URL}/api/vehiculos/${idV}`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                },
+                headers: headers,
                 body: JSON.stringify(body)
             });
+
+            // Intentar leer el body del error
+            const responseText = await response.text();
 
             if (response.status === 204) {
                 setCloseButton(true);
                 alert("Cambios guardados correctamente");
+                window.location.href = `/fichaVehiculo/${idV}`;
                 return;
             }
 
             if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || "Error al guardar los cambios");
+                throw new Error(responseText || "Error al guardar los cambios");
             }
 
-            const updated = await response.json();
+            const updated = JSON.parse(responseText);
             setCloseButton(true);
             alert("Cambios guardados correctamente");
         } catch (error) {
-            console.error("Error al guardar:", error);
             alert("No se pudieron guardar los cambios. Inténtelo nuevamente.");
         }
     };
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // ← Previene recarga
         await handleSave();
@@ -122,49 +136,51 @@ export default function FormEdit({ marca, modelo, km, anio, idV }: Prop) {
     return (
         <form onSubmit={handleSubmit} className={styles.formProperties}>
             <div className={styles.formComponentsProperties}>
-                <div className={styles.inputsAndLabelProperties}>
-                    <label>Marca</label>
-                    <input
-                        placeholder={marca}
-                        type="text"
-                        name="marca"
-                        value={editedVehiculo?.marca || ""}
-                        onChange={handleChange}
-                    />
-                </div>
+                {parametrosForm.map(parametro => (
+                    <div className={styles.inputsAndLabelProperties}>
+                        <label>{parametro}</label>
+                        <input
+                            placeholder={parametro}
+                            type="text"
+                            name={parametro}
+                            value={parametro || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+                ))}
 
-                <div className={styles.inputsAndLabelProperties}>
-                    <label>Modelo</label>
-                    <input
-                        placeholder={modelo}
-                        type="text"
-                        name="modelo"
-                        value={editedVehiculo?.modelo || ""}
-                        onChange={handleChange}
-                    />
-                </div>
+                {/*<div className={styles.inputsAndLabelProperties}>*/}
+                {/*    <label>Modelo</label>*/}
+                {/*    <input*/}
+                {/*        placeholder={modelo}*/}
+                {/*        type="text"*/}
+                {/*        name="modelo"*/}
+                {/*        value={editedVehiculo?.modelo || ""}*/}
+                {/*        onChange={handleChange}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
-                <div className={styles.inputsAndLabelProperties}>
-                    <label>Kilómetros</label>
-                    <input
-                        placeholder={km.toString()}
-                        type="number"
-                        name="km"
-                        value={editedVehiculo?.km || 0}
-                        onChange={handleChange}
-                    />
-                </div>
+                {/*<div className={styles.inputsAndLabelProperties}>*/}
+                {/*    <label>Kilómetros</label>*/}
+                {/*    <input*/}
+                {/*        placeholder={km.toString()}*/}
+                {/*        type="number"*/}
+                {/*        name="km"*/}
+                {/*        value={editedVehiculo?.km || 0}*/}
+                {/*        onChange={handleChange}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
-                <div className={styles.inputsAndLabelProperties}>
-                    <label>Año</label>
-                    <input
-                        placeholder={anio.toString()}
-                        type="number"
-                        name="anio"
-                        value={editedVehiculo?.anio || 0}
-                        onChange={handleChange}
-                    />
-                </div>
+                {/*<div className={styles.inputsAndLabelProperties}>*/}
+                {/*    <label>Año</label>*/}
+                {/*    <input*/}
+                {/*        placeholder={anio.toString()}*/}
+                {/*        type="number"*/}
+                {/*        name="anio"*/}
+                {/*        value={editedVehiculo?.anio || 0}*/}
+                {/*        onChange={handleChange}*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 <button
                     type="submit"
@@ -177,7 +193,7 @@ export default function FormEdit({ marca, modelo, km, anio, idV }: Prop) {
             <div className={styles.closesButtonProperties}>
                 <button
                     type="button"  // ← MUY IMPORTANTE
-                    onClick={handleClose}
+                    onClick={onCloseForm}
                 >
                     <Image
                         src="/icons/close.png"

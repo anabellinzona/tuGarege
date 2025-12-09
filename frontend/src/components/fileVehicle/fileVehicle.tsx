@@ -47,8 +47,7 @@ export default function FileVehicle({id, mode}: Prop){
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    if(vehiculo == null) return;
-    const parametrosF:string[] = [vehiculo?.marca, vehiculo?.modelo, vehiculo?.km.toString(), vehiculo?.anio.toString()];
+    console.log("hola")
 
     const initialVehicle: Vehiculo = vehiculo || {
         id: 0,
@@ -99,6 +98,8 @@ export default function FileVehicle({id, mode}: Prop){
         setVehiculo(prev => prev ? { ...prev, descripcion: value } : null);
         setEditingField(null);
     };
+
+    const parametrosF:string[] = [vehiculo?.marca, vehiculo?.modelo, vehiculo?.km.toString(), vehiculo?.anio.toString()];
 
     const handleCancelEdit = () => {
         console.log(`Cancelando edición`);
@@ -195,7 +196,7 @@ export default function FileVehicle({id, mode}: Prop){
 
             <div className={styles.formProperties}>
                 {vehiculoAEditar && (
-                    <FormEdit marca={vehiculo.marca} modelo={vehiculo.modelo} km={vehiculo.km} anio={vehiculo.anio} idV={vehiculo.id} onCloseForm={() => setVehiculoAEditar(false)} parametrosForm={parametrosF}/>
+                    <FormEdit idV={vehiculo.id} onCloseForm={() => setVehiculoAEditar(false)} parametrosForm={parametrosF}/>
                 )}
             </div>
         </section>

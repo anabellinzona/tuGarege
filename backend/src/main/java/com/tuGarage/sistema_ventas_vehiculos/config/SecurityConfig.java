@@ -21,6 +21,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -38,74 +40,50 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // URLs permitidas
-        String frontendUrl = System.getenv("FRONTEND_URL");
+        // Frontend en producción
+        config.setAllowedOrigins(List.of(
+                "https://tu-garege.vercel.app",  // tu URL real
+                "http://localhost:3000"          // desarrollo local
+        ));
 
-        if (frontendUrl != null && !frontendUrl.isEmpty()) {
-            // Producción
-            config.setAllowedOrigins(Arrays.asList(
-                    frontendUrl,
-                    "https://tugarege.onrender.com"
-            ));
-        } else {
-            // Desarrollo - usar patterns para localhost
-            config.setAllowedOriginPatterns(Arrays.asList(
-                    "http://localhost:*",
-                    "http://127.0.0.1:*"
-            ));
-        }
-
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
-        config.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        config.setExposedHeaders(List.of("Authorization"));
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+
         return source;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        System.out.println("🔧 Configurando SecurityFilterChain...");
 
         http
-                .cors(cors -> {
-                    System.out.println("🌐 Configurando CORS...");
-                    cors.configurationSource(corsConfigurationSource());
-                })
-                .csrf(csrf -> {
-                    System.out.println("🔒 Deshabilitando CSRF...");
-                    csrf.disable();
-                })
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    System.out.println("🛡️ Configurando reglas de autorización...");
 
+                    // Auth libre
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
-                    auth.requestMatchers(HttpMethod.POST, "/vendedores/register").permitAll();
-                    auth.requestMatchers(HttpMethod.POST, "/vendedores/login").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
 
+                    // Datos públicos
                     auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
+                    // Rutas protegidas
+                    auth.requestMatchers(HttpMethod.PUT, "/api/vehiculos/**").authenticated();
                     auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
                     auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
-                    auth.requestMatchers(HttpMethod.PUT, "/api/usuario/**").authenticated();
-                    auth.requestMatchers(HttpMethod.DELETE, "/api/usuario/**").authenticated();
-                    auth.requestMatchers(HttpMethod.PUT, "/api/vehiculos/**").authenticated();
 
                     auth.anyRequest().authenticated();
                 })
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
-        System.out.println("✅ SecurityFilterChain configurado correctamente");
 
         return http.build();
     }
@@ -119,8 +97,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 
     @Bean

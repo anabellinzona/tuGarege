@@ -46,7 +46,9 @@ export default function FileVehicle({id, mode}: Prop){
     const isEmptyFile = mode === "create";
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
-    const parametrosF:string[] = ["marca", "modelo", "km", "anio"]
+
+    if(vehiculo == null) return;
+    const parametrosF:string[] = [vehiculo?.marca, vehiculo?.modelo, vehiculo?.km.toString(), vehiculo?.anio.toString()];
 
     const initialVehicle: Vehiculo = vehiculo || {
         id: 0,

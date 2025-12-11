@@ -39,6 +39,13 @@ interface Vehiculo {
     vendedorId: number;
 }
 
+type CampoAEditar = {
+    name: string;
+    value: string | number | boolean;
+    type: "text" | "number" | "textarea" | "checkbox";
+    label: string;
+};
+
 export default function FileVehicle({id, mode}: Prop){
     const [vehiculo, setVehiculo] = useState<Vehiculo | null>(null);
     const [loading, setLoading] = useState(true);
@@ -46,6 +53,7 @@ export default function FileVehicle({id, mode}: Prop){
     const isEmptyFile = mode === "create";
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    // const [camposAEditar, setCamposAEditar] = useState<Vehiculo | null>(null);
 
     console.log("hola")
 
@@ -65,9 +73,14 @@ export default function FileVehicle({id, mode}: Prop){
 
     const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
 
-    // 1. Estado para almacenar el vehículo que se está editando
+    const [camposAEditar, setCamposAEditar] = useState<CampoAEditar[]>([]);
     const [vehiculoAEditar, setVehiculoAEditar] = useState(false);
 
+// función que se llamará desde los hijos
+    const handleOpenDynamicEdit = (fields: CampoAEditar[]) => {
+        setCamposAEditar(fields);
+        setVehiculoAEditar(true);
+    };
 
     useEffect(() => {
         fetch(`${API_URL}/api/vehiculos/${id}`)
@@ -99,7 +112,19 @@ export default function FileVehicle({id, mode}: Prop){
         setEditingField(null);
     };
 
-    const parametrosF:string[] = [vehiculo?.marca, vehiculo?.modelo, vehiculo?.km.toString(), vehiculo?.anio.toString()];
+// ✅ Tipar correctamente el array
+//     const camposAEditar: Array<{
+//         name: string;
+//         value: string | number | boolean;
+//         type: 'text' | 'number' | 'textarea' | 'checkbox';
+//         label: string;
+//     }> = [
+//         { name: 'marca', value: vehiculo.marca, type: 'text', label: 'Marca' },
+//         { name: 'modelo', value: vehiculo.modelo, type: 'text', label: 'Modelo' },
+//         { name: 'km', value: vehiculo.km, type: 'number', label: 'Kilómetros' },
+//         { name: 'anio', value: vehiculo.anio, type: 'number', label: 'Año' },
+//         { name: 'precio', value: vehiculo.precio, type: 'number', label: 'Precio' }
+//     ];
 
     const handleCancelEdit = () => {
         console.log(`Cancelando edición`);
@@ -137,10 +162,20 @@ export default function FileVehicle({id, mode}: Prop){
                     vehiculo={vehiculo}
                     isEditable={isEditableFile}
                     editingField={editingField}
-                    onEditClick={() => setVehiculoAEditar(true)}
+                    onEditClick={() => {
+                        setCamposAEditar([
+                            { name: "marca", label: "Marca", value: vehiculo?.marca, type: "text" },
+                            { name: "modelo", label: "Modelo", value: vehiculo?.modelo, type: "text" },
+                            { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
+                            { name: "anio", label: "Año", value: vehiculo?.anio, type: "number" },
+                            { name: "precio", label: "Precio", value: vehiculo?.precio, type: "number" }
+                        ]);
+                        setVehiculoAEditar(true); // abre el formulario
+                    }}
                     onSaveField={handleSaveField}
                     classname={styles.inputProperties}
                 />
+
 
             </div>
             <div className={styles.secondContainerProperties}>
@@ -196,7 +231,7 @@ export default function FileVehicle({id, mode}: Prop){
 
             <div className={styles.formProperties}>
                 {vehiculoAEditar && (
-                    <FormEdit idV={vehiculo.id} onCloseForm={() => setVehiculoAEditar(false)} parametrosForm={parametrosF}/>
+                    <FormEdit campos={camposAEditar} idV={vehiculo.id} onCloseForm={() => setVehiculoAEditar(false)}  />
                 )}
             </div>
         </section>

@@ -2,9 +2,6 @@ import styles from "@/components/fileVehicle/mainInfo/mainInfo.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ConsultButton from "@/components/buttons/consultButton/consultButton";
-import EditableText from "@/components/fileVehicle/editableText/editableText";
-import EditButton from "@/components/fileVehicle/editButton/editButton";
-import EditableNumeric from "@/components/fileVehicle/editableNumeric/editableNumeric";
 
 interface Imagen {
     id: number;
@@ -33,7 +30,7 @@ type Prop = {
     vehiculo: Vehiculo | null;
     isEditable: boolean;
     editingField: string | null;
-    onEditClick: () => void;
+    onEditClick: () => void;        // ⬅️ esta función abre el formulario y setea campos en el padre
     onSaveField: (field: keyof Vehiculo, value: string | number) => void;
     classname: string;
 };
@@ -55,22 +52,15 @@ export default function MainInfo({
                                      vehiculo,
                                      isEditable,
                                      onEditClick,
-                                     editingField,
-                                     onSaveField,
-                                     classname
                                  }: Prop) {
+
     const [vendedor, setVendedor] = useState<Vendedor>();
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         if (!vehiculo?.vendedorId) return;
         fetch(`${API_URL}/api/vendedores/${vehiculo.vendedorId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error al cargar el vendedor");
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => setVendedor(data))
             .catch(error => console.log("El error fue: " + error));
     }, [vehiculo?.vendedorId]);
@@ -85,7 +75,6 @@ export default function MainInfo({
                     <h1>{vehiculo.modelo}</h1>
                 </div>
 
-                {/* Kilómetros */}
                 <div className={styles.editableField}>
                     <p>{vehiculo.km} km</p>
                     <span>|</span>
@@ -108,8 +97,13 @@ export default function MainInfo({
             </div>
 
             {isEditable ? (
-                <button onClick={onEditClick} className={styles.modifeButtonProperties}>Editar</button>
-            ): (
+                <button
+                    onClick={onEditClick}        // ⬅️ SOLO AVISA AL PADRE
+                    className={styles.modifeButtonProperties}
+                >
+                    Editar
+                </button>
+            ) : (
                 <Link href={`https://wa.me/${vendedor?.telefono}`}>
                     <ConsultButton message={"Consultar"} />
                 </Link>

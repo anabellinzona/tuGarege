@@ -3,39 +3,34 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { authService } from "@/service/authService";
 
-type Prop = {
-    parametrosForm: string[],
-    idV: number,
-    onCloseForm: () => void
+interface Campo {
+    name: string;
+    value: string | number | boolean;
+    type: 'text' | 'number' | 'textarea' | 'checkbox';
+    label: string;
 }
 
-export default function FormEdit({ idV, onCloseForm, parametrosForm }: Prop) {
-    const [closeButton, setCloseButton] = useState(false);
-    const [editedVehiculo, setEditedVehiculo] = useState<any>(null);
+type Prop = {
+    campos: Campo[];  // ← Cambiar tipo
+    idV: number;
+    onCloseForm: () => void;
+}
+
+export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
+    const [formData, setFormData] = useState<Record<string, any>>({});
+    const [isLoading, setIsLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    // ⭐ INICIALIZAR DINÁMICAMENTE LOS CAMPOS SEGÚN parametrosForm
+    // Inicializar con los valores recibidos
     useEffect(() => {
-        const initialValues: any = {};
-
-        parametrosForm.forEach((campo) => {
-            if (["km", "anio", "precio"].includes(campo)) {
-                initialValues[campo] = 0;
-            } else if (campo === "destacado") {
-                initialValues[campo] = false;
-            } else {
-                initialValues[campo] = "";
-            }
+        const initialValues: Record<string, any> = {};
+        campos.forEach(campo => {
+            initialValues[campo.name] = campo.value;
         });
+        setFormData(initialValues);
+    }, [campos]);
 
-        initialValues.id = idV;
-        setEditedVehiculo(initialValues);
-    }, [idV, parametrosForm]);
-
-    // ⭐ CAMBIOS EN INPUTS (automático según tipo)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        if (!editedVehiculo) return;
-
         const { name, value, type } = e.target;
 
         let finalValue: any = value;
@@ -48,17 +43,14 @@ export default function FormEdit({ idV, onCloseForm, parametrosForm }: Prop) {
             finalValue = (e.target as HTMLInputElement).checked;
         }
 
-        setEditedVehiculo({ ...editedVehiculo, [name]: finalValue });
+        setFormData(prev => ({ ...prev, [name]: finalValue }));
     };
 
-    // ⭐ GUARDADO
     const handleSave = async () => {
-        if (!editedVehiculo) return;
+        setIsLoading(true);
 
         try {
-            const token = localStorage.getItem('token');
-
-            console.log(token)
+            const token = authService.getToken();
 
             if (!token) {
                 alert("Debes iniciar sesión para modificar vehículos");
@@ -73,28 +65,38 @@ export default function FormEdit({ idV, onCloseForm, parametrosForm }: Prop) {
                 return;
             }
 
+            console.log("📤 Enviando al backend:", formData);
+
             const response = await fetch(`${API_URL}/api/vehiculos/${idV}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify(editedVehiculo)
+                body: JSON.stringify(formData)
             });
 
-            const text = await response.text();
+            console.log("📥 Response status:", response.status);
 
-            if (response.status == 204) {
+            if (response.status === 204) {
                 alert("Cambios guardados correctamente");
                 window.location.href = `/fichaVehiculo/${idV}`;
                 return;
             }
 
-            if (!response.ok) throw new Error(text);
+            const text = await response.text();
+
+            if (!response.ok) {
+                throw new Error(text || "Error al guardar");
+            }
 
             alert("Cambios guardados correctamente");
-        } catch {
+            onCloseForm();
+        } catch (error) {
+            console.error("❌ Error:", error);
             alert("No se pudieron guardar los cambios. Inténtelo nuevamente.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -103,53 +105,57 @@ export default function FormEdit({ idV, onCloseForm, parametrosForm }: Prop) {
         await handleSave();
     };
 
-    if (closeButton) return null;
-
-    if (!editedVehiculo) return <p>Cargando...</p>;
+    if (!formData || Object.keys(formData).length === 0) {
+        return <p>Cargando...</p>;
+    }
 
     return (
         <form onSubmit={handleSubmit} className={styles.formProperties}>
             <div className={styles.formComponentsProperties}>
+                {campos.map((campo) => (
+                    <div key={campo.name} className={styles.inputsAndLabelProperties}>
+                        <label>{campo.label}</label>
 
-                {/* ⭐ GENERACIÓN AUTOMÁTICA DE INPUTS */}
-                {parametrosForm.map((parametro, index) => (
-                    <div key={index} className={styles.inputsAndLabelProperties}>
-                        <label>{parametro}</label>
-
-                        {parametro === "descripcion" ? (
+                        {campo.type === 'textarea' ? (
                             <textarea
-                                name={parametro}
-                                placeholder={parametro}
-                                value={editedVehiculo[parametro] ?? ""}
+                                name={campo.name}
+                                placeholder={campo.label}
+                                value={formData[campo.name] ?? ""}
                                 onChange={handleChange}
-                            ></textarea>
-                        ) : parametro === "destacado" ? (
+                            />
+                        ) : campo.type === 'checkbox' ? (
                             <input
                                 type="checkbox"
-                                name={parametro}
-                                checked={editedVehiculo[parametro] ?? false}
+                                name={campo.name}
+                                checked={formData[campo.name] ?? false}
                                 onChange={handleChange}
                             />
                         ) : (
                             <input
-                                placeholder={parametro}
-                                type={["km", "anio", "precio"].includes(parametro) ? "number" : "text"}
-                                name={parametro}
-                                value={editedVehiculo[parametro] ?? ""}
+                                type={campo.type}
+                                name={campo.name}
+                                placeholder={campo.label}
+                                value={formData[campo.name] ?? ""}
                                 onChange={handleChange}
                             />
                         )}
                     </div>
                 ))}
 
-                <button type="submit" className={styles.modifeButton}>Modificar</button>
+                <button
+                    type="submit"
+                    className={styles.modifeButton}
+                    disabled={isLoading}
+                >
+                    {isLoading ? 'Guardando...' : 'Modificar'}
+                </button>
             </div>
 
             <div className={styles.closesButtonProperties}>
                 <button type="button" onClick={onCloseForm}>
                     <Image
                         src="/icons/close.png"
-                        alt="Button to close"
+                        alt="Cerrar"
                         width={20}
                         height={20}
                     />

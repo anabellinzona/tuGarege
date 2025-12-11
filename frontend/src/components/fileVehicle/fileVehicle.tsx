@@ -53,9 +53,6 @@ export default function FileVehicle({id, mode}: Prop){
     const isEmptyFile = mode === "create";
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
-    // const [camposAEditar, setCamposAEditar] = useState<Vehiculo | null>(null);
-
-    console.log("hola")
 
     const initialVehicle: Vehiculo = vehiculo || {
         id: 0,
@@ -111,20 +108,6 @@ export default function FileVehicle({id, mode}: Prop){
         setVehiculo(prev => prev ? { ...prev, descripcion: value } : null);
         setEditingField(null);
     };
-
-// ✅ Tipar correctamente el array
-//     const camposAEditar: Array<{
-//         name: string;
-//         value: string | number | boolean;
-//         type: 'text' | 'number' | 'textarea' | 'checkbox';
-//         label: string;
-//     }> = [
-//         { name: 'marca', value: vehiculo.marca, type: 'text', label: 'Marca' },
-//         { name: 'modelo', value: vehiculo.modelo, type: 'text', label: 'Modelo' },
-//         { name: 'km', value: vehiculo.km, type: 'number', label: 'Kilómetros' },
-//         { name: 'anio', value: vehiculo.anio, type: 'number', label: 'Año' },
-//         { name: 'precio', value: vehiculo.precio, type: 'number', label: 'Precio' }
-//     ];
 
     const handleCancelEdit = () => {
         console.log(`Cancelando edición`);

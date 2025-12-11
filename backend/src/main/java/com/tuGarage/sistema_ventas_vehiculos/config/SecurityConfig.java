@@ -42,8 +42,9 @@ public class SecurityConfig {
 
         // Frontend en producción
         config.setAllowedOrigins(List.of(
-                "https://tu-garege.vercel.app",  // tu URL real
-                "http://localhost:3000"          // desarrollo local
+                "https://tugarege.vercel.app",     // corregido
+                "https://tugarege.onrender.com",   // agrega tu backend de Render
+                "http://localhost:3000"
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));

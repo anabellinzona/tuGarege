@@ -21,7 +21,6 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
     const [isLoading, setIsLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-    // Inicializar con los valores recibidos
     useEffect(() => {
         const initialValues: Record<string, any> = {};
         campos.forEach(campo => {
@@ -30,21 +29,17 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
         setFormData(initialValues);
     }, [campos]);
 
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
-
         let finalValue: any = value;
 
-        if (type === "number") {
-            finalValue = Number(value);
-        }
-
-        if (type === "checkbox") {
-            finalValue = (e.target as HTMLInputElement).checked;
-        }
+        if (type === "number") finalValue = Number(value);
+        if (type === "checkbox") finalValue = (e.target as HTMLInputElement).checked;
 
         setFormData(prev => ({ ...prev, [name]: finalValue }));
     };
+
 
     const handleSave = async () => {
         setIsLoading(true);
@@ -52,62 +47,76 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
         try {
             const token = authService.getToken();
 
-            if (!token) {
-                alert("Debes iniciar sesión para modificar vehículos");
-                window.location.href = '/quieroVender';
-                return;
-            }
+            console.log("🔐 TOKEN OBTENIDO:", token);
+            console.log("🌍 API_URL:", API_URL);
+            console.log("🔧 ID DEL VEHÍCULO:", idV);
+            console.log("📦 DATOS A ENVIAR:", formData);
 
-            if (!token.startsWith('eyJ')) {
-                alert("Token inválido. Por favor, vuelve a iniciar sesión.");
-                localStorage.removeItem('token');
+            if (!token) {
+                alert("Debes iniciar sesión.");
                 window.location.href = '/login';
                 return;
             }
 
-            console.log("📤 Enviando al backend:", formData);
-
-            const response = await fetch(`${API_URL}/api/vehiculos/${idV}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify(formData)
-            });
-
-            console.log("📥 Response status:", response.status);
-
-            if (response.status === 204) {
-                alert("Cambios guardados correctamente");
-                window.location.href = `/fichaVehiculo/${idV}`;
+            if (!token.startsWith("eyJ")) {
+                alert("Token inválido, vuelve a iniciar sesión.");
+                localStorage.removeItem("token");
+                window.location.href = "/login";
                 return;
             }
 
-            const text = await response.text();
+            const endpoint = `${API_URL}/api/vehiculos/${idV}`;
+
+            console.log("📡 URL FINAL DEL PUT:", endpoint);
+
+            const headers = {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            };
+
+            console.log("📬 HEADERS:", headers);
+
+            console.log("➡️ HACIENDO FETCH PUT...");
+
+            const response = await fetch(endpoint, {
+                method: "PUT",
+                headers,
+                body: JSON.stringify(formData)
+            });
+
+            console.log("📥 STATUS DEL BACKEND:", response.status);
+            console.log("📩 RESPONSE COMPLETA:", response);
+
+            const responseText = await response.text();
+            console.log("📄 RESPONSE TEXT:", responseText);
 
             if (!response.ok) {
-                throw new Error(text || "Error al guardar");
+                console.log("❌ ERROR EN RESPONSE");
+                throw new Error(responseText || "Error desconocido");
             }
 
             alert("Cambios guardados correctamente");
             onCloseForm();
+
         } catch (error) {
-            console.error("❌ Error:", error);
-            alert("No se pudieron guardar los cambios. Inténtelo nuevamente.");
+            console.log("🔥 ERROR CAPTURADO:", error);
+            alert("Error al guardar los cambios.");
         } finally {
             setIsLoading(false);
         }
     };
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         await handleSave();
     };
 
+
     if (!formData || Object.keys(formData).length === 0) {
         return <p>Cargando...</p>;
     }
+
 
     return (
         <form onSubmit={handleSubmit} className={styles.formProperties}>
@@ -119,7 +128,6 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
                         {campo.type === 'textarea' ? (
                             <textarea
                                 name={campo.name}
-                                placeholder={campo.label}
                                 value={formData[campo.name] ?? ""}
                                 onChange={handleChange}
                             />
@@ -134,7 +142,6 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
                             <input
                                 type={campo.type}
                                 name={campo.name}
-                                placeholder={campo.label}
                                 value={formData[campo.name] ?? ""}
                                 onChange={handleChange}
                             />

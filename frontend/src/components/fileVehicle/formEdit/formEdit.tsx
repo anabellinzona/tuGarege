@@ -11,7 +11,7 @@ interface Campo {
 }
 
 type Prop = {
-    campos: Campo[];  // ← Cambiar tipo
+    campos: Campo[];
     idV: number;
     onCloseForm: () => void;
 }

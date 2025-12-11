@@ -72,6 +72,7 @@ public class SecurityConfig {
 
                     // Datos públicos
                     auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
 
                     // Rutas protegidas

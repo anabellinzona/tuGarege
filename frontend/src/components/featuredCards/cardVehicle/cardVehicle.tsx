@@ -118,7 +118,6 @@ export default function CardVehicle(){
     if (error) {
         return (
             <section className={styles.featuredCardsContainerProperties}>
-                <h1>Destacados</h1>
                 <p>Error: {error}</p>
             </section>
         );
@@ -127,7 +126,6 @@ export default function CardVehicle(){
     if (vehiculos.length === 0) {
         return (
             <section className={styles.featuredCardsContainerProperties}>
-                <h1>Destacados</h1>
                 <p>No hay vehículos destacados disponibles</p>
             </section>
         );

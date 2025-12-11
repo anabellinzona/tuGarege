@@ -1,6 +1,4 @@
 import styles from "./secondInfo.module.css";
-import EditableText from "@/components/fileVehicle/editableText/editableText";
-import EditButton from "@/components/fileVehicle/editButton/editButton";
 
 interface Imagen {
     id: number;
@@ -29,49 +27,32 @@ type Prop = {
     vehiculo: Vehiculo | null;
     isEditable: boolean;
     editingField: string | null;
-    onStartEdit: (field: keyof Vehiculo) => void;
-    onCancelEdit: () => void;
+    onEditClick: () => void;
     onSaveField: (field: keyof Vehiculo, value: string | number) => void;
     classname: string;
 };
 
 export default function SecondInfo({vehiculo,
                                        isEditable,
-                                       onCancelEdit,
-                                       onStartEdit,
-                                       editingField,
-                                       onSaveField,
-                                       classname
+                                       onEditClick,
                                    }: Prop){
     return(
         <div className={styles.tableCharacteristicProperties}>
             <h3>Características principales</h3>
-            {/*<div>*/}
-            {/*    {editingField === "modelo" ? (*/}
-            {/*        <EditableText*/}
-            {/*            value={vehiculo?.modelo || " "}*/}
-            {/*            isEditing={true}*/}
-            {/*            onSave={(value) => onSaveField("modelo", value)}*/}
-            {/*            onCancel={onCancelEdit}*/}
-            {/*            className={classname}*/}
-            {/*        />*/}
-            {/*    ) : (*/}
-            {/*        <p onClick={() => onStartEdit("modelo")}><strong>Modelo: </strong>{vehiculo?.marca}</p>*/}
-            {/*    )}*/}
-            {/*    {isEditable && (*/}
-            {/*        <EditButton*/}
-            {/*            onStartEdit={() => onStartEdit("modelo")}*/}
-            {/*            show={true}*/}
-            {/*            isEditing={editingField === "modelo"}*/}
-            {/*            onEndEdit={onCancelEdit}*/}
-            {/*            img={"/icons/editIcon.png"}*/}
-            {/*        />*/}
-            {/*    )}*/}
-            {/*</div>*/}
+
             <p><strong>Modelo:</strong> {vehiculo?.modelo}</p>
             <p><strong>Tipo de combustible:</strong> {""}</p>
             <p><strong>Kilometraje:</strong> {vehiculo?.km}km</p>
             <p><strong>Otras características y/o detalles:</strong> {vehiculo?.descripcion}</p>
+
+            {isEditable && (
+                    <button
+                        onClick={onEditClick}        // ⬅️ SOLO AVISA AL PADRE
+                        className={styles.modifeButtonProperties}
+                    >
+                        Editar
+                    </button>
+                )}
         </div>
     );
 }

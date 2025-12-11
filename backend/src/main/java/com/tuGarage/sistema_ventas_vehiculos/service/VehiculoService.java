@@ -59,6 +59,12 @@ public class VehiculoService {
             vehiculo.setModelo(datosVehiculo.getModelo());
             vehiculo.setKm(datosVehiculo.getKm());
             vehiculo.setAnio(datosVehiculo.getAnio());
+            vehiculo.setDescripcion(datosVehiculo.getDescripcion());
+            vehiculo.setTipo(datosVehiculo.getTipo());
+            vehiculo.setEstado(datosVehiculo.getEstado());
+            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
+            vehiculo.setImagenes(datosVehiculo.getImagenes());
+            vehiculo.setVendedorId(datosVehiculo.getVendedorId());
             return vehiculoRepository.save(vehiculo);
         }).orElse(null);
     }

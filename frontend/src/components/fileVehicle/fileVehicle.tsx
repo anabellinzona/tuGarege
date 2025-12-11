@@ -184,8 +184,14 @@ export default function FileVehicle({id, mode}: Prop){
                         <SecondInfo vehiculo={vehiculo}
                                     isEditable={isEditableFile}
                                     editingField={editingField}
-                                    onStartEdit={handleStartEdit}
-                                    onCancelEdit={handleCancelEdit}
+                                    onEditClick={() => {
+                                        setCamposAEditar([
+                                            { name: "modelo", label: "Modelo", value: vehiculo?.modelo, type: "text" },
+                                            { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
+                                            { name: "descripcion", label: "Descripción", value: vehiculo?.descripcion, type: "text" },
+                                        ]);
+                                        setVehiculoAEditar(true); // abre el formulario
+                                    }}
                                     onSaveField={handleSaveField}
                                     classname={styles.inputProperties}/>
                     </div>

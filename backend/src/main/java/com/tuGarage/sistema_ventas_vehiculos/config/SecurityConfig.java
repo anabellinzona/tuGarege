@@ -66,23 +66,24 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
+                    auth.anyRequest().permitAll();
 
-                    // Auth libre
-                    auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
-                    auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
-
-                    // Datos públicos
-                    auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
-
-                    // Rutas protegidas
-                    auth.requestMatchers(HttpMethod.PUT, "/api/vehiculos/**").authenticated();
-                    auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
-                    auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
-                    auth.requestMatchers(HttpMethod.DELETE, "/api/vehiculos/**").authenticated();
-
-                    auth.anyRequest().authenticated();
+//                    // Auth libre
+//                    auth.requestMatchers(HttpMethod.POST, "/api/vendedores/register").permitAll();
+//                    auth.requestMatchers(HttpMethod.POST, "/api/vendedores/login").permitAll();
+//
+//                    // Datos públicos
+//                    auth.requestMatchers(HttpMethod.GET, "/api/vehiculos/**").permitAll();
+//                    auth.requestMatchers(HttpMethod.GET, "/api/vendedores/**").permitAll();
+//                    auth.requestMatchers(HttpMethod.GET, "/api/caracteristicas/**").permitAll();
+//
+//                    // Rutas protegidas
+//                    auth.requestMatchers(HttpMethod.PUT, "/api/vehiculos/**").authenticated();
+//                    auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
+//                    auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
+//                    auth.requestMatchers(HttpMethod.DELETE, "/api/vehiculos/**").authenticated();
+//
+//                    auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

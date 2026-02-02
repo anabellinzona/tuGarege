@@ -80,6 +80,7 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.PUT, "/api/vehiculos/**").authenticated();
                     auth.requestMatchers(HttpMethod.PUT, "/api/vendedores/**").authenticated();
                     auth.requestMatchers(HttpMethod.DELETE, "/api/vendedores/**").authenticated();
+                    auth.requestMatchers(HttpMethod.DELETE, "/api/vehiculos/**").authenticated();
 
                     auth.anyRequest().authenticated();
                 })

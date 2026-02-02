@@ -107,7 +107,7 @@ export default function ProfileDescription({ idV }: Prop) {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}` // ← AGREGAR ESTO
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(body),
             });

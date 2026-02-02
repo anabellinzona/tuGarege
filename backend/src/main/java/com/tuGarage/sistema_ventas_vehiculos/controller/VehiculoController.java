@@ -24,7 +24,7 @@ public class VehiculoController {
         this.vehiculoService = vehiculoService;
     }
 
-    @DeleteMapping("eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarVehiculo(@PathVariable Long id) {
         vehiculoService.eliminarVehiculo(id);
         return ResponseEntity.noContent().build();

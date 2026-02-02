@@ -81,6 +81,9 @@ public class VehiculoService {
             if (datos.getFechaPublicacion() != null)
                 vehiculo.setFechaPublicacion(datos.getFechaPublicacion());
 
+            if (datos.getPrecio() != 0)
+                vehiculo.setPrecio(datos.getPrecio());
+
             if (datos.getImagenes() != null && !datos.getImagenes().isEmpty())
                 vehiculo.setImagenes(datos.getImagenes());
 

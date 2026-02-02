@@ -79,27 +79,39 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String authHeader = request.getHeader("Authorization");
 
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
+
                 String jwt = authHeader.substring(7);
-                String email = jwtUtil.getUserNameFromJwtToken(jwt);
 
-                if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+                if (jwtUtil.validateJwtToken(jwt)) {
 
-                    if (jwtUtil.validateJwtToken(jwt)) {
+                    String email = jwtUtil.getUserNameFromJwtToken(jwt);
+                    System.out.println("👤 Email extraído del token: " + email);
+
+                    if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+                        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+
                         UsernamePasswordAuthenticationToken authToken =
                                 new UsernamePasswordAuthenticationToken(
                                         userDetails,
                                         null,
                                         userDetails.getAuthorities()
                                 );
+
                         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         SecurityContextHolder.getContext().setAuthentication(authToken);
-                        System.out.println("✅ JWT válido - usuario autenticado");
+
+                        System.out.println("✅ Usuario autenticado correctamente en SecurityContext");
                     }
+
+                } else {
+                    System.out.println("❌ Token inválido o expirado");
                 }
+
             } else {
                 System.out.println("⚠️ No se encontró token JWT en el header Authorization");
             }
+
         } catch (Exception e) {
             System.err.println("❌ Error procesando JWT: " + e.getMessage());
             e.printStackTrace();

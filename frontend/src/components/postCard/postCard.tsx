@@ -115,23 +115,27 @@ export default function PostCard() {
     if (error) return <p>Error: {error}</p>;
 
     const handleDelete = async (vehiculoId: number) => {
-        if (!confirm("¿Seguro que deseas eliminar esta publicación? Esta acción no se puede deshacer.")) {
-            return;
-        }
+        if (!confirm("¿Seguro que deseas eliminar esta publicación?")) return;
 
         try {
+            const token = authService.getToken();
+
+            if (!token) {
+                alert("Debes iniciar sesión");
+                return;
+            }
+
             const response = await fetch(`${API_URL}/api/vehiculos/eliminar/${vehiculoId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` // 🔥 LO QUE FALTABA
                 }
-            })
-                .then((response) =>{
-                if(!response.ok){
-                    throw new Error("Error al eliminar el vehículo");
-                }
-                return response.json();
-            })
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al eliminar el vehículo");
+            }
 
             setVehiculos(prev => prev.filter(v => v.id !== vehiculoId));
 
@@ -140,6 +144,7 @@ export default function PostCard() {
             alert("Hubo un error al eliminar la publicación.");
         }
     };
+
 
     console.log("userId:", userId);
     console.log("safeVendedorId:", safeVendedorId);
@@ -212,9 +217,11 @@ export default function PostCard() {
 
                         {canEdit && (
                             <div className={styles.overlay}>
-                                <Link href={`/vehiculos/editar/${vehiculo.id}`} className={styles.actionBtn + " " + styles.editBtn}>
+                                <Link href={`/fichaVehiculo/${vehiculo.id}?mode=edit`}
+                                    className={styles.actionBtn + " " + styles.editBtn}>
                                     Editar publicación ✏
                                 </Link>
+
 
                                 <button
                                     className={styles.actionBtn + " " + styles.deleteBtn}

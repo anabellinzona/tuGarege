@@ -53,21 +53,46 @@ public class VehiculoService {
          return vehiculoRepository.findByDestacadoTrue();
     }
 
-    public Vehiculo actualizarVehiculo(Long id, Vehiculo datosVehiculo) {
+    public Vehiculo actualizarVehiculo(Long id, Vehiculo datos) {
+
         return vehiculoRepository.findById(id).map(vehiculo -> {
-            vehiculo.setMarca(datosVehiculo.getMarca());
-            vehiculo.setModelo(datosVehiculo.getModelo());
-            vehiculo.setKm(datosVehiculo.getKm());
-            vehiculo.setAnio(datosVehiculo.getAnio());
-            vehiculo.setDescripcion(datosVehiculo.getDescripcion());
-            vehiculo.setTipo(datosVehiculo.getTipo());
-            vehiculo.setEstado(datosVehiculo.getEstado());
-            vehiculo.setFechaPublicacion(datosVehiculo.getFechaPublicacion());
-            vehiculo.setImagenes(datosVehiculo.getImagenes());
-            vehiculo.setVendedorId(datosVehiculo.getVendedorId());
+
+            if (datos.getMarca() != null)
+                vehiculo.setMarca(datos.getMarca());
+
+            if (datos.getModelo() != null)
+                vehiculo.setModelo(datos.getModelo());
+
+            if (datos.getKm() != 0)
+                vehiculo.setKm(datos.getKm());
+
+            if (datos.getAnio() != 0)
+                vehiculo.setAnio(datos.getAnio());
+
+            if (datos.getDescripcion() != null)
+                vehiculo.setDescripcion(datos.getDescripcion());
+
+            if (datos.getTipo() != null)
+                vehiculo.setTipo(datos.getTipo());
+
+            if (datos.getEstado() != null)
+                vehiculo.setEstado(datos.getEstado());
+
+            if (datos.getFechaPublicacion() != null)
+                vehiculo.setFechaPublicacion(datos.getFechaPublicacion());
+
+            if (datos.getImagenes() != null && !datos.getImagenes().isEmpty())
+                vehiculo.setImagenes(datos.getImagenes());
+
+            if (datos.getVendedorId() != null)
+                vehiculo.setVendedorId(datos.getVendedorId());
+
             return vehiculoRepository.save(vehiculo);
-        }).orElse(null);
+
+        }).orElseThrow(() -> new RuntimeException("Vehículo no encontrado"));
     }
+
+
     public Map<String, FiltroDTO> obtenerFiltrosDisponibles() {
         Map<String, FiltroDTO> filtros = new HashMap<>();
 

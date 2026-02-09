@@ -164,16 +164,28 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                 onChange={handleChange}
                             />
                         ) : campo.type === 'option' ? (
-                            <select
-                                name={campo.name}
-                                value={formData[campo.name] ?? ""}
-                                onChange={handleChange}
-                            >
-                                <option value="">Seleccionar</option>
-                                <option value="Usado">Usado</option>
-                                <option value="Nuevo">Nuevo</option>
-                            </select>
-
+                            campo.name === 'estado' ? (
+                                <select
+                                    name={campo.name}
+                                    value={formData[campo.name] ?? ""}
+                                    onChange={handleChange}
+                                >
+                                    <option value="">Seleccionar</option>
+                                    <option value="Usado">Usado</option>
+                                    <option value="Nuevo">Nuevo</option>
+                                </select>
+                            ) : (
+                                <select
+                                    name={campo.name}
+                                    value={formData[campo.name] ?? ""}
+                                    onChange={handleChange}
+                                >
+                                    <option value="">Seleccionar</option>
+                                    <option value="Auto">Auto</option>
+                                    <option value="Camioneta">Camioneta</option>
+                                    <option value="Moto">Moto</option>
+                                </select>
+                            )
                         ) : (
                             <input
                                 type={campo.type}

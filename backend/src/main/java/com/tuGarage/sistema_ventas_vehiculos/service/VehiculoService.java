@@ -4,12 +4,15 @@ import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.OpcionFiltroDTO;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
 import com.tuGarage.sistema_ventas_vehiculos.repository.VehiculoRepository;
+import com.tuGarage.sistema_ventas_vehiculos.repository.VendedorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,14 +21,35 @@ public class VehiculoService {
 
     @Autowired
     private VehiculoRepository vehiculoRepository;
+    private VendedorRepository vendedorRepository;
 
     public List<Vehiculo> obtenerTodos() {
         return vehiculoRepository.findAll();
     }
 
-    public Vehiculo crearVehiculo(Vehiculo vehiculo) {
-        return vehiculoRepository.save(vehiculo);
+    public Vehiculo crearVehiculo(Vehiculo datos, Long vendedorId) {
+
+        Vehiculo v = new Vehiculo();
+
+        // 👇 datos que vienen del front
+        v.setMarca(datos.getMarca());
+        v.setModelo(datos.getModelo());
+        v.setKm(datos.getKm());
+        v.setPrecio(datos.getPrecio());
+        v.setDescripcion(datos.getDescripcion());
+        v.setEstado(datos.getEstado());
+
+        // 👇 DATOS AUTOMÁTICOS
+        v.setFechaPublicacion(LocalDate.now());
+        v.setDestacado(false);
+
+        Vendedor vendedor = vendedorRepository.findById(vendedorId)
+                .orElseThrow(() -> new RuntimeException("Vendedor no encontrado"));
+        v.setVendedorId(vendedor.getId());
+
+        return vehiculoRepository.save(v);
     }
+
 
     public List<Vehiculo> obtenerVehiculosPorVendedor(Long vendedorId) {
         return vehiculoRepository.findByVendedor(vendedorId);

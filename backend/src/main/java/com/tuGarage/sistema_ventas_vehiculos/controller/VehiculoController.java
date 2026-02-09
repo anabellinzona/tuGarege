@@ -105,7 +105,7 @@ public class VehiculoController {
 
     @PostMapping
     public ResponseEntity<Vehiculo> crearVehiculo(@RequestBody Vehiculo vehiculo) {
-        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo);
+        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo, vehiculo.getVendedorId());
 
         return ResponseEntity.ok(nuevo);
     }

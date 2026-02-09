@@ -60,7 +60,7 @@ export default function FileVehicle({id, mode}: Prop){
     const [vehiculoAEditar, setVehiculoAEditar] = useState(false);
 
     const emptyVehiculo: Vehiculo = {
-        id: 0,
+        id: 11,
         marca: "",
         modelo: "",
         km: 0,
@@ -68,7 +68,8 @@ export default function FileVehicle({id, mode}: Prop){
         moneda: "USD",
         descripcion: "",
         tipo: "",
-        estado: "Usado",
+        destacado: false,
+        estado: "",
         imagenes: [],
         anio: new Date().getFullYear(),
         vendedorId: authService.getUserData()?.id || 0
@@ -88,6 +89,7 @@ export default function FileVehicle({id, mode}: Prop){
                 { name: "anio", label: "Año", value: new Date().getFullYear(), type: "number" },
                 { name: "precio", label: "Precio", value: 0, type: "number" },
                 { name: "estado", label: "Estado", value: "Usado", type: "option" },
+                { name: "tipo", label: "Tipo vehículo", value: "Tipo", type: "option" },
                 { name: "descripcion", label: "Descripción", value: "Descripción", type: "textarea" },
             ]);
         }

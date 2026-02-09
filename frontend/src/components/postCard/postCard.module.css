@@ -162,6 +162,7 @@
 
 .emptyCard:hover {
     background: var(--neutral-5);
+    color: var(--neutral-1);
 }
 
 .plus {
@@ -169,6 +170,10 @@
     font-weight: 300;
     color: white;
     line-height: 0;
+}
+
+.plus:hover{
+    color: var(--neutral-1);
 }
 
 

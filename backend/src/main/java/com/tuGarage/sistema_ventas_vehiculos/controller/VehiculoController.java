@@ -4,6 +4,7 @@ import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
+import com.tuGarage.sistema_ventas_vehiculos.repository.VendedorRepository;
 import com.tuGarage.sistema_ventas_vehiculos.service.VehiculoService;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.Optional;
 public class VehiculoController {
     @Autowired
     private VehiculoService vehiculoService;
+    @Autowired
+    private VendedorRepository vendedorRepository;
 
     public VehiculoController(VehiculoService vehiculoService) {
         this.vehiculoService = vehiculoService;
@@ -110,10 +113,12 @@ public class VehiculoController {
             @RequestBody Vehiculo vehiculo,
             Authentication auth) {
 
-        Vendedor user = (Vendedor) auth.getPrincipal();
-        Long vendedorId = user.getId();
+        String email = auth.getName(); // ← ESTE ES EL USERNAME
+        Vendedor vendedor = vendedorRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Vendedor no encontrado"));
 
-        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo, vendedorId);
+        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo, vendedor.getId());
+
         return ResponseEntity.ok(nuevo);
     }
 

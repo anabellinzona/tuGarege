@@ -17,18 +17,14 @@ public class Vehiculo {
     @Column(name = "vendedor_id")
     private Long vendedorId;
 
-    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Caracteristica> caracteristicas;
+//    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    private List<Caracteristica> caracteristicas;
 
 
     private String modelo;
     private double precio;
-    private String moneda;
     private String descripcion;
-
-    @Column(name = "tipo")
-    private String tipo;
 
     @Column(name = "fecha_publicacion")
     private Date fechaPublicacion;

@@ -4,15 +4,15 @@ import styles from "./fileVehicle.module.css";
 import Carrousel from "@/components/fileVehicle/carrousel/carrousel";
 import MainInfo from "@/components/fileVehicle/mainInfo/mainInfo";
 import SecondInfo from "@/components/fileVehicle/secondInfo/secondInfo";
-import ItemCharacteristic from "@/components/fileVehicle/itemCharacteristic/itemCharacteristic";
 import ConsultButton from "@/components/buttons/consultButton/consultButton";
 import Recommended from "@/components/recommended/recommended";
-import EditableText from "@/components/fileVehicle/editableText/editableText";
-import EditButton from "@/components/fileVehicle/editButton/editButton";
 import FormEdit from "@/components/fileVehicle/formEdit/formEdit";
+import {useSearchParams} from "next/navigation";
+import DescriptionInfo from "@/components/fileVehicle/descriptionInfo/descriptionInfo";
+import {authService} from "@/service/authService";
 
 type Prop = {
-    id: string;
+    id?: string;
     mode: 'view' | 'create' | 'edit'
 }
 
@@ -42,7 +42,7 @@ interface Vehiculo {
 type CampoAEditar = {
     name: string;
     value: string | number | boolean;
-    type: "text" | "number" | "textarea" | "checkbox";
+    type: "text" | "number" | "textarea" | "checkbox" | "option";
     label: string;
 };
 
@@ -53,33 +53,55 @@ export default function FileVehicle({id, mode}: Prop){
     const isEmptyFile = mode === "create";
     const isEditableFile = mode === "edit";
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-    const initialVehicle: Vehiculo = vehiculo || {
-        id: 0,
-        vendedorId: 0,
-        imagenes: [],
-        marca: '',
-        modelo: '',
-        km: 0,
-        precio: 0,
-        descripcion: '',
-        tipo: '',
-        estado: '',
-        anio: 0
-    };
-
-    const [localVehicle, setLocalVehicle] = useState<Vehiculo>(initialVehicle);
+    const searchParams = useSearchParams();
+    const modeParam = searchParams.get("mode");
 
     const [camposAEditar, setCamposAEditar] = useState<CampoAEditar[]>([]);
     const [vehiculoAEditar, setVehiculoAEditar] = useState(false);
 
-// función que se llamará desde los hijos
-    const handleOpenDynamicEdit = (fields: CampoAEditar[]) => {
-        setCamposAEditar(fields);
-        setVehiculoAEditar(true);
+    const emptyVehiculo: Vehiculo = {
+        id: 0,
+        marca: "",
+        modelo: "",
+        km: 0,
+        precio: 0,
+        moneda: "USD",
+        descripcion: "",
+        tipo: "",
+        estado: "Usado",
+        imagenes: [],
+        anio: new Date().getFullYear(),
+        vendedorId: authService.getUserData()?.id || 0
+    };
+
+
+    const handleVehiculoUpdated = (nuevoVehiculo: Vehiculo) => {
+        setVehiculo(nuevoVehiculo);
     };
 
     useEffect(() => {
+        if (mode === "create" && vehiculo) {
+            setCamposAEditar([
+                { name: "marca", label: "Marca", value: "Marca", type: "text" },
+                { name: "modelo", label: "Modelo", value: "Modelo", type: "text" },
+                { name: "km", label: "Kilómetros", value: 0, type: "number" },
+                { name: "anio", label: "Año", value: new Date().getFullYear(), type: "number" },
+                { name: "precio", label: "Precio", value: 0, type: "number" },
+                { name: "estado", label: "Estado", value: "Usado", type: "option" },
+                { name: "descripcion", label: "Descripción", value: "Descripción", type: "textarea" },
+            ]);
+        }
+    }, [mode, vehiculo]);
+
+
+    useEffect(() => {
+        if (mode === "create") {
+            setVehiculo(emptyVehiculo);
+            setVehiculoAEditar(true);
+            setLoading(false);
+            return;
+        }
+
         fetch(`${API_URL}/api/vehiculos/${id}`)
             .then((response) =>{
                 if(!response.ok){
@@ -95,52 +117,29 @@ export default function FileVehicle({id, mode}: Prop){
                 console.log("El error fue: " + error);
                 setLoading(false);
             });
-    }, [id]);
+    }, [id, modeParam]);
 
     if(loading) return <div>Cargando...</div>;
-    if(!vehiculo) return <div>No se encontró el vehículo</div>;
-    if(!vehiculo.imagenes || vehiculo.imagenes.length === 0) {
+
+    if(mode !== "create" && (!vehiculo?.imagenes || vehiculo.imagenes.length === 0)) {
         return <p>No hay imágenes disponibles</p>;
     }
 
-    const handleSaveAddress = async (value: string) => {
-        console.log(`Guardando address:`, value);
-        setVehiculo(prev => prev ? { ...prev, descripcion: value } : null);
-        setEditingField(null);
-    };
-
-    const handleCancelEdit = () => {
-        console.log(`Cancelando edición`);
-        setEditingField(null);
-    };
-
-    const handleStartEdit = (fieldName: keyof Vehiculo) => {
-        setEditingField(fieldName);
-    };
+    if(!vehiculo) return <div>No se encontró el vehículo</div>;
 
     const handleSaveField = (fieldName: keyof Vehiculo, value: string | number) => {
         setVehiculo(prev => prev ? { ...prev, [fieldName]: value } : null);
         setEditingField(null);
     };
 
-    const handleStartEditHeader = () => setEditingField('descripcion');
-
-
-    // 2. Función para abrir el formulario
-    const handleOpenEdit = () => {
-        // Al hacer clic en Editar, cargamos los datos
-        setVehiculoAEditar(true);
-    };
-
-    // 3. Función para cerrar el formulario (resetear el estado)
-    const handleCloseEdit = () => {
-        setVehiculoAEditar(false);
-    };
-
     return(
         <section className={styles.vehicleFileSectionContainerProperties}>
             <div className={styles.carrouselAndVehicleInformationProperties}>
-                <Carrousel imagenes={vehiculo.imagenes}/>
+                {isEditableFile && (
+                    <Carrousel imagenes={vehiculo.imagenes}/>
+                ) || isEmptyFile && (
+                    <Carrousel imagenes={emptyVehiculo.imagenes}/>
+                )}
                 <MainInfo
                     vehiculo={vehiculo}
                     isEditable={isEditableFile}
@@ -151,76 +150,80 @@ export default function FileVehicle({id, mode}: Prop){
                             { name: "modelo", label: "Modelo", value: vehiculo?.modelo, type: "text" },
                             { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
                             { name: "anio", label: "Año", value: vehiculo?.anio, type: "number" },
-                            { name: "precio", label: "Precio", value: vehiculo?.precio, type: "number" }
+                            { name: "precio", label: "Precio", value: vehiculo?.precio, type: "number" },
                         ]);
-                        setVehiculoAEditar(true); // abre el formulario
+                        setVehiculoAEditar(true);
                     }}
                     onSaveField={handleSaveField}
                     classname={styles.inputProperties}
                 />
-
-
             </div>
             <div className={styles.secondContainerProperties}>
                 <div className={styles.secondInfoContainerProperties}>
                     <div>
-                        <SecondInfo vehiculo={vehiculo}
-                                    isEditable={isEditableFile}
-                                    editingField={editingField}
-                                    onEditClick={() => {
-                                        setCamposAEditar([
-                                            { name: "modelo", label: "Modelo", value: vehiculo?.modelo, type: "text" },
-                                            { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
-                                            { name: "descripcion", label: "Descripción", value: vehiculo?.descripcion, type: "text" },
-                                        ]);
-                                        setVehiculoAEditar(true); // abre el formulario
-                                    }}
-                                    onSaveField={handleSaveField}
-                                    classname={styles.inputProperties}/>
-                    </div>
-                    <div className={styles.aditionalInfoContainerProperties}>
-                        <h3>Datos adicionales</h3>
-                        <ItemCharacteristic id={vehiculo.id}/>
+                        <SecondInfo
+                            vehiculo={vehiculo}
+                            isEditable={isEditableFile}
+                            editingField={editingField}
+                            onEditClick={() => {
+                                setCamposAEditar([
+                                    { name: "modelo", label: "Modelo", value: vehiculo?.modelo, type: "text" },
+                                    { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
+                                    { name: "estado", label: "Estado", value: vehiculo?.estado, type: "option" },
+                                ]);
+                                setVehiculoAEditar(true); // abre el formulario
+                            }}
+                            onSaveField={handleSaveField}
+                            classname={styles.inputProperties}/>
                     </div>
                     <div className={styles.descriptionContainerProperties}>
                         <div className={styles.titleAndEditButtonProperties}>
                             <h3>Descripción</h3>
-                            <EditButton
-                                onStartEdit={() => handleStartEditHeader()}
-                                onEndEdit={() => handleSaveAddress(localVehicle.descripcion)}
-                                isEditing={editingField === 'descripcion'}
-                                className={styles.editButtonProperties}
-                                show={isEditableFile || isEmptyFile}
-                                img={'/icons/editIcon.png'}
-                            />
                         </div>
-                        {(isEmptyFile || isEditableFile) && editingField === 'descripcion' ? (
-                            <EditableText
-                                value={vehiculo.descripcion}
-                                isEditing={true}
-                                type={"text"}
-                                onSave={(value) => handleSaveAddress(value)}
-                                onCancel={handleCancelEdit}
-                                className={styles.inputProperties}
-                            />
-                        ) : (
-                            <div onClick={() => handleStartEditHeader()} style={{ cursor: 'pointer' }}>
-                                {vehiculo.descripcion}
-                            </div>
-                        )}
+                        <div>
+                            <DescriptionInfo
+                                vehiculo={vehiculo}
+                                isEditable={isEditableFile}
+                                editingField={editingField}
+                                onEditClick={() => {
+                                    setCamposAEditar([
+                                        {
+                                            name: "descripcion",
+                                            label: "Descripción",
+                                            value: vehiculo?.descripcion,
+                                            type: "textarea"
+                                        }
+                                    ])
+                                    setVehiculoAEditar(true);
+                                }}
+                                onSaveField={handleSaveField}
+                                classname={styles.inputProperties}/>
+                        </div>
+                    </div>
+                    <div className={styles.buttonContainerProperties}>
+                        <ConsultButton message={"Consultar por este vehículo"}/>
                     </div>
                 </div>
                 <div className={styles.recommendedContainerProperties}>
                     <Recommended vehicleId={vehiculo.id} />
                 </div>
             </div>
-            <div className={styles.buttonContainerProperties}>
-                <ConsultButton message={"Consultar por este vehículo"}/>
-            </div>
-
             <div className={styles.formProperties}>
-                {vehiculoAEditar && (
-                    <FormEdit campos={camposAEditar} idV={vehiculo.id} onCloseForm={() => setVehiculoAEditar(false)}  />
+                {vehiculoAEditar && isEditableFile && (
+                    <FormEdit
+                        campos={camposAEditar}
+                        idV={vehiculo.id}
+                        mode={'edit'}
+                        onCloseForm={() => setVehiculoAEditar(false)}
+                        onVehiculoUpdated={handleVehiculoUpdated}
+                    />
+                ) || isEmptyFile && (
+                    <FormEdit
+                        campos={camposAEditar}
+                        mode={'create'}
+                        onCloseForm={() => setVehiculoAEditar(false)}
+                        onVehiculoUpdated={handleVehiculoUpdated}
+                    />
                 )}
             </div>
         </section>

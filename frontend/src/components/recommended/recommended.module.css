@@ -13,6 +13,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding: var(--20px);
+    margin-bottom: var(--20px);
 }
 
 .recommendedProperties h2{

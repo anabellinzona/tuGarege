@@ -1,25 +1,31 @@
+"use client"
 import styles from "./formEdit.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { authService } from "@/service/authService";
+import { useRouter } from "next/navigation"
 
 interface Campo {
     name: string;
     value: string | number | boolean;
-    type: 'text' | 'number' | 'textarea' | 'checkbox';
+    type: 'text' | 'number' | 'textarea' | 'checkbox' | 'option';
     label: string;
 }
 
 type Prop = {
     campos: Campo[];
-    idV: number;
+    idV?: number;
+    mode: 'edit' | 'create';
     onCloseForm: () => void;
-}
+    onVehiculoUpdated: (v: any) => void;
+};
 
-export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
+
+export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpdated }: Prop) {
     const [formData, setFormData] = useState<Record<string, any>>({});
     const [isLoading, setIsLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const router = useRouter();
 
     useEffect(() => {
         const initialValues: Record<string, any> = {};
@@ -30,7 +36,7 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
     }, [campos]);
 
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
         let finalValue: any = value;
 
@@ -47,11 +53,6 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
         try {
             const token = authService.getToken();
 
-            console.log("🔐 TOKEN OBTENIDO:", token);
-            console.log("🌍 API_URL:", API_URL);
-            console.log("🔧 ID DEL VEHÍCULO:", idV);
-            console.log("📦 DATOS A ENVIAR:", formData);
-
             if (!token) {
                 alert("Debes iniciar sesión.");
                 window.location.href = '/login';
@@ -65,7 +66,14 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
                 return;
             }
 
-            const endpoint = `${API_URL}/api/vehiculos/${idV}`;
+            // const endpoint = `${API_URL}/api/vehiculos/${idV}`;
+
+            const endpoint =
+                mode === "create"
+                    ? `${API_URL}/api/vehiculos`
+                    : `${API_URL}/api/vehiculos/${idV}`;
+
+            const method = mode === "create" ? "POST" : "PUT";
 
             console.log("📡 URL FINAL DEL PUT:", endpoint);
 
@@ -79,10 +87,17 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
             console.log("➡️ HACIENDO FETCH PUT...");
 
             const response = await fetch(endpoint, {
-                method: "PUT",
+                method,
                 headers,
                 body: JSON.stringify(formData)
             });
+
+
+            // const response = await fetch(endpoint, {
+            //     method: "PUT",
+            //     headers,
+            //     body: JSON.stringify(formData)
+            // });
 
             console.log("📥 STATUS DEL BACKEND:", response.status);
             console.log("📩 RESPONSE COMPLETA:", response);
@@ -96,7 +111,17 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
             }
 
             alert("Cambios guardados correctamente");
-            onCloseForm();
+
+            if (mode === "create") {
+                const nuevoVehiculo = JSON.parse(responseText);
+                router.push(`/fichaVehiculo/${nuevoVehiculo.id}?mode=view`);
+                return;
+            } else {
+                const updated = await fetch(`${API_URL}/api/vehiculos/${idV}`);
+                const vehiculoActualizado = await updated.json();
+                onVehiculoUpdated(vehiculoActualizado);
+                onCloseForm();
+            }
 
         } catch (error) {
             console.log("🔥 ERROR CAPTURADO:", error);
@@ -117,10 +142,9 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
         return <p>Cargando...</p>;
     }
 
-
     return (
-        <form onSubmit={handleSubmit} className={styles.formProperties}>
-            <div className={styles.formComponentsProperties}>
+        <form onSubmit={handleSubmit} className={mode === "create" ? styles.formPropertiesCreate : styles.formProperties}>
+            <div className={mode === "create" ? styles.formComponentsPropertiesCreate : styles.formComponentsProperties}>
                 {campos.map((campo) => (
                     <div key={campo.name} className={styles.inputsAndLabelProperties}>
                         <label>{campo.label}</label>
@@ -136,13 +160,25 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
                                 type="checkbox"
                                 name={campo.name}
                                 checked={formData[campo.name] ?? false}
+                                placeholder={formData[campo.name] ?? false}
                                 onChange={handleChange}
                             />
+                        ) : campo.type === 'option' ? (
+                            <select
+                                name={campo.name}
+                                value={formData[campo.name] ?? ""}
+                                onChange={handleChange}
+                            >
+                                <option value="">Seleccionar</option>
+                                <option value="Usado">Usado</option>
+                                <option value="Nuevo">Nuevo</option>
+                            </select>
+
                         ) : (
                             <input
                                 type={campo.type}
                                 name={campo.name}
-                                value={formData[campo.name] ?? ""}
+                                placeholder={formData[campo.name] ?? (campo.type === "number" ? 0 : "")}
                                 onChange={handleChange}
                             />
                         )}
@@ -154,7 +190,7 @@ export default function FormEdit({ idV, onCloseForm, campos }: Prop) {
                     className={styles.modifeButton}
                     disabled={isLoading}
                 >
-                    {isLoading ? 'Guardando...' : 'Modificar'}
+                    {isLoading ? 'Guardando...' : mode === 'edit' ? 'Modificar' : 'Crear'}
                 </button>
             </div>
 

@@ -154,7 +154,7 @@ export default function PostCard() {
     return (
         <>
             {isOwner && (
-                <Link href="/vehiculos/crear">
+                <Link href="/fichaVehiculo/crear?mode=create">
                     <main className={styles.main}>
                         <div className={styles.emptyCard}>
                             <span className={styles.plus}>+</span>

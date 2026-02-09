@@ -30,7 +30,7 @@ type Prop = {
     vehiculo: Vehiculo | null;
     isEditable: boolean;
     editingField: string | null;
-    onEditClick: () => void;        // ⬅️ esta función abre el formulario y setea campos en el padre
+    onEditClick: () => void;
     onSaveField: (field: keyof Vehiculo, value: string | number) => void;
     classname: string;
 };
@@ -98,7 +98,7 @@ export default function MainInfo({
 
             {isEditable ? (
                 <button
-                    onClick={onEditClick}        // ⬅️ SOLO AVISA AL PADRE
+                    onClick={onEditClick}
                     className={styles.modifeButtonProperties}
                 >
                     Editar

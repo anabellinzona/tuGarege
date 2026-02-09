@@ -1,4 +1,4 @@
-import styles from "./secondInfo.module.css";
+import styles from "./descriptionInfo.module.css";
 
 interface Imagen {
     id: number;
@@ -32,26 +32,24 @@ type Prop = {
     classname: string;
 };
 
-export default function SecondInfo({vehiculo,
+export default function DescriptionInfo({vehiculo,
                                        isEditable,
                                        onEditClick,
                                    }: Prop){
     return(
-        <div className={styles.tableCharacteristicProperties}>
-            <h3>Características principales</h3>
-
-            <p><strong>Modelo:</strong> {vehiculo?.modelo}</p>
-            <p><strong>Kilometraje:</strong> {vehiculo?.km}km</p>
-            <p><strong>Estado:</strong> {vehiculo?.estado}</p>
+        <div>
+            <div>
+                {vehiculo?.descripcion || ""}
+            </div>
 
             {isEditable && (
-                    <button
-                        onClick={onEditClick}
-                        className={styles.modifeButtonProperties}
-                    >
-                        Editar
-                    </button>
-                )}
+                <button
+                    onClick={onEditClick}
+                    className={styles.modifeButtonProperties}
+                >
+                    Editar
+                </button>
+            )}
         </div>
     );
 }

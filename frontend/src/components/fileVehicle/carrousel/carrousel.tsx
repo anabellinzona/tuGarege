@@ -34,13 +34,15 @@ export default function Carrousel({imagenes}: Prop){
 
     return(
         <div className={styles.vehicleFileImagesCarrouselProperties}>
-            <Image
+            {imagenes.length > 1 && (
+                <Image
                 src={imagenes[imagenActual].url}
                 alt={`Imagen ${imagenActual + 1}`}
                 fill
                 style={{objectFit: 'cover'}}
                 priority={imagenActual === 0}
             />
+            )}
 
             {imagenes.length > 1 && (
                 <div className={styles.carrouselButtonsProperties}>

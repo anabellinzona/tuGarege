@@ -36,6 +36,8 @@ public class VehiculoService {
         v.setMarca(datos.getMarca());
         v.setModelo(datos.getModelo());
         v.setKm(datos.getKm());
+        v.setAnio(datos.getAnio());
+        v.setTipo(datos.getTipo());
         v.setPrecio(datos.getPrecio());
         v.setDescripcion(datos.getDescripcion());
         v.setEstado(datos.getEstado());

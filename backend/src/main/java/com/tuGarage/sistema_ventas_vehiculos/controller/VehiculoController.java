@@ -3,7 +3,9 @@ package com.tuGarage.sistema_ventas_vehiculos.controller;
 import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
 import com.tuGarage.sistema_ventas_vehiculos.service.VehiculoService;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -104,11 +106,17 @@ public class VehiculoController {
     }
 
     @PostMapping
-    public ResponseEntity<Vehiculo> crearVehiculo(@RequestBody Vehiculo vehiculo) {
-        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo, vehiculo.getVendedorId());
+    public ResponseEntity<Vehiculo> crearVehiculo(
+            @RequestBody Vehiculo vehiculo,
+            Authentication auth) {
 
+        Vendedor user = (Vendedor) auth.getPrincipal();
+        Long vendedorId = user.getId();
+
+        Vehiculo nuevo = vehiculoService.crearVehiculo(vehiculo, vendedorId);
         return ResponseEntity.ok(nuevo);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Vehiculo> actualizarVehiculo(@PathVariable Long id, @RequestBody Vehiculo actualizado) {

@@ -59,20 +59,26 @@ export default function FileVehicle({id, mode}: Prop){
     const [camposAEditar, setCamposAEditar] = useState<CampoAEditar[]>([]);
     const [vehiculoAEditar, setVehiculoAEditar] = useState(false);
 
+    const user = authService.getUserData();
+
+    if (!user || user.id == null) {
+        alert("Sesión no válida");
+        return;
+    }
+
     const emptyVehiculo: Vehiculo = {
-        id: 11,
+        id: 0,
         marca: "",
         modelo: "",
         km: 0,
         precio: 0,
-        moneda: "USD",
         descripcion: "",
         tipo: "",
         destacado: false,
         estado: "",
         imagenes: [],
         anio: new Date().getFullYear(),
-        vendedorId: authService.getUserData()?.id || 0
+        vendedorId: user.id
     };
 
 

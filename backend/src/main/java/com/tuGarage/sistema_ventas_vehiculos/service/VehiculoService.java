@@ -22,6 +22,7 @@ public class VehiculoService {
 
     @Autowired
     private VehiculoRepository vehiculoRepository;
+    @Autowired
     private VendedorRepository vendedorRepository;
 
     public List<Vehiculo> obtenerTodos() {

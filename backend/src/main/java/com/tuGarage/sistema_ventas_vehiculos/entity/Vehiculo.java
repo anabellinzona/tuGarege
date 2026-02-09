@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Vehiculo {
     private String tipo;
 
     @Column(name = "fecha_publicacion")
-    private LocalDate fechaPublicacion;
+    private LocalDateTime fechaPublicacion;
 
     private boolean destacado;
 

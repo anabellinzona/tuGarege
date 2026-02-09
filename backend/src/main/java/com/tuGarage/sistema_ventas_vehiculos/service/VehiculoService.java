@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,7 @@ public class VehiculoService {
         v.setEstado(datos.getEstado());
 
         // 👇 DATOS AUTOMÁTICOS
-        v.setFechaPublicacion(LocalDate.now());
+        v.setFechaPublicacion(LocalDateTime.now());
         v.setDestacado(false);
 
         Vendedor vendedor = vendedorRepository.findById(vendedorId)

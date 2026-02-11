@@ -102,6 +102,7 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
 
             console.log("➡️ HACIENDO FETCH PUT...");
 
+
             const response = await fetch(endpoint, {
                 method,
                 headers,
@@ -203,11 +204,11 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                 onChange={async (e) => {
                                     if (!e.target.files) return;
 
-                                    const urls: string[] = [];
+                                    const urls: { url: string }[] = [];
 
                                     for (const file of Array.from(e.target.files)) {
                                         const url = await uploadImageToCloudinary(file);
-                                        urls.push(url);
+                                        urls.push({ url });
                                     }
 
                                     setFormData(prev => ({

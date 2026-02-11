@@ -3,6 +3,7 @@ package com.tuGarage.sistema_ventas_vehiculos.service;
 import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.FiltroVehiculoDTO;
 import com.tuGarage.sistema_ventas_vehiculos.dto.OpcionFiltroDTO;
+import com.tuGarage.sistema_ventas_vehiculos.entity.Imagen;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vehiculo;
 import com.tuGarage.sistema_ventas_vehiculos.entity.Vendedor;
 import com.tuGarage.sistema_ventas_vehiculos.repository.VehiculoRepository;
@@ -42,6 +43,12 @@ public class VehiculoService {
         v.setPrecio(datos.getPrecio());
         v.setDescripcion(datos.getDescripcion());
         v.setEstado(datos.getEstado());
+
+        if (datos.getImagenes() != null) {
+            for (Imagen img : datos.getImagenes()) {
+                img.setVehiculo(datos);
+            }
+        }
 
         // 👇 DATOS AUTOMÁTICOS
         v.setFechaPublicacion(LocalDateTime.now());

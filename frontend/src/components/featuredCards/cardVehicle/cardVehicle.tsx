@@ -151,7 +151,7 @@ export default function CardVehicle(){
                     >
                         <div className={styles.vehicleImageProperties}>
                             <Image
-                                src={vehiculo.imagenes?.[0]?.url || "/icons/vehicleImage.png"}
+                                src={vehiculo.imagenes?.[0]?.url || "/backgrounds/imageNotFound.png"}
                                 alt={`${vehiculo.marca} ${vehiculo.modelo}`}
                                 fill
                                 style={{objectFit: "cover"}}

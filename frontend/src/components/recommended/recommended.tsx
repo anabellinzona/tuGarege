@@ -49,7 +49,7 @@ export default function Recommended({vehicleId}: Prop){
         <section className={styles.recommendedProperties}>
             <h2>Podría interesarte</h2>
             {sugerencias.map(sugerencia => (
-                <StandardCard image={sugerencia.imagenes[0].url} id={sugerencia.id} modelo={sugerencia.modelo} precio={sugerencia.precio} marca={sugerencia.marca}/>
+                <StandardCard image={sugerencia.imagenes[0] != null ? sugerencia.imagenes[0].url : "/backgrounds/imageNotFound.png"} id={sugerencia.id} modelo={sugerencia.modelo} precio={sugerencia.precio} marca={sugerencia.marca}/>
             ))}
         </section>
     );

@@ -6,6 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/featuredCards/cardVehicle/cardVehicle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/carrousel/carrousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/carrousel/carrousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/fileVehicle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/formEdit/formEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/formEdit/formEdit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recommended/recommended.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recommended/recommended.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/standardCard/standardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/standardCard/standardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/ThemeContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/ThemeContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,11 +190,16 @@
       <workItem from="1770389406841" duration="4986000" />
       <workItem from="1770564332831" duration="2930000" />
       <workItem from="1770574048302" duration="1712000" />
-      <workItem from="1770639678778" duration="13187000" />
+      <workItem from="1770639678778" duration="14203000" />
+      <workItem from="1770746042752" duration="7254000" />
+      <workItem from="1770809121214" duration="35000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="next.config.ts" />
   </component>
 </project>

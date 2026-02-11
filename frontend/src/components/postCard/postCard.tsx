@@ -173,7 +173,7 @@ export default function PostCard() {
                     <main key={vehiculo.id} className={styles.main}>
                         <div className={styles.imageContainer}>
                             <Image
-                                src={imagenActual.url}
+                                src={imagenActual != null ? imagenActual.url : "/backgrounds/imageNotFound.png"}
                                 alt={`Imagen de ${vehiculo.marca} ${vehiculo.modelo}`}
                                 fill
                                 style={{ objectFit: "cover" }}

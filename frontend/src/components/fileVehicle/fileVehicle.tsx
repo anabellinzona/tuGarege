@@ -41,8 +41,8 @@ interface Vehiculo {
 
 type CampoAEditar = {
     name: string;
-    value: string | number | boolean;
-    type: "text" | "number" | "textarea" | "checkbox" | "option";
+    value: string | number | boolean | [];
+    type: "text" | "number" | "textarea" | "checkbox" | "option" | "file";
     label: string;
 };
 
@@ -81,7 +81,6 @@ export default function FileVehicle({id, mode}: Prop){
         vendedorId: user.id
     };
 
-
     const handleVehiculoUpdated = (nuevoVehiculo: Vehiculo) => {
         setVehiculo(nuevoVehiculo);
     };
@@ -97,10 +96,10 @@ export default function FileVehicle({id, mode}: Prop){
                 { name: "estado", label: "Estado", value: "Usado", type: "option" },
                 { name: "tipo", label: "Tipo vehículo", value: "Tipo", type: "option" },
                 { name: "descripcion", label: "Descripción", value: "Descripción", type: "textarea" },
+                { name: "imagenes", label: "Imagenes", value: [], type: "file" },
             ]);
         }
     }, [mode, vehiculo]);
-
 
     useEffect(() => {
         if (mode === "create") {
@@ -129,9 +128,9 @@ export default function FileVehicle({id, mode}: Prop){
 
     if(loading) return <div>Cargando...</div>;
 
-    if(mode !== "create" && (!vehiculo?.imagenes || vehiculo.imagenes.length === 0)) {
-        return <p>No hay imágenes disponibles</p>;
-    }
+    // if(mode !== "create" && (!vehiculo?.imagenes || vehiculo.imagenes.length === 0)) {
+    //     return <p>No hay imágenes disponibles</p>;
+    // }
 
     if(!vehiculo) return <div>No se encontró el vehículo</div>;
 
@@ -147,6 +146,8 @@ export default function FileVehicle({id, mode}: Prop){
                     <Carrousel imagenes={vehiculo.imagenes}/>
                 ) || isEmptyFile && (
                     <Carrousel imagenes={emptyVehiculo.imagenes}/>
+                ) || !isEditableFile && !isEmptyFile && (
+                    <Carrousel imagenes={vehiculo.imagenes}/>
                 )}
                 <MainInfo
                     vehiculo={vehiculo}

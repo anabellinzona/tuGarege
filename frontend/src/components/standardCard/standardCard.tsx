@@ -15,7 +15,7 @@ export default function StandardCard({id, marca, modelo, image, precio}: Prop) {
             <main className={styles.main}>
                 <div className={styles.imageContainer}>
                     <Image
-                        src={image}
+                        src={image != null ? image : "/backgrounds/imageNotFound.png"}
                         alt={'vehículo descripto en la publicación'}
                         fill
                         style={{ objectFit: "cover" }}

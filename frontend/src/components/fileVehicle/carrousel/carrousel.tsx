@@ -34,7 +34,7 @@ export default function Carrousel({imagenes}: Prop){
 
     return(
         <div className={styles.vehicleFileImagesCarrouselProperties}>
-            {imagenes.length > 1 && (
+            {imagenes.length >= 1 && (
                 <Image
                 src={imagenes[imagenActual].url}
                 alt={`Imagen ${imagenActual + 1}`}
@@ -42,6 +42,14 @@ export default function Carrousel({imagenes}: Prop){
                 style={{objectFit: 'cover'}}
                 priority={imagenActual === 0}
             />
+            ) || imagenes.length == 0 && (
+                <Image
+                    src={"/backgrounds/imageNotFound.png"}
+                    alt={`Imagen ${imagenActual + 1}`}
+                    fill
+                    style={{objectFit: 'cover'}}
+                    priority={imagenActual === 0}
+                    />
             )}
 
             {imagenes.length > 1 && (
@@ -61,9 +69,11 @@ export default function Carrousel({imagenes}: Prop){
                 </div>
             )}
 
+            {imagenes.length >= 1 && (
             <div className={styles.contadorProperties}>
                 {imagenActual + 1} / {imagenes.length}
             </div>
+            )}
         </div>
     );
 }

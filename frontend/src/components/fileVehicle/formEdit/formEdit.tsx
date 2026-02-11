@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation"
 
 interface Campo {
     name: string;
-    value: string | number | boolean;
-    type: 'text' | 'number' | 'textarea' | 'checkbox' | 'option';
+    value: string | number | boolean | [];
+    type: 'text' | 'number' | 'textarea' | 'checkbox' | 'option' | 'file';
     label: string;
 }
 
@@ -46,6 +46,22 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
         setFormData(prev => ({ ...prev, [name]: finalValue }));
     };
 
+     const uploadImageToCloudinary = async (file: File) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "vehiculos_unsigned");
+
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dv2synj8w/image/upload",
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        const data = await res.json();
+        return data.secure_url;
+     };
 
     const handleSave = async () => {
         setIsLoading(true);
@@ -91,13 +107,6 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                 headers,
                 body: JSON.stringify(formData)
             });
-
-
-            // const response = await fetch(endpoint, {
-            //     method: "PUT",
-            //     headers,
-            //     body: JSON.stringify(formData)
-            // });
 
             console.log("📥 STATUS DEL BACKEND:", response.status);
             console.log("📩 RESPONSE COMPLETA:", response);
@@ -186,6 +195,29 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                     <option value="Moto">Moto</option>
                                 </select>
                             )
+                        ) : campo.type === 'file' ? (
+                            <input
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                onChange={async (e) => {
+                                    if (!e.target.files) return;
+
+                                    const urls: string[] = [];
+
+                                    for (const file of Array.from(e.target.files)) {
+                                        const url = await uploadImageToCloudinary(file);
+                                        urls.push(url);
+                                    }
+
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        imagenes: urls
+                                    }));
+                                }}
+
+                            />
+
                         ) : (
                             <input
                                 type={campo.type}

@@ -34,7 +34,6 @@ public class VehiculoService {
 
         Vehiculo v = new Vehiculo();
 
-        // 👇 datos que vienen del front
         v.setMarca(datos.getMarca());
         v.setModelo(datos.getModelo());
         v.setKm(datos.getKm());
@@ -46,11 +45,11 @@ public class VehiculoService {
 
         if (datos.getImagenes() != null) {
             for (Imagen img : datos.getImagenes()) {
-                img.setVehiculo(datos);
+                img.setVehiculo(v);
+                v.getImagenes().add(img);
             }
         }
 
-        // 👇 DATOS AUTOMÁTICOS
         v.setFechaPublicacion(LocalDateTime.now());
         v.setDestacado(false);
 

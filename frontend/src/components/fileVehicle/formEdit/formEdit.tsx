@@ -26,6 +26,7 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
     const [isLoading, setIsLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
+    const [uploadingImages, setUploadingImages] = useState(false);
 
     useEffect(() => {
         const initialValues: Record<string, any> = {};
@@ -60,6 +61,7 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
         );
 
         const data = await res.json();
+        console.log("URL IMAGEN: " + data.secure_url);
         return data.secure_url;
      };
 
@@ -204,10 +206,13 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                 onChange={async (e) => {
                                     if (!e.target.files) return;
 
+                                    setUploadingImages(true);
+
                                     const urls: { url: string }[] = [];
 
                                     for (const file of Array.from(e.target.files)) {
                                         const url = await uploadImageToCloudinary(file);
+                                        console.log("URL IMAGEN:", url);
                                         urls.push({ url });
                                     }
 
@@ -215,7 +220,10 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                         ...prev,
                                         imagenes: urls
                                     }));
+
+                                    setUploadingImages(false);
                                 }}
+
 
                             />
 
@@ -233,9 +241,11 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                 <button
                     type="submit"
                     className={styles.modifeButton}
-                    disabled={isLoading}
+                    disabled={isLoading || uploadingImages}
                 >
-                    {isLoading ? 'Guardando...' : mode === 'edit' ? 'Modificar' : 'Crear'}
+                    {uploadingImages ? "Subiendo imágenes..." :
+                        isLoading ? "Guardando..." :
+                            mode === 'edit' ? 'Modificar' : 'Crear'}
                 </button>
             </div>
 

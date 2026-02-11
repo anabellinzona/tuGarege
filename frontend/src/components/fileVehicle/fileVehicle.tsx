@@ -128,10 +128,6 @@ export default function FileVehicle({id, mode}: Prop){
 
     if(loading) return <div>Cargando...</div>;
 
-    // if(mode !== "create" && (!vehiculo?.imagenes || vehiculo.imagenes.length === 0)) {
-    //     return <p>No hay imágenes disponibles</p>;
-    // }
-
     if(!vehiculo) return <div>No se encontró el vehículo</div>;
 
     const handleSaveField = (fieldName: keyof Vehiculo, value: string | number) => {
@@ -160,6 +156,7 @@ export default function FileVehicle({id, mode}: Prop){
                             { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
                             { name: "anio", label: "Año", value: vehiculo?.anio, type: "number" },
                             { name: "precio", label: "Precio", value: vehiculo?.precio, type: "number" },
+                            { name: "imagenes", label: "Imagen", value: [], type: "file"}
                         ]);
                         setVehiculoAEditar(true);
                     }}

@@ -124,6 +124,13 @@ public class VehiculoService {
             if (datos.getVendedorId() != null)
                 vehiculo.setVendedorId(datos.getVendedorId());
 
+            if (datos.getImagenes() != null) {
+                for (Imagen img : datos.getImagenes()) {
+                    img.setVehiculo(vehiculo);
+                    vehiculo.getImagenes().add(img);
+                }
+            }
+
             return vehiculoRepository.save(vehiculo);
 
         }).orElseThrow(() -> new RuntimeException("Vehículo no encontrado"));

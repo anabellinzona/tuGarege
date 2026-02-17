@@ -125,11 +125,15 @@ public class VehiculoService {
                 vehiculo.setVendedorId(datos.getVendedorId());
 
             if (datos.getImagenes() != null) {
+
+                vehiculo.getImagenes().clear();
+
                 for (Imagen img : datos.getImagenes()) {
                     img.setVehiculo(vehiculo);
                     vehiculo.getImagenes().add(img);
                 }
             }
+
 
             return vehiculoRepository.save(vehiculo);
 

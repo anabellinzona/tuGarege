@@ -5,9 +5,14 @@ import { useState, useEffect } from "react";
 import { authService } from "@/service/authService";
 import { useRouter } from "next/navigation"
 
+interface Imagen {
+    id?: number;
+    url: string;
+}
+
 interface Campo {
     name: string;
-    value: string | number | boolean | [];
+    value: string | number | boolean | Imagen[];
     type: 'text' | 'number' | 'textarea' | 'checkbox' | 'option' | 'file';
     label: string;
 }
@@ -30,9 +35,13 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
 
     useEffect(() => {
         const initialValues: Record<string, any> = {};
+
         campos.forEach(campo => {
             initialValues[campo.name] = campo.value;
         });
+
+        initialValues.imagenes = initialValues.imagenes || [];
+
         setFormData(initialValues);
     }, [campos]);
 
@@ -199,34 +208,45 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                 </select>
                             )
                         ) : campo.type === 'file' ? (
-                            <input
-                                type="file"
-                                multiple
-                                accept="image/*"
-                                onChange={async (e) => {
-                                    if (!e.target.files) return;
+                            <div>
+                                <input
+                                    type="file"
+                                    multiple
+                                    accept="image/*"
+                                    onChange={async (e) => {
+                                        if (!e.target.files) return;
 
-                                    setUploadingImages(true);
+                                        setUploadingImages(true);
 
-                                    const urls: { url: string }[] = [];
+                                        const nuevas: { url: string }[] = [];
 
-                                    for (const file of Array.from(e.target.files)) {
-                                        const url = await uploadImageToCloudinary(file);
-                                        console.log("URL IMAGEN:", url);
-                                        urls.push({ url });
-                                    }
+                                        for (const file of Array.from(e.target.files)) {
+                                            const url = await uploadImageToCloudinary(file);
+                                            nuevas.push({ url });
+                                        }
 
-                                    setFormData(prev => ({
-                                        ...prev,
-                                        imagenes: urls
-                                    }));
+                                        setFormData(prev => ({
+                                            ...prev,
+                                            imagenes: [
+                                                ...(prev.imagenes || []), // mantiene viejas (PUT)
+                                                ...nuevas                 // agrega nuevas (POST y PUT)
+                                            ]
+                                        }));
 
-                                    setUploadingImages(false);
-                                }}
+                                        setUploadingImages(false);
+                                    }}
 
-
-                            />
-
+                                />
+                                {formData.imagenes?.map((img: any, i: number) => (
+                                    <div key={i}>
+                                        <Image src={img.url} height={120} width={120} alt={"Vehicle image"} />
+                                        <button onClick={() => {setFormData(prev => ({
+                                            ...prev,
+                                            imagenes: prev.imagenes.filter((_:any, index: number) => index !== i)
+                                        }))}}>❌</button>
+                                    </div>
+                                ))}
+                            </div>
                         ) : (
                             <input
                                 type={campo.type}

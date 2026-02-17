@@ -41,7 +41,7 @@ interface Vehiculo {
 
 type CampoAEditar = {
     name: string;
-    value: string | number | boolean | [];
+    value: string | number | boolean | Imagen[];
     type: "text" | "number" | "textarea" | "checkbox" | "option" | "file";
     label: string;
 };
@@ -156,7 +156,7 @@ export default function FileVehicle({id, mode}: Prop){
                             { name: "km", label: "Kilómetros", value: vehiculo?.km, type: "number" },
                             { name: "anio", label: "Año", value: vehiculo?.anio, type: "number" },
                             { name: "precio", label: "Precio", value: vehiculo?.precio, type: "number" },
-                            { name: "imagenes", label: "Imagen", value: [], type: "file"}
+                            { name: "imagenes", label: "Imagenes", value: vehiculo?.imagenes != null ? vehiculo?.imagenes : [], type: "file" },
                         ]);
                         setVehiculoAEditar(true);
                     }}

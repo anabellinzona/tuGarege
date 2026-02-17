@@ -118,8 +118,8 @@ public class VehiculoService {
             if (datos.getPrecio() != 0)
                 vehiculo.setPrecio(datos.getPrecio());
 
-            if (datos.getImagenes() != null && !datos.getImagenes().isEmpty())
-                vehiculo.setImagenes(datos.getImagenes());
+//            if (datos.getImagenes() != null && !datos.getImagenes().isEmpty())
+//                vehiculo.setImagenes(datos.getImagenes());
 
             if (datos.getVendedorId() != null)
                 vehiculo.setVendedorId(datos.getVendedorId());
@@ -129,6 +129,7 @@ public class VehiculoService {
                 vehiculo.getImagenes().clear();
 
                 for (Imagen img : datos.getImagenes()) {
+                    img.setId(null);
                     img.setVehiculo(vehiculo);
                     vehiculo.getImagenes().add(img);
                 }

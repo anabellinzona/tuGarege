@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/tuGarage/sistema_ventas_vehiculos/service/VehiculoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/formEdit/formEdit.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/formEdit/formEdit.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/fileVehicle/formEdit/formEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/fileVehicle/formEdit/formEdit.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +188,7 @@
       <workItem from="1770746042752" duration="7254000" />
       <workItem from="1770809121214" duration="9313000" />
       <workItem from="1770831161903" duration="281000" />
-      <workItem from="1771335947842" duration="4308000" />
+      <workItem from="1771335947842" duration="9733000" />
     </task>
     <servers />
   </component>

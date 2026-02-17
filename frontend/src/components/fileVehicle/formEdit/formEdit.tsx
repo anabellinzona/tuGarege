@@ -93,8 +93,6 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                 return;
             }
 
-            // const endpoint = `${API_URL}/api/vehiculos/${idV}`;
-
             const endpoint =
                 mode === "create"
                     ? `${API_URL}/api/vehiculos`
@@ -102,17 +100,10 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
 
             const method = mode === "create" ? "POST" : "PUT";
 
-            console.log("📡 URL FINAL DEL PUT:", endpoint);
-
             const headers = {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             };
-
-            console.log("📬 HEADERS:", headers);
-
-            console.log("➡️ HACIENDO FETCH PUT...");
-
 
             const response = await fetch(endpoint, {
                 method,
@@ -120,14 +111,9 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                 body: JSON.stringify(formData)
             });
 
-            console.log("📥 STATUS DEL BACKEND:", response.status);
-            console.log("📩 RESPONSE COMPLETA:", response);
-
             const responseText = await response.text();
-            console.log("📄 RESPONSE TEXT:", responseText);
 
             if (!response.ok) {
-                console.log("❌ ERROR EN RESPONSE");
                 throw new Error(responseText || "Error desconocido");
             }
 
@@ -145,7 +131,6 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
             }
 
         } catch (error) {
-            console.log("🔥 ERROR CAPTURADO:", error);
             alert("Error al guardar los cambios.");
         } finally {
             setIsLoading(false);
@@ -164,51 +149,23 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
     }
 
     return (
-        <form onSubmit={handleSubmit} className={mode === "create" ? styles.formPropertiesCreate : styles.formProperties}>
-            <div className={mode === "create" ? styles.formComponentsPropertiesCreate : styles.formComponentsProperties}>
-                {campos.map((campo) => (
-                    <div key={campo.name} className={styles.inputsAndLabelProperties}>
-                        <label>{campo.label}</label>
+        <form onSubmit={handleSubmit} className={styles.formOverlay}>
+            <div className={styles.formCard}>
 
-                        {campo.type === 'textarea' ? (
-                            <textarea
-                                name={campo.name}
-                                value={formData[campo.name] ?? ""}
-                                onChange={handleChange}
-                            />
-                        ) : campo.type === 'checkbox' ? (
-                            <input
-                                type="checkbox"
-                                name={campo.name}
-                                checked={formData[campo.name] ?? false}
-                                placeholder={formData[campo.name] ?? false}
-                                onChange={handleChange}
-                            />
-                        ) : campo.type === 'option' ? (
-                            campo.name === 'estado' ? (
-                                <select
-                                    name={campo.name}
-                                    value={formData[campo.name] ?? ""}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">Seleccionar</option>
-                                    <option value="Usado">Usado</option>
-                                    <option value="Nuevo">Nuevo</option>
-                                </select>
-                            ) : (
-                                <select
-                                    name={campo.name}
-                                    value={formData[campo.name] ?? ""}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">Seleccionar</option>
-                                    <option value="Auto">Auto</option>
-                                    <option value="Camioneta">Camioneta</option>
-                                    <option value="Moto">Moto</option>
-                                </select>
-                            )
-                        ) : campo.type === 'file' ? (
-                            <div>
+                <div className={styles.formHeader}>
+                    <h2>{mode === "edit" ? "Editar vehículo" : "Crear vehículo"}</h2>
+
+                    <button type="button" onClick={onCloseForm}>
+                        <Image src="/icons/close.png" alt="Cerrar" width={20} height={20}/>
+                    </button>
+                </div>
+
+                <div className={styles.formGrid}>
+                    {campos.map((campo) => (
+                        <div key={campo.name} className={styles.field}>
+                            <label>{campo.label}</label>
+
+                            {campo.type === "file" ? (
                                 <input
                                     type="file"
                                     multiple
@@ -228,57 +185,78 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                         setFormData(prev => ({
                                             ...prev,
                                             imagenes: [
-                                                ...(prev.imagenes || []), // mantiene viejas (PUT)
-                                                ...nuevas                 // agrega nuevas (POST y PUT)
+                                                ...(prev.imagenes || []),
+                                                ...nuevas
                                             ]
                                         }));
 
                                         setUploadingImages(false);
                                     }}
-
                                 />
-                                {formData.imagenes?.map((img: any, i: number) => (
-                                    <div key={i}>
-                                        <Image src={img.url} height={120} width={120} alt={"Vehicle image"} />
-                                        <button onClick={() => {setFormData(prev => ({
+                            ) : (
+                                <input
+                                    type={campo.type}
+                                    name={campo.name}
+                                    value={formData[campo.name] ?? ""}
+                                    onChange={handleChange}
+                                />
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                <div className={styles.imagesSection}>
+                    <h3>Imágenes</h3>
+
+                    <div className={styles.imagesScroll}>
+                        {formData.imagenes?.map((img: any, i: number) => (
+                            <div key={i} className={styles.imageCard}>
+
+                                <Image
+                                    src={img.url}
+                                    alt="Vehicle image"
+                                    fill
+                                    className={styles.image}
+                                />
+
+                                <button
+                                    type="button"
+                                    className={styles.deleteBtn}
+                                    onClick={() =>
+                                        setFormData(prev => ({
                                             ...prev,
-                                            imagenes: prev.imagenes.filter((_:any, index: number) => index !== i)
-                                        }))}}>❌</button>
-                                    </div>
-                                ))}
+                                            imagenes: prev.imagenes.filter(
+                                                (_: any, index: number) => index !== i
+                                            )
+                                        }))
+                                    }
+                                >
+                                    ✕
+                                </button>
+
                             </div>
-                        ) : (
-                            <input
-                                type={campo.type}
-                                name={campo.name}
-                                placeholder={formData[campo.name] ?? (campo.type === "number" ? 0 : "")}
-                                onChange={handleChange}
-                            />
-                        )}
+                        ))}
                     </div>
-                ))}
+                </div>
 
-                <button
-                    type="submit"
-                    className={styles.modifeButton}
-                    disabled={isLoading || uploadingImages}
-                >
-                    {uploadingImages ? "Subiendo imágenes..." :
-                        isLoading ? "Guardando..." :
-                            mode === 'edit' ? 'Modificar' : 'Crear'}
-                </button>
-            </div>
+                <div className={styles.formFooter}>
+                    <button
+                        type="submit"
+                        disabled={isLoading || uploadingImages}
+                        className={styles.submitBtn}
+                    >
+                        {uploadingImages
+                            ? "Subiendo imágenes..."
+                            : isLoading
+                                ? "Guardando..."
+                                : mode === "edit"
+                                    ? "Modificar"
+                                    : "Crear"}
+                    </button>
+                </div>
 
-            <div className={styles.closesButtonProperties}>
-                <button type="button" onClick={onCloseForm}>
-                    <Image
-                        src="/icons/close.png"
-                        alt="Cerrar"
-                        width={20}
-                        height={20}
-                    />
-                </button>
             </div>
         </form>
     );
+
 }

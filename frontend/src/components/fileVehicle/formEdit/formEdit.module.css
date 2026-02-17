@@ -1,77 +1,99 @@
-.formProperties{
+.formOverlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
     display: flex;
-    flex-direction: row;
-    width: 20%;
-}
-
-.formProperties, .formPropertiesCreate{
-    border: var(--red-1) 2px solid;
-    background-color: var(--neutral-1);
-    height: fit-content;
-    border-radius: var(--20px);
-    justify-self: center;
-    align-self: center;
-    position: absolute;
-    z-index: 9999;
-    bottom: 1%;
-    padding-right: 10px;
-    padding-top: 10px;
-    visibility: visible;
-    opacity: 1;
-}
-
-.formPropertiesCreate{
-    display: grid;
-    padding: var(--50px);
-}
-
-.formProperties input, .formProperties select, .formProperties option, .formPropertiesCreate input, .formPropertiesCreate select, .formPropertiesCreate option, .formPropertiesCreate textarea{
-    width: 100%;
-    border: var(--neutral-5) 1px solid;
-    padding: var(--10px);
-    border-radius: var(--20px);
-}
-
-.formProperties option, .formPropertiesCreate option{
-    color: black;
-}
-
-.inputsAndLabelProperties{
-    display: flex;
-    flex-direction: column;
-    gap: var(--5px);
-}
-
-.modifeButton{
-    width: fit-content;
-    height: fit-content;
-    padding: var(--10px) var(--40px);
-    background-color: var(--green-2);
-    border-radius: var(--20px);
-    cursor: pointer;
-}
-
-.formComponentsProperties{
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    gap: var(--20px);
     justify-content: center;
     align-items: center;
-    padding: var(--50px);
+    z-index: 9999;
 }
 
-.formComponentsPropertiesCreate{
+.formCard{
+    background: var(--neutral-1);
+    width: 75%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.formHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formGrid{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px 24px;
+    gap: 20px 30px;
 }
 
-.closesButtonProperties button{
+.field{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--neutral-5);
+}
+
+.imagesSection{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.imagesScroll{
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 5px;
+}
+
+.imageCard{
+    position: relative;
+    width: 140px;
+    height: 160px;
+    flex: 0 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image{
+    object-fit: cover;
+}
+
+.deleteBtn{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0,0,0,.7);
+    color: white;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
-.notShow{
-    opacity: 0;
-    visibility: hidden;
+.formFooter{
+    display: flex;
+    justify-content: center;
+}
+
+.submitBtn{
+    background: var(--green-2);
+    padding: 12px 50px;
+    border-radius: 20px;
+    cursor: pointer;
 }

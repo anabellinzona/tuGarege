@@ -93,14 +93,14 @@ export default function FileVehicle({id, mode}: Prop){
     useEffect(() => {
         if (mode === "create" && vehiculo) {
             setCamposAEditar([
-                { name: "marca", label: "Marca", value: "Marca", type: "text" },
-                { name: "modelo", label: "Modelo", value: "Modelo", type: "text" },
+                { name: "marca", label: "Marca", value: "", type: "text" },
+                { name: "modelo", label: "Modelo", value: "", type: "text" },
                 { name: "km", label: "Kilómetros", value: 0, type: "number" },
                 { name: "anio", label: "Año", value: new Date().getFullYear(), type: "number" },
                 { name: "precio", label: "Precio", value: 0, type: "number" },
                 { name: "estado", label: "Estado", value: "Usado", type: "option" },
-                { name: "tipo", label: "Tipo vehículo", value: "Tipo", type: "option" },
-                { name: "descripcion", label: "Descripción", value: "Descripción", type: "textarea" },
+                { name: "tipo", label: "Tipo vehículo", value: "", type: "option" },
+                { name: "descripcion", label: "Descripción", value: "", type: "textarea" },
                 { name: "imagenes", label: "Imagenes", value: [], type: "file" },
             ]);
         }

@@ -41,9 +41,9 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Frontend en producción
-        config.setAllowedOrigins(List.of(
-                "https://tugarage-git-main-anabellinzonas-projects.vercel.app/",     // corregido
-                "https://tugarege.onrender.com",   // agrega tu backend de Render
+        config.setAllowedOriginPatterns(List.of(
+                "https://tugarage-*.vercel.app",
+                "https://tugarage.vercel.app",
                 "http://localhost:3000"
         ));
 

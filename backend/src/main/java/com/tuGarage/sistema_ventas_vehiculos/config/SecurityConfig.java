@@ -42,7 +42,7 @@ public class SecurityConfig {
 
         // Frontend en producción
         config.setAllowedOrigins(List.of(
-                "https://tu_garege.vercel.app",     // corregido
+                "https://tugarage-git-main-anabellinzonas-projects.vercel.app/",     // corregido
                 "https://tugarege.onrender.com",   // agrega tu backend de Render
                 "http://localhost:3000"
         ));

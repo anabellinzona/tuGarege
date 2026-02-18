@@ -61,10 +61,13 @@ export default function FileVehicle({id, mode}: Prop){
 
     const user = authService.getUserData();
 
-    if (!user || user.id == null) {
-        alert("Sesión no válida");
-        return;
-    }
+    // if(isEditableFile || isEmptyFile){
+        if (!user || user.id == null) {
+            alert("Sesión no válida");
+            return;
+        }
+    // }
+
 
     const emptyVehiculo: Vehiculo = {
         id: 0,

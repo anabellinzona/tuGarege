@@ -1,8 +1,9 @@
 import FileVehicle from "@/components/fileVehicle/fileVehicle";
 
-export default function Page({ params, searchParams }: any) {
-    const id = params.id;
-    const mode = searchParams.mode || "view";
+export default async function Page({ params, searchParams }: any) {
+    const { id } = await params;
+    const { mode: modeParam } = await searchParams;
+    const mode = modeParam || "view";
 
     if(mode == "create"){
         return <FileVehicle mode={mode} />;

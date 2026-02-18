@@ -193,7 +193,31 @@ export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpd
                                         setUploadingImages(false);
                                     }}
                                 />
-                            ) : (
+                            ): campo.type === "textarea" ? (
+                                <textarea
+                                    name={campo.name}
+                                    value={formData[campo.name] ?? ""}
+                                    onChange={handleChange}
+                                />
+                            ): campo.type === 'option' ? (
+                                campo.name === 'estado' ? (
+                                    <select
+                                        name={campo.name}
+                                        value={formData[campo.name] ?? ""}
+                                        onChange={handleChange} >
+                                        <option value="">Seleccionar</option>
+                                        <option value="Usado">Usado</option>
+                                        <option value="Nuevo">Nuevo</option> </select> ) :
+                                    ( <select
+                                        name={campo.name}
+                                        value={formData[campo.name] ?? ""}
+                                        onChange={handleChange} >
+                                        <option value="">Seleccionar</option>
+                                        <option value="Auto">Auto</option>
+                                        <option value="Camioneta">Camioneta</option>
+                                        <option value="Moto">Moto</option>
+                                    </select>
+                                    ) ) : (
                                 <input
                                     type={campo.type}
                                     name={campo.name}

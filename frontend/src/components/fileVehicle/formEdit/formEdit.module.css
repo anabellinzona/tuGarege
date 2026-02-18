@@ -8,6 +8,10 @@
     z-index: 9999;
 }
 
+.formOverlay option {
+    color: var(--neutral-1);
+}
+
 .formCard{
     background: var(--neutral-1);
     width: 75%;

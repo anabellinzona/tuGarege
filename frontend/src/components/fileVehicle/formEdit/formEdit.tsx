@@ -230,39 +230,41 @@ export default function FormEdit({ idV, isFirstInfo, mode, onCloseForm, campos, 
                     ))}
                 </div>
 
-                <div className={styles.imagesSection}>
-                    <h3>Imágenes</h3>
+                {isFirstInfo && (
+                    <div className={styles.imagesSection}>
+                        <h3>Imágenes</h3>
 
-                    <div className={styles.imagesScroll}>
-                        {formData.imagenes?.map((img: any, i: number) => (
-                            <div key={i} className={styles.imageCard}>
+                        <div className={styles.imagesScroll}>
+                            {formData.imagenes?.map((img: any, i: number) => (
+                                <div key={i} className={styles.imageCard}>
 
-                                <Image
-                                    src={img.url}
-                                    alt="Vehicle image"
-                                    fill
-                                    className={styles.image}
-                                />
+                                    <Image
+                                        src={img.url}
+                                        alt="Vehicle image"
+                                        fill
+                                        className={styles.image}
+                                    />
 
-                                <button
-                                    type="button"
-                                    className={styles.deleteBtn}
-                                    onClick={() =>
-                                        setFormData(prev => ({
-                                            ...prev,
-                                            imagenes: prev.imagenes.filter(
-                                                (_: any, index: number) => index !== i
-                                            )
-                                        }))
-                                    }
-                                >
-                                    ✕
-                                </button>
+                                    <button
+                                        type="button"
+                                        className={styles.deleteBtn}
+                                        onClick={() =>
+                                            setFormData(prev => ({
+                                                ...prev,
+                                                imagenes: prev.imagenes.filter(
+                                                    (_: any, index: number) => index !== i
+                                                )
+                                            }))
+                                        }
+                                    >
+                                        ✕
+                                    </button>
 
-                            </div>
-                        ))}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
 
                 <div className={styles.formFooter}>
                     <button

@@ -56,6 +56,8 @@ export default function FileVehicle({id, mode}: Prop){
     const searchParams = useSearchParams();
     const modeParam = searchParams.get("mode");
 
+    const [isFirstInfo, setFirstInfo] = useState(false);
+
     const [camposAEditar, setCamposAEditar] = useState<CampoAEditar[]>([]);
     const [vehiculoAEditar, setVehiculoAEditar] = useState(false);
 
@@ -162,6 +164,7 @@ export default function FileVehicle({id, mode}: Prop){
                             { name: "imagenes", label: "Imagenes", value: vehiculo?.imagenes != null ? vehiculo?.imagenes : [], type: "file" },
                         ]);
                         setVehiculoAEditar(true);
+                        setFirstInfo(true);
                     }}
                     onSaveField={handleSaveField}
                     classname={styles.inputProperties}
@@ -181,6 +184,7 @@ export default function FileVehicle({id, mode}: Prop){
                                     { name: "estado", label: "Estado", value: vehiculo?.estado, type: "option" },
                                 ]);
                                 setVehiculoAEditar(true); // abre el formulario
+                                setFirstInfo(false);
                             }}
                             onSaveField={handleSaveField}
                             classname={styles.inputProperties}/>
@@ -204,6 +208,7 @@ export default function FileVehicle({id, mode}: Prop){
                                         }
                                     ])
                                     setVehiculoAEditar(true);
+                                    setFirstInfo(false);
                                 }}
                                 onSaveField={handleSaveField}
                                 classname={styles.inputProperties}/>
@@ -222,6 +227,7 @@ export default function FileVehicle({id, mode}: Prop){
                     <FormEdit
                         campos={camposAEditar}
                         idV={vehiculo.id}
+                        isFirstInfo={isFirstInfo}
                         mode={'edit'}
                         onCloseForm={() => setVehiculoAEditar(false)}
                         onVehiculoUpdated={handleVehiculoUpdated}
@@ -229,6 +235,7 @@ export default function FileVehicle({id, mode}: Prop){
                 ) || isEmptyFile && (
                     <FormEdit
                         campos={camposAEditar}
+                        isFirstInfo={isFirstInfo}
                         mode={'create'}
                         onCloseForm={() => setVehiculoAEditar(false)}
                         onVehiculoUpdated={handleVehiculoUpdated}

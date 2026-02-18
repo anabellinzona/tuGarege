@@ -20,13 +20,14 @@ interface Campo {
 type Prop = {
     campos: Campo[];
     idV?: number;
+    isFirstInfo: boolean;
     mode: 'edit' | 'create';
     onCloseForm: () => void;
     onVehiculoUpdated: (v: any) => void;
 };
 
 
-export default function FormEdit({ idV, mode, onCloseForm, campos, onVehiculoUpdated }: Prop) {
+export default function FormEdit({ idV, isFirstInfo, mode, onCloseForm, campos, onVehiculoUpdated }: Prop) {
     const [formData, setFormData] = useState<Record<string, any>>({});
     const [isLoading, setIsLoading] = useState(false);
     const API_URL = process.env.NEXT_PUBLIC_API_URL;

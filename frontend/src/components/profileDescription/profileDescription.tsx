@@ -2,7 +2,7 @@
 import styles from './profileDescription.module.css'
 import Image from 'next/image';
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import { authService } from "@/service/authService";
 
@@ -44,6 +44,8 @@ export default function ProfileDescription({ idV }: Prop) {
     const [editMode, setEditMode] = useState(false);
     const [editedVendedor, setEditedVendedor] = useState<Vendedor | null>(null);
     const [isOwner, setIsOwner] = useState(false);
+    const [uploadingImages, setUploadingImages] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const params = useParams();
     const vendedorId = idV || params?.id || authService.getUserData()?.id;
@@ -75,6 +77,68 @@ export default function ProfileDescription({ idV }: Prop) {
             .then(data => setVehiculos(data))
             .catch(err => console.log("Error:", err));
     }, [vendedorId]);
+
+    const uploadImageToCloudinary = async (file: File) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "vehiculos_unsigned");
+
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dv2synj8w/image/upload",
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        const data = await res.json();
+        console.log("URL IMAGEN: " + data.secure_url);
+        return data.secure_url;
+    };
+
+    const handleProfileImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || e.target.files.length === 0) return;
+        setUploadingImages(true);
+
+        try {
+            const url = await uploadImageToCloudinary(e.target.files[0]);
+            const token = localStorage.getItem('token');
+
+            const body = {
+                nombre: vendedor?.nombre,
+                direccion: vendedor?.direccion,
+                telefono: vendedor?.telefono,
+                email: vendedor?.email,
+                instagram: vendedor?.instagram,
+                descripcion: vendedor?.descripcion,
+                ciudad: vendedor?.ciudad,
+                fotoPerfil: url,
+            };
+
+            const response = await fetch(`${API_URL}/api/vendedores/${vendedorId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(body),
+            });
+
+            if (!response.ok && response.status !== 204) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Error al guardar la foto");
+            }
+
+            setVendedor(prev => prev ? { ...prev, fotoPerfil: url } : prev);
+            setEditedVendedor(prev => prev ? { ...prev, fotoPerfil: url } : prev);
+
+        } catch (error) {
+            console.error("Error al guardar la foto:", error);
+            alert("No se pudo guardar la foto. Intentalo nuevamente.");
+        } finally {
+            setUploadingImages(false);
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (!editedVendedor) return;
@@ -139,14 +203,33 @@ export default function ProfileDescription({ idV }: Prop) {
     return (
         <main className={styles.main}>
             <div className={styles.content}>
-                <div className={styles.profileImage}>
-                    <Image
-                        src={vendedor?.fotoPerfil || "/logo/vertical.png"}
-                        alt={'user profile image'}
-                        fill
-                        style={{objectFit: 'cover'}}
-                        priority
-                    />
+                <div
+                    className={styles.profileImage}
+                    onClick={() => isOwner && fileInputRef.current?.click()}
+                    style={isOwner ? { cursor: 'pointer' } : {}}
+                    title={isOwner ? "Cambiar foto de perfil" : ""}
+                >
+                    {isOwner && (
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleProfileImageChange}
+                        />
+                    )}
+
+                    {uploadingImages ? (
+                        <p style={{ color: 'white', textAlign: 'center' }}>Subiendo...</p>
+                    ) : (
+                        <Image
+                            src={vendedor?.fotoPerfil || "/logo/vertical.png"}
+                            alt={'user profile image'}
+                            fill
+                            style={{objectFit: 'cover'}}
+                            priority
+                        />
+                    )}
                 </div>
 
                 <div className={styles.description}>
@@ -247,15 +330,6 @@ export default function ProfileDescription({ idV }: Prop) {
                             onChange={handleChange}
                             className={styles.textareaEdit}
                             placeholder="Descripción"
-                        />
-
-                        <input
-                            type="text"
-                            name="fotoPerfil"
-                            value={editedVendedor?.fotoPerfil || ""}
-                            onChange={handleChange}
-                            className={styles.inputEdit}
-                            placeholder="URL de foto de perfil"
                         />
                     </>
                 ) : (

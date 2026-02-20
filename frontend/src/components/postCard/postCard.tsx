@@ -129,7 +129,7 @@ export default function PostCard() {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}` // 🔥 LO QUE FALTABA
+                    "Authorization": `Bearer ${token}`
                 }
             });
 

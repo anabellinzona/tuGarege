@@ -3,7 +3,8 @@ import styles from "./formEdit.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { authService } from "@/service/authService";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
+import { useAlert } from "@/context/AlertContext";
 
 interface Imagen {
     id?: number;
@@ -33,6 +34,7 @@ export default function FormEdit({ idV, isFirstInfo, mode, onCloseForm, campos, 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
     const [uploadingImages, setUploadingImages] = useState(false);
+    const { showAlert } = useAlert();
 
     useEffect(() => {
         const initialValues: Record<string, any> = {};
@@ -82,13 +84,13 @@ export default function FormEdit({ idV, isFirstInfo, mode, onCloseForm, campos, 
             const token = authService.getToken();
 
             if (!token) {
-                alert("Debes iniciar sesión.");
+                showAlert("Debes iniciar sesión.", "error");
                 window.location.href = '/login';
                 return;
             }
 
             if (!token.startsWith("eyJ")) {
-                alert("Token inválido, vuelve a iniciar sesión.");
+                showAlert("Token inválido. Vuelve a iniciar sesión.", "error");
                 localStorage.removeItem("token");
                 window.location.href = "/login";
                 return;
@@ -118,7 +120,12 @@ export default function FormEdit({ idV, isFirstInfo, mode, onCloseForm, campos, 
                 throw new Error(responseText || "Error desconocido");
             }
 
-            alert("Cambios guardados correctamente");
+            showAlert(
+                mode === "create"
+                    ? "Vehículo creado correctamente"
+                    : "Cambios guardados correctamente",
+                "success"
+            );
 
             if (mode === "create") {
                 const nuevoVehiculo = JSON.parse(responseText);
@@ -132,7 +139,7 @@ export default function FormEdit({ idV, isFirstInfo, mode, onCloseForm, campos, 
             }
 
         } catch (error) {
-            alert("Error al guardar los cambios.");
+            showAlert("Error al guardar los cambios.", "error");
         } finally {
             setIsLoading(false);
         }

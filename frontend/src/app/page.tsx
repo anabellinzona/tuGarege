@@ -4,6 +4,7 @@ import SearchSection from "@/components/searchSection/searchSection"
 import InfoCard from "@/components/infoCards/infoCards";
 import FeatureCards from "@/components/featuredCards/featuredCards";
 import RecentsSection from "@/components/recentsSection/recentsSection";
+import AlertMessage from "@/components/alertMessages/alertMessage";
 
 export default function Home() {
   return (

@@ -1,0 +1,71 @@
+.main {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.alertBox {
+    background: white;
+    padding: 10px;
+    border-radius: var(--5px);
+    min-width: 80%;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: fadeIn 0.2s ease-in-out;
+
+    color: var(--neutral-1-static);
+    background-color: var(--neutral-4-static);
+}
+
+.success {
+    border-top: 1px solid var(--green-1);
+}
+
+.error {
+    border-top: 1px solid var(--red-2);
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+    border: none;
+    background-color: transparent;
+    color: var(--red-1);
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    margin-top: var(--20px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (min-width: 768px) {
+    .alertBox {
+        min-width: 500px;
+    }
+}

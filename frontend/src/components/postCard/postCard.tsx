@@ -6,6 +6,7 @@ import Image from "next/image";
 import { authService } from "@/service/authService";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useAlert } from "@/context/AlertContext";
 
 interface Imagen {
     id: number;
@@ -38,6 +39,7 @@ export default function PostCard() {
     const params = useParams();
     const userData = authService.getUserData();
     const userId = userData?.id;
+
 
 
 
@@ -83,11 +85,10 @@ export default function PostCard() {
                     setLoading(false);
                 });
         } else {
-            // 5. Si no hay ID de vendedor (ni en URL ni en auth), terminamos la carga.
             setError("No se pudo determinar el ID del vendedor para mostrar vehículos.");
             setLoading(false);
         }
-    }, [params?.id]); // Re-ejecutar si el ID en la URL cambia
+    }, [params?.id]);
 
     const isOwner = !!(userId && safeVendedorId && Number(userId) === Number(safeVendedorId));
 
@@ -121,7 +122,7 @@ export default function PostCard() {
             const token = authService.getToken();
 
             if (!token) {
-                alert("Debes iniciar sesión");
+                showAlert("Debes iniciar sesión.", "error");
                 return;
             }
 
@@ -141,10 +142,11 @@ export default function PostCard() {
 
         } catch (error) {
             console.error("Error al eliminar:", error);
-            alert("Hubo un error al eliminar la publicación.");
+            showAlert("Debes iniciar sesión.", "error");
         }
     };
 
+    const { showAlert } = useAlert();
 
     console.log("userId:", userId);
     console.log("safeVendedorId:", safeVendedorId);

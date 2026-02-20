@@ -62,6 +62,12 @@ export default function NavBar() {
                 />
             </div>
 
+            <div className={styles.menuButton}>
+                <button onClick={toggleMenu}>
+                    ☰
+                </button>
+            </div>
+
             <div className={styles.navContent}>
                 <Link
                     href="/"
@@ -79,7 +85,7 @@ export default function NavBar() {
 
                 {/* Usamos 'userId' para generar el enlace al perfil */}
                 {isAuthenticated && userId ? (
-                    <Link href={`/perfil/${userId}`} >
+                    <Link href={`/perfil/${userId}`}>
                         <h5>Mi perfil</h5>
                     </Link>
                 ) : (
@@ -106,7 +112,7 @@ export default function NavBar() {
 
                     {/* Usamos 'userId' para generar el enlace al perfil en móvil */}
                     {isAuthenticated && userId ? (
-                        <Link href={`/perfil/${userId}`} >
+                        <Link href={`/perfil/${userId}`}>
                             <h5>Mi perfil</h5>
                         </Link>
                     ) : (
@@ -122,11 +128,11 @@ export default function NavBar() {
                 <div className={styles.actions}>
                     {isAuthenticated ? (
                         <button onClick={handleLogout}>
-                            <SellButton nameButton={"CERRAR SESIÓN"} link={"/"} />
+                            <SellButton nameButton={"CERRAR SESIÓN"} link={"/"}/>
                         </button>
                     ) : (
-                        <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"} />
-                    ) }
+                        <SellButton nameButton={"QUIERO VENDER"} link={"/formularioVenta"}/>
+                    )}
                     <button
                         onClick={toggleTheme}
                         className={styles.darkModeButton}

@@ -94,8 +94,6 @@ export default function UserContent({idV}: Prop) {
 
             {activeTab === "posts" ? (
                 <div className={styles.postsGrid}>
-                    {/* 5. Nota: Si PostCard necesita el ID, debes pasarlo como prop */}
-                    {/* <PostCard vendedorId={safeVendedorId} /> */}
                     <PostCard />
                 </div>
             ) : (

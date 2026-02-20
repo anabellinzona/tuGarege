@@ -91,6 +91,7 @@ public class VendedorService implements UserDetailsService {
         vendedor.setInstagram(cambios.getInstagram());
         vendedor.setDescripcion(cambios.getDescripcion());
         vendedor.setCiudad(cambios.getCiudad());
+        vendedor.setFotoPerfil(cambios.getFotoPerfil());
 
         return vendedorRepository.save(vendedor);
     }

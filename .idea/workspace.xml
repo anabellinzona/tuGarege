@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb312f1b-2889-4593-868b-57fb0f484596" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/postCard/postCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/profileDescription/profileDescription.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/userContent/userContent.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,8 +108,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -186,7 +189,10 @@
       <workItem from="1770809121214" duration="9313000" />
       <workItem from="1770831161903" duration="281000" />
       <workItem from="1771335947842" duration="13194000" />
-      <workItem from="1771426284149" duration="5874000" />
+      <workItem from="1771426284149" duration="7113000" />
+      <workItem from="1771515066125" duration="1296000" />
+      <workItem from="1771525405612" duration="713000" />
+      <workItem from="1771596588072" duration="2091000" />
     </task>
     <servers />
   </component>

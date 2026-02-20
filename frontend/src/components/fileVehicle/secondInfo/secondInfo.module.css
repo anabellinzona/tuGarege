@@ -33,9 +33,9 @@
 .descriptionContainerProperties, .tableCharacteristicProperties{
     border: 1px solid var(--neutral-3);
     border-radius: var(--20px);
-    width: 80%;
+    width: 95%;
     padding: 16px 20px;
-    margin-left: 5%;
+    margin-inline: auto;
     color: var(--neutral-5);
 }
 
@@ -50,4 +50,15 @@
     border-radius: var(--20px);
     padding: var(--10px) var(--50px);
     cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .descriptionContainerProperties, .tableCharacteristicProperties{
+        border: 1px solid var(--neutral-3);
+        border-radius: var(--20px);
+        width: 80%;
+        padding: 16px 20px;
+        margin-left: 5%;
+        color: var(--neutral-5);
+    }
 }

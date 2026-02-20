@@ -7,7 +7,7 @@
 
 .carrouselAndVehicleInformationProperties{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     height: fit-content;
     justify-content: center;
@@ -23,9 +23,9 @@
 .descriptionContainerProperties, .aditionalInfoContainerProperties{
     border: 1px solid var(--neutral-3);
     border-radius: var(--20px);
-    width: 80%;
+    width: 95%;
     padding: 16px 20px;
-    margin-left: 5%;
+    margin-inline: auto;
     color: var(--neutral-5);
 }
 
@@ -36,8 +36,10 @@
 .secondInfoContainerProperties{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 100%;
     gap: var(--20px);
+    margin: var(--40px);
+    margin-inline: 0;
 }
 
 .aditionalInfoContainerProperties{
@@ -48,14 +50,14 @@
 
 .buttonContainerProperties{
     display: flex;
-    width: 100%;
+    width: 95%;
     margin: var(--20px);
-    padding-left: var(--50px);
+    margin-inline: auto;
 }
 
 .secondContainerProperties{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .titleAndEditButtonProperties{
@@ -69,4 +71,41 @@
     border: var(--red-1) 1px solid;
     padding: var(--10px);
     width: fit-content;
+}
+
+@media (min-width: 768px) {
+    .carrouselAndVehicleInformationProperties{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: fit-content;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .secondContainerProperties{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .secondInfoContainerProperties{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        gap: var(--20px);
+    }
+
+    .descriptionContainerProperties, .aditionalInfoContainerProperties{
+        border: 1px solid var(--neutral-3);
+        border-radius: var(--20px);
+        width: 80%;
+        padding: 16px 20px;
+        margin-left: 5%;
+        color: var(--neutral-5);
+    }
+
+    .buttonContainerProperties{
+        width: 80%;
+        margin-left: 5%;
+    }
 }

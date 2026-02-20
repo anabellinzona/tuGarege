@@ -78,33 +78,33 @@ export default function Footer() {
                         <h6>2016</h6>
                     </Link>
                     <Link
-                        href="/vehiculos"
+                        href={"/vehiculos"}
                         className={pathname === "/vehiculos" ? styles.activeLink : ""}
                     >
-                        <h6>Todas las marcas</h6>
+                        <h6>Todos los años</h6>
                     </Link>
                 </div>
 
                 <div>
                     <h4>Carrocería</h4>
 
-                    <Link href="/vehiculos"
+                    <Link href={"/vehiculos"}
                           className={pathname === "/vehiculos" ? styles.activeLink : ""}
                     >
                         <h6>Auto</h6>
                     </Link>
-                    <Link href="/vehiculos"
+                    <Link href={"/vehiculos"}
                           className={pathname === "/vehiculos" ? styles.activeLink : ""}
                     >
                         <h6>Camioneta</h6>
                     </Link>
-                    <Link href="/vehiculos"
+                    <Link href={"/vehiculos"}
                           className={pathname === "/vehiculos" ? styles.activeLink : ""}
                     >
                         <h6>Motos</h6>
                     </Link>
                     <Link
-                        href="/vehiculos"
+                        href={"/vehiculos"}
                         className={pathname === "/vehiculos" ? styles.activeLink : ""}
                     >
                         <h6>Todas las carrocerías</h6>

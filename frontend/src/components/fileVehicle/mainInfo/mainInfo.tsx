@@ -69,7 +69,7 @@ export default function MainInfo({
 
     return (
         <div className={styles.vehicleInformationProperties}>
-            <div className={styles.vehicleMainInfortationProperties}>
+            <div className={styles.vehicleMainInforationProperties}>
                 <div className={styles.editableField}>
                     <h1>{vehiculo.marca}</h1>
                     <h1>{vehiculo.modelo}</h1>
@@ -84,13 +84,13 @@ export default function MainInfo({
 
             <div className={styles.priceInformationProperties}>
                 <div className={styles.editableField}>
-                    <h1>Precio</h1>
+                    <h4>Precio</h4>
                 </div>
                 <span>${vehiculo.precio}</span>
             </div>
 
             <div className={styles.sallerInformationProperties}>
-                <h1>Vendedor</h1>
+                <h4>Vendedor</h4>
                 <Link href={`/perfil/${vendedor?.id}`}>
                     <span>{vendedor?.nombre}</span>
                 </Link>
@@ -104,9 +104,11 @@ export default function MainInfo({
                     Editar
                 </button>
             ) : (
-                <Link href={`https://wa.me/${vendedor?.telefono}`}>
-                    <ConsultButton message={"Consultar"} />
-                </Link>
+                <div className={styles.consultButton}>
+                    <Link href={`https://wa.me/${vendedor?.telefono}`}>
+                        <ConsultButton message={"Consultar"} />
+                    </Link>
+                </div>
             )}
         </div>
     );
